@@ -1,2 +1,4 @@
 *.csv
 *.strings
+*.lproj
+i18n_config.rb
