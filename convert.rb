@@ -108,11 +108,12 @@ module CSVStringsConverter
 						puts ">>>Creating file : #{filename}"
 						files[i] << File.new(filename,"w")
 					end
-				elsif !CSV2StringsConfig[:excluded_states].include? row[CSV2StringsConfig[:state_column]]
+				elsif row[CSV2StringsConfig[:state_column]].nil? or row[CSV2StringsConfig[:state_column]] == '' or !CSV2StringsConfig[:excluded_states].include? row[CSV2StringsConfig[:state_column]]
 					key = row[CSV2StringsConfig[:keys_column]].strip #@todo: add option to strip the constant or referenced language
 					value = row[i].nil? ? row[defaultCol] : row[i]
+					value.gsub!(/\\*\"/, "\\\"")
 					files[i].each do |file|
-						file.write "\"#{key}\" = \"#{value.gsub(/\"/, "\\\"")}\";\n"
+						file.write "\"#{key}\" = \"#{value}\";\n"
 					end
 				end
 			end
