@@ -112,7 +112,7 @@ module CSVStringsConverter
 					key = row[CSV2StringsConfig[:keys_column]].strip #@todo: add option to strip the constant or referenced language
 					value = row[i].nil? ? row[defaultCol] : row[i]
 					files[i].each do |file|
-						file.write "\"#{key}\" = \"#{value}\";\n"
+						file.write "\"#{key}\" = \"#{value.gsub(/\"/, "\\\"")}\";\n"
 					end
 				end
 			end
