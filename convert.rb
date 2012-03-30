@@ -100,7 +100,8 @@ module CSVStringsConverter
 					defaultCol = i if CSV2StringsConfig[:default_lang] == row[i]
 					files[i]   = []
 					CSV2StringsConfig[:langs][row[i]].each do |locale|
-						locale_dir = "#{locale}.lproj"
+						locale_dir = [CSV2StringsConfig[:path], "#{locale}.lproj"].compact.join('/')
+            puts "dsssssss" +locale_dir 
 						unless FileTest::directory?(locale_dir)
 							Dir::mkdir(locale_dir)
 						end
