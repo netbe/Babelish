@@ -1,6 +1,28 @@
 #!/usr/bin/env ruby
 
+# == Synopsis
+# convert CSV files to Apple .strings files and vice-versa
+#
+# == Usage
+# Strings 2 CSV : make CSV with xx.lproj/Localizable.strings files in current directory
+#     ./convert.rb
+# Strings 2 CSV : make CSV with custom .strings file list
+#     ./convert.rb <filename1.strings> [...]
+# CSV 2 Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file
+#     ./convert.rb <filename.csv>\n\n
+# Failed to load i18n_config.rb
+# Put i18n_config.rb in current directory
+
+
 require 'rubygems'
+
+begin
+	require 'rdoc/usage' 	
+rescue LoadError => e
+	puts "gem install rdoc"
+	puts e
+	exit	 	
+end 
 
 CSVGEM = RUBY_VERSION.match(/^[0-1]\.[0-8]\./) ? 'faster_csv' : 'csv'
 
@@ -16,10 +38,9 @@ CSVParserClass = CSVGEM == 'csv' ? CSV : FasterCSV
 
 begin
 	load 'i18n_config.rb'
+	@no_config = false
 rescue LoadError
-	puts "Failed to load i18n_config.rb"
-	puts "Put i18n_config.rb in current directory"
-	# exit
+	@no_config = true
 end
 
 module CSVStringsConverter
@@ -111,48 +132,45 @@ module CSVStringsConverter
 				elsif row[CSV2StringsConfig[:state_column]].nil? or row[CSV2StringsConfig[:state_column]] == '' or !CSV2StringsConfig[:excluded_states].include? row[CSV2StringsConfig[:state_column]]
 					key = row[CSV2StringsConfig[:keys_column]].strip #@todo: add option to strip the constant or referenced language
 					value = row[i].nil? ? row[defaultCol] : row[i]
-          value = "" if value.nil?
+					value = "" if value.nil?
 					value.gsub!(/\\*\"/, "\\\"") #escape double quotes
 					value.gsub!(/\s*(\n|\\\s*n)\s*/, "\\n") #replace new lines with \n + strip
 					value.gsub!(/%\s+([a-zA-Z@])([^a-zA-Z@]|$)/, "%\\1\\2") #repair string formats ("% d points" etc)
 					value.gsub!(/([^0-9\s\(\{\[^])%/, "\\1 %")
-					value.strip!
-					files[i].each do |file|
-						file.write "\"#{key}\" = \"#{value}\";\n"
+						value.strip!
+						files[i].each do |file|
+							file.write "\"#{key}\" = \"#{value}\";\n"
+						end
 					end
 				end
+				rowIndex += 1
 			end
-			rowIndex += 1
-		end
-		puts ">>>Created #{files.size} files. Content: #{rowIndex - 1} translations"
-		files.each do |key,locale_files|
-			locale_files.each do |file|
-				file.close
-			 end
-		end
+			puts ">>>Created #{files.size} files. Content: #{rowIndex - 1} translations"
+			files.each do |key,locale_files|
+				locale_files.each do |file|
+					file.close
+				end
+			end
 
+		end
 	end
-end
 
 # Part of the script
 if $0 == __FILE__
 	# Shows help on how to use this script
+
 	def usage
-		puts "Usage:\n" #@todo: add details about arguments
-		puts "Strings 2 CSV : make CSV with xx.lproj/Localizable.strings files in current directory"
-		puts "    ./convert.rb\n\n"
-		puts "Strings 2 CSV : make CSV with custom .strings file list"
-		puts "    ./convert.rb <filename1.strings> [...]\n\n"
-		puts "CSV 2 Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file"
-		puts "    ./convert.rb <filename.csv>\n\n"
+		RDoc::usage
 		exit
 	end
 
 	# Main program
 	if ARGV.size < 1
-		CSVStringsConverter.dotstrings_to_csv(nil)
-		puts "Error: not enough arguments"
-		usage
+		if @no_config
+			puts "Error: not enough arguments"
+			usage
+		end
+		CSVStringsConverter.dotstrings_to_csv(nil) 
 	elsif filename = ARGV[0] and ARGV.size == 1 and File.extname(filename).downcase == '.csv'
 		CSVStringsConverter.csv_to_dotstrings(filename)
 	else
