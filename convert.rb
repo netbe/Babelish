@@ -1,28 +1,8 @@
 #!/usr/bin/env ruby
 
-# == Synopsis
-# convert CSV files to Apple .strings files and vice-versa
-#
-# == Usage
-# Strings 2 CSV : make CSV with xx.lproj/Localizable.strings files in current directory
-#     ./convert.rb
-# Strings 2 CSV : make CSV with custom .strings file list
-#     ./convert.rb <filename1.strings> [...]
-# CSV 2 Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file
-#     ./convert.rb <filename.csv>\n\n
-# Failed to load i18n_config.rb
-# Put i18n_config.rb in current directory
-
-
+$: << File.expand_path(File.join(File.dirname(__FILE__)))
 require 'rubygems'
-
-begin
-	require 'rdoc/usage' 	
-rescue LoadError => e
-	puts "gem install rdoc"
-	puts e
-	exit	 	
-end 
+require 'optparse'
 
 CSVGEM = RUBY_VERSION.match(/^[0-1]\.[0-8]\./) ? 'faster_csv' : 'csv'
 
@@ -155,14 +135,50 @@ module CSVStringsConverter
 		end
 	end
 
-	def usage
-		RDoc::usage
+	def parse
+		# == Synopsis
+		# convert CSV files to Apple .strings files and vice-versa
+		#
+		# == Usage
+		# Strings 2 CSV : make CSV with xx.lproj/Localizable.strings files in current directory
+		#     ./convert.rb
+		# Strings 2 CSV : make CSV with custom .strings file list
+		#     ./convert.rb <filename1.strings> [...]
+		# CSV 2 Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file
+		#     ./convert.rb <filename.csv>\n\n
+		# Failed to load i18n_config.rb
+		# Put i18n_config.rb in current directory
+		options = {}
+		OptionParser.new do |opts|
+			opts.banner = "Usage: convert.rb [options]"
+
+			# Definition of options
+			options[:verbose] = false
+			opts.on( '-v', '--verbose', 'Output more information' ) do
+			 options[:verbose] = true
+			end
+ 
+			options[:logfile] = nil
+			opts.on( '-l', '--logfile FILE', 'Write log to FILE' ) do|file|
+				options[:logfile] = file
+			end
+
+			# This displays the help screen, all programs are
+		  # assumed to have this option.
+   		opts.on( '-h', '--help', 'Display this screen' ) do
+    		puts opts
+     		exit
+     	end
+
+		end.parse!
+		puts "Being verbose" if options[:verbose]
+		puts "Logging to file #{options[:logfile]}" if options[:logfile]
 		exit
 	end
 # Part of the script
 if $0 == __FILE__
 	# Shows help on how to use this script
-
+	parse
 
 
 	# Main program
