@@ -155,14 +155,15 @@ module CSVStringsConverter
 		end
 	end
 
-# Part of the script
-if $0 == __FILE__
-	# Shows help on how to use this script
-
 	def usage
 		RDoc::usage
 		exit
 	end
+# Part of the script
+if $0 == __FILE__
+	# Shows help on how to use this script
+
+
 
 	# Main program
 	if ARGV.size < 1
