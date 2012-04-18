@@ -16,10 +16,10 @@ CSVParserClass = CSVGEM == 'csv' ? CSV : FasterCSV
 
 begin
 	load 'i18n_config.rb'
-rescue
+rescue LoadError
 	puts "Failed to load i18n_config.rb"
 	puts "Put i18n_config.rb in current directory"
-	exit
+	# exit
 end
 
 module CSVStringsConverter
@@ -101,7 +101,6 @@ module CSVStringsConverter
 					files[i]   = []
 					CSV2StringsConfig[:langs][row[i]].each do |locale|
 						locale_dir = [CSV2StringsConfig[:path], "#{locale}.lproj"].compact.join('/')
-            puts "dsssssss" +locale_dir 
 						unless FileTest::directory?(locale_dir)
 							Dir::mkdir(locale_dir)
 						end
@@ -152,8 +151,8 @@ if $0 == __FILE__
 	# Main program
 	if ARGV.size < 1
 		CSVStringsConverter.dotstrings_to_csv(nil)
-		#puts "Error: not enough arguments"
-		#usage
+		puts "Error: not enough arguments"
+		usage
 	elsif filename = ARGV[0] and ARGV.size == 1 and File.extname(filename).downcase == '.csv'
 		CSVStringsConverter.csv_to_dotstrings(filename)
 	else
