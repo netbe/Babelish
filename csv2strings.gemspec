@@ -8,4 +8,8 @@ Gem::Specification.new do |s|
   s.email       = 'francois.benaiteau@gmail.com'
   s.homepage    = 'https://github.com/netbe/CSV-to-iOS-Localizable.strings-converte'
   s.files       = ["lib/csv2strings"]
+  s.executables = "csv2strings"
+  s.add_dependency "fastercsv"#, :require => 'faster_csv'
+  # s.add_dependency "csv"
+  s.require_path    = ['lib']
 end

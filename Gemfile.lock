@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    csv2strings (0.2)
+      fastercsv
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    fastercsv (1.5.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  csv2strings!
