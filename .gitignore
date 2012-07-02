@@ -6,3 +6,4 @@ i18n_config.rb
 *~
 *#
 *.gem
+*.sublime-project

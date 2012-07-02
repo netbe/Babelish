@@ -8,9 +8,15 @@ GEM
   remote: http://rubygems.org/
   specs:
     fastercsv (1.5.5)
+    metaclass (0.0.1)
+    mocha (0.10.5)
+      metaclass (~> 0.0.1)
+    test-unit (2.4.8)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   csv2strings!
+  mocha
+  test-unit

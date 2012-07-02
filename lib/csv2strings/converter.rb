@@ -1,19 +1,23 @@
 module CSV2Strings
 	module Converter
+	
+		# {"ERROR_HANDLER_WARNING_DISMISS"=>"OK", "HELP_BUTTON_MCQ_TEXT"=>"QCM"}
 		def self.load_strings(strings_filename)
 			strings = {}
 			File.open(strings_filename, 'r') do |strings_file|
-				strings_file.read.each_line do |line|
-					line.strip!
-					if (line[0] != ?# and line[0] != ?=)
-						m = line.match(/^[^\"]*\"(.+)\"[^=]+=[^\"]*\"(.*)\";/)
-						unless m.nil?
-							strings[m[1]] = m[2]
-						end
-					end
+				strings_file.read.each_line do |line|			
+					self.parse_dotstrings_line(line)
 				end
 			end
 			strings
+		end
+		
+		def self.parse_dotstrings_line(line)
+			line.strip!
+			if (line[0] != ?# and line[0] != ?=)
+				m = line.match(/^[^\"]*\"(.+)\"[^=]+=[^\"]*\"(.*)\";/)
+				return {m[1] => m[2]} unless m.nil?
+			end
 		end
 
 		def self.get_locale_paths
@@ -23,6 +27,7 @@ module CSV2Strings
 			end
 			paths
 		end
+
 		# Convert Localizable.strings files to one CSV file
 		def self.dotstrings_to_csv(filenames)
 			filenames ||= self.get_locale_paths
