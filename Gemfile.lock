@@ -11,6 +11,7 @@ GEM
     metaclass (0.0.1)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
+    rake (0.9.2.2)
     test-unit (2.4.8)
 
 PLATFORMS
@@ -19,4 +20,5 @@ PLATFORMS
 DEPENDENCIES
   csv2strings!
   mocha
+  rake
   test-unit
