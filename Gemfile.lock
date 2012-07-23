@@ -2,12 +2,10 @@ PATH
   remote: .
   specs:
     csv2strings (0.2)
-      fastercsv
 
 GEM
   remote: http://rubygems.org/
   specs:
-    fastercsv (1.5.5)
     metaclass (0.0.1)
     mocha (0.10.5)
       metaclass (~> 0.0.1)

@@ -9,7 +9,8 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/netbe/CSV-to-iOS-Localizable.strings-converter'
   
   
-  s.add_dependency "fastercsv"#, :require => 'faster_csv'
+  s.add_dependency "fastercsv", :require => 'faster_csv' if RUBY_PLATFORM == 'ruby_19' 
+  s.add_dependency "csv", :require => 'csv' if RUBY_PLATFORM == 'ruby_18'
   s.add_development_dependency "rake"
   s.add_development_dependency "mocha"
   s.add_development_dependency "test-unit"
