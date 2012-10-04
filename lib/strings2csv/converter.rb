@@ -1,6 +1,44 @@
 module Strings2CSV
   module Converter
-  
+
+
+    # TODO replace these methods to instance variables
+    def self.default_lang 
+      return Strings2CSVConfig[:default_lang] if defined?(Strings2CSVConfig)
+      "default_lang"
+    end
+
+    def self.csv_filename
+      return Strings2CSVConfig[:output_file] if defined?(Strings2CSVConfig)
+      "translations.csv"
+    end
+
+    # Get the first column name (reference) for CSV file
+    def self.default_header
+      return Strings2CSVConfig[:keys_column] if defined?(Strings2CSVConfig)
+      # name of the first given file
+      'Variables'
+    end
+
+    # Get the Column name of CSV file
+    # Default: name of file
+    # i.e. : en, fr, ...
+    def self.column_name(basename)
+      return Strings2CSVConfig[:langs][basename].to_s if defined?(Strings2CSVConfig)     
+      # name of the first given file
+      basename.to_s
+    end
+
+    # Retrieve ".strings" location path of Xcode project
+    def self.get_locale_paths
+      paths = []
+      Strings2CSVConfig[:langs].each do |locale,lang_name|
+        paths << "#{locale}.lproj/Localizable.strings"
+      end
+      paths
+    end
+
+    # Load all strings of a given file
     def self.load_strings(strings_filename)
       strings = {}
       File.open(strings_filename, 'r') do |strings_file|
@@ -19,14 +57,7 @@ module Strings2CSV
       end
     end
 
-    def self.get_locale_paths
-      paths = []
-      Strings2CSVConfig[:langs].each do |locale,lang_name|
-        paths << "#{locale}.lproj/Localizable.strings"
-      end
-      paths
-    end
-
+   
     # Convert Localizable.strings files to one CSV file
     def self.dotstrings_to_csv(filenames)
       filenames ||= self.get_locale_paths
@@ -34,27 +65,34 @@ module Strings2CSV
       # Parse .strings files
       strings = {}
       keys = nil
-      headers = [Strings2CSVConfig[:keys_column]]
+      headers = [self.default_header]
       lang_order = []
       filenames.each do |fname|
         header = fname.split('.')[0].to_sym if fname
         puts "Parsing filename : #{fname}"
         strings[header] = self.load_strings(fname)
         lang_order << header
-        headers << Strings2CSVConfig[:langs][header].to_s
+        puts self.column_name(header)
+        headers << self.column_name(header)
         keys ||= strings[header].keys
       end
 
       # Create csv file
-      puts "Creating #{Strings2CSVConfig[:output_file]}"
-      CSVParserClass.open(Strings2CSVConfig[:output_file], "wb") do |csv|
+      puts "Creating #{self.csv_filename}"
+      self.create_csv_file(headers, keys, lang_order, strings)
+    end
+
+    # Create the resulting file
+    def self.create_csv_file(headers, keys, lang_order, strings)
+      puts strings.inspect
+      CSVParserClass.open(self.csv_filename, "wb") do |csv|
         csv << headers
         keys.each do |key|
           line = [key]
-          default_val = strings[Strings2CSVConfig[:default_lang]][key]
+          default_val = strings[self.default_lang][key] if strings[self.default_lang]
           lang_order.each do |lang|
             current_val = strings[lang][key]
-            line << ((lang != Strings2CSVConfig[:default_lang] and current_val == default_val) ? '' : current_val)
+            line << ((lang != self.default_lang and current_val == default_val) ? '' : current_val)
           end
           csv << line
         end
