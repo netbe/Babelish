@@ -63,6 +63,6 @@ if $0 == __FILE__
 		ARGV.each do |filename|
 			usage if File.extname(filename).downcase != '.strings'
 		end 
-		CSV2Strings::Converter.dotstrings_to_csv(ARGV)
+		Strings2CSV::Converter.dotstrings_to_csv(ARGV)
 	end
 end
