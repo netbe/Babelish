@@ -54,17 +54,15 @@ class Csv2stringsTest < Test::Unit::TestCase
     assert_nil output, "output should be nil with wrong syntax"
   end
 
-  def test_load_strings
-    # file = File.stubs(:read).returns String.new(<<-EOS)
-    # "MY_CONSTANT" = "This "is" ok";
-    # "MY_CONSTANT_2" = "bla bla bla";
-    # EOS
-    # expected_output = {"MY_CONSTANT"=>"This \"is\" ok", "MY_CONSTANT_2" => "bla bla bla"}
+  def test_load_strings_with_wrong_file
+    assert_raise(Errno::ENOENT) do
+      output = CSV2Strings::Converter.load_strings "file that does not exist.strings"
+    end
+  end
 
-    # puts file.stubs(:read)
-    # File.open("test_file.strings", 'r')
-    # # output = CSV2Strings::Converter.load_strings "test_file.strings"
-    # # assert_equal output, expected_output
-    # end
+  def test_load_strings
+    expected_output = {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}
+    output = CSV2Strings::Converter.load_strings "test/data/test_data.strings"
+    assert_equal expected_output, output
   end
 end

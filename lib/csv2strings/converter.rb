@@ -1,12 +1,11 @@
 module CSV2Strings
 	module Converter
 	
-		# {"ERROR_HANDLER_WARNING_DISMISS"=>"OK", "HELP_BUTTON_MCQ_TEXT"=>"QCM"}
 		def self.load_strings(strings_filename)
 			strings = {}
 			File.open(strings_filename, 'r') do |strings_file|
 				strings_file.read.each_line do |line|			
-					self.parse_dotstrings_line(line)
+					strings.merge!(self.parse_dotstrings_line(line))
 				end
 			end
 			strings
