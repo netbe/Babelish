@@ -21,3 +21,4 @@ rescue LoadError
 	@no_config = true
 end
 require "csv2strings/converter"
+require "strings2csv/converter"
