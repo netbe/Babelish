@@ -2,18 +2,18 @@
 
 require 'rubygems'
 require 'optparse'
-require 'csv2strings'
+require './lib/csv2strings'
 
 def parse
 	# == Synopsis
 	# convert CSV files to Apple .strings files and vice-versa
 	#
 	# == Usage
-	# Strings 2 CSV : make CSV with xx.lproj/Localizable.strings files in current directory
+	# Strings to CSV : make CSV with xx.lproj/Localizable.strings files in current directory
 	#     ./convert.rb
-	# Strings 2 CSV : make CSV with custom .strings file list
+	# Strings to CSV : make CSV with custom .strings file list
 	#     ./convert.rb <filename1.strings> [...]
-	# CSV 2 Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file
+	# CSV to Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file
 	#     ./convert.rb <filename.csv>\n\n
 	# Failed to load i18n_config.rb
 	# Put i18n_config.rb in current directory
@@ -33,14 +33,19 @@ def parse
 
 		# This displays the help screen, all programs are
 		# assumed to have this option.
-   		opts.on( '-h', '--help', 'Display this screen' ) do
-	 		puts opts
-     			exit
-     		end
+ 		opts.on( '-h', '--help', 'Display this screen' ) do
+ 			puts opts
+   		exit
+   	end
 
 	end.parse!
 	puts "Being verbose" if options[:verbose]
 	puts "Logging to file #{options[:logfile]}" if options[:logfile]
+	# exit
+end
+
+def usage
+	puts "TODO: usage"
 	exit
 end
 
@@ -51,14 +56,17 @@ if $0 == __FILE__
 
 	# Main program
 	if ARGV.size < 1
+
 		if @no_config
 			puts "Error: not enough arguments"
 			usage
 		end
-		CSV2Strings::Converter.dotstrings_to_csv(nil) 
+		# Strings to CSV from Config
+		Strings2CSV::Converter.dotstrings_to_csv(nil) 
 	elsif filename = ARGV[0] and ARGV.size == 1 and File.extname(filename).downcase == '.csv'
 		CSV2Strings::Converter.csv_to_dotstrings(filename)
 	else
+		# Strings to CSV
 		# checks arguments
 		ARGV.each do |filename|
 			usage if File.extname(filename).downcase != '.strings'

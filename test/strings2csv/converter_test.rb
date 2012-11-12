@@ -1,6 +1,5 @@
-require 'test_helper'
-require "./lib/strings2csv/converter"
-
+require File.expand_path('../../../lib/strings2csv/converter', __FILE__)
+require File.expand_path('../../test_helper', __FILE__)
 
 class Strings2CSV::ConverterTest < Test::Unit::TestCase
   
@@ -53,5 +52,29 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     expected_output = {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}
     output = Strings2CSV::Converter.load_strings "test/data/test_data.strings"
     assert_equal expected_output, output
+  end
+
+
+  def test_create_csv_file
+    # csv_filename
+    # @headers ||= args[:headers]
+    # @filenames ||= args[:filenames]
+
+
+  end
+
+  def test_initialize
+    csv_filename = "file.csv"
+    filenames = %w{"french.strings english.strings"}
+    headers = %w{"constants french english"}
+    converter = Strings2CSV::Converter.new({
+        :csv_filename => csv_filename,
+        :headers => headers,
+        :filenames => filenames
+    })
+
+    assert_equal csv_filename, converter.csv_filename
+    assert_equal headers, converter.headers
+    assert_equal filenames, converter.filenames
   end
 end

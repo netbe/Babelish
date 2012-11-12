@@ -1,20 +1,26 @@
 module Strings2CSV
-  module Converter
+  class Converter
 
+    attr_accessor :csv_filename, :headers, :filenames
+
+    def initialize(args={})
+      @csv_filename = args[:csv_filename]
+      @headers ||= args[:headers]
+      @filenames ||= args[:filenames]
+    end
 
     # TODO replace these methods to instance variables
-    def self.default_lang 
+    def default_lang 
       return Strings2CSVConfig[:default_lang] if defined?(Strings2CSVConfig)
       "default_lang"
     end
-
-    def self.csv_filename
-      return Strings2CSVConfig[:output_file] if defined?(Strings2CSVConfig)
-      "translations.csv"
-    end
+    # def csv_filename
+    #   return Strings2CSVConfig[:output_file] if defined?(Strings2CSVConfig)
+      
+    # end
 
     # Get the first column name (reference) for CSV file
-    def self.default_header
+    def default_header
       return Strings2CSVConfig[:keys_column] if defined?(Strings2CSVConfig)
       # name of the first given file
       'Variables'
@@ -74,6 +80,8 @@ module Strings2CSV
         lang_order << header
         puts self.column_name(header)
         headers << self.column_name(header)
+        puts headers.inspect
+        puts lang_order.inspect
         keys ||= strings[header].keys
       end
 
@@ -84,7 +92,6 @@ module Strings2CSV
 
     # Create the resulting file
     def self.create_csv_file(headers, keys, lang_order, strings)
-      puts strings.inspect
       CSVParserClass.open(self.csv_filename, "wb") do |csv|
         csv << headers
         keys.each do |key|
