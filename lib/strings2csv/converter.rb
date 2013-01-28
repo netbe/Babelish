@@ -3,17 +3,21 @@ module Strings2CSV
 
     attr_accessor :csv_filename, :headers, :filenames
 
-    def initialize(args={})
+    def initialize(args = {:csv_filename => "translations.csv"})
+      @default_header = 'Variables'
       @csv_filename = args[:csv_filename]
       @headers ||= args[:headers]
+
       @filenames ||= args[:filenames]
     end
 
+    
     # TODO replace these methods to instance variables
     def default_lang 
       return Strings2CSVConfig[:default_lang] if defined?(Strings2CSVConfig)
       "default_lang"
     end
+
     # def csv_filename
     #   return Strings2CSVConfig[:output_file] if defined?(Strings2CSVConfig)
       
