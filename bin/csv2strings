@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'optparse'
+require './lib/csv2strings'
+
+def parse
+	# == Synopsis
+	# convert CSV files to Apple .strings files and vice-versa
+	#
+	# == Usage
+	# Strings to CSV : make CSV with xx.lproj/Localizable.strings files in current directory
+	#     ./convert.rb
+	# Strings to CSV : make CSV with custom .strings file list
+	#     ./convert.rb <filename1.strings> [...]
+	# CSV to Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file
+	#     ./convert.rb <filename.csv>\n\n
+	# Failed to load i18n_config.rb
+	# Put i18n_config.rb in current directory
+	options = {}
+	OptionParser.new do |opts|
+		opts.banner = "Usage: convert.rb [options]"
+		# Definition of options
+		options[:verbose] = false
+		opts.on( '-v', '--verbose', 'Output more information' ) do
+			 options[:verbose] = true
+		end
+ 
+		options[:logfile] = nil
+		opts.on( '-l', '--logfile FILE', 'Write log to FILE' ) do|file|
+			 options[:logfile] = file
+		end
+
+		# This displays the help screen, all programs are
+		# assumed to have this option.
+ 		opts.on( '-h', '--help', 'Display this screen' ) do
+ 			puts opts
+   		exit
+   	end
+
+	end.parse!
+	puts "Being verbose" if options[:verbose]
+	puts "Logging to file #{options[:logfile]}" if options[:logfile]
+	# exit
+end
+
+def usage
+	puts "TODO: usage"
+	exit
+end
+
+# Part of the script
+if $0 == __FILE__
+	# Shows help on how to use this script
+	parse
+
+	# Main program
+	if ARGV.size < 1
+
+		if @no_config
+			puts "Error: not enough arguments"
+			usage
+		end
+		# Strings to CSV from Config
+		Strings2CSV::Converter.dotstrings_to_csv(nil) 
+	elsif filename = ARGV[0] and ARGV.size == 1 and File.extname(filename).downcase == '.csv'
+		CSV2Strings::Converter.csv_to_dotstrings(filename)
+	else
+		# Strings to CSV
+		# checks arguments
+		ARGV.each do |filename|
+			usage if File.extname(filename).downcase != '.strings'
+		end 
+		Strings2CSV::Converter.dotstrings_to_csv(ARGV)
+	end
+end

@@ -3,5 +3,8 @@
 *.lproj
 i18n_config.rb
 .rbenv-version
-#*#
 *~
+*#
+*.gem
+*.sublime-project
+coverage
