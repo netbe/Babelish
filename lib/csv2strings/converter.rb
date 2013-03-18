@@ -1,6 +1,45 @@
 module CSV2Strings
-	module Converter
-	
+	class Converter
+		attr_accessor :csv_filename
+
+		def initialize(filename)
+	  	@csv_filename = filename
+	  end
+
+		def csv_to_dotstrings
+			self.class.csv_to_dotstrings(self.csv_filename)
+		end
+		
+		def self.excluded_states
+			return CSV2StringsConfig[:excluded_states] if defined?(CSV2StringsConfig)
+			[]
+		end
+		
+		def self.state_column
+			return CSV2StringsConfig[:state_column] if defined?(CSV2StringsConfig)
+			10	
+		end
+
+		def self.keys_column
+			return CSV2StringsConfig[:keys_column] if defined?(CSV2StringsConfig)
+			1
+		end
+
+		def self.default_lang
+			return CSV2StringsConfig[:default_lang] if defined?(CSV2StringsConfig)
+			'English' 
+		end
+
+		def self.langs
+			return CSV2StringsConfig[:langs] if defined?(CSV2StringsConfig)
+			{'English'  => [:en]}
+		end
+
+		def self.default_path
+			return CSV2StringsConfig[:path] if defined?(CSV2StringsConfig)
+			""
+		end
+
 		# Convert csv file to multiple Localizable.strings files for each column
 		def self.csv_to_dotstrings(name)
 			files        = {}
@@ -11,16 +50,17 @@ module CSV2Strings
 				if rowIndex == 0
 					return unless row.count > 1 #check there's at least two columns
 				else
-					next if row == nil or row[CSV2StringsConfig[:keys_column]].nil? #skip empty lines (or sections)
+					next if row == nil or row[self.keys_column].nil? #skip empty lines (or sections)
 				end
 				row.size.times do |i|
 					next if excludedCols.include? i
 					if rowIndex == 0 #header
-						excludedCols << i and next unless CSV2StringsConfig[:langs].has_key?(row[i])
-						defaultCol = i if CSV2StringsConfig[:default_lang] == row[i]
+						excludedCols << i and next unless self.langs.has_key?(row[i])
+						defaultCol = i if self.default_lang == row[i]
 						files[i]   = []
-						CSV2StringsConfig[:langs][row[i]].each do |locale|
-							locale_dir = [CSV2StringsConfig[:path], "#{locale}.lproj"].compact.join('/')
+						self.langs[row[i]].each do |locale|
+							# TODO: Fix local path creation
+							locale_dir = [self.default_path, "#{locale}.lproj"].compact.join('/')
 							unless FileTest::directory?(locale_dir)
 								Dir::mkdir(locale_dir)
 							end
@@ -28,8 +68,8 @@ module CSV2Strings
 							puts ">>>Creating file : #{filename}"
 							files[i] << File.new(filename,"w")
 						end
-					elsif row[CSV2StringsConfig[:state_column]].nil? or row[CSV2StringsConfig[:state_column]] == '' or !CSV2StringsConfig[:excluded_states].include? row[CSV2StringsConfig[:state_column]]
-						key = row[CSV2StringsConfig[:keys_column]].strip #@todo: add option to strip the constant or referenced language
+					elsif row[self.state_column].nil? or row[self.state_column] == '' or !self.excluded_states.include? row[self.state_column]
+						key = row[self.keys_column].strip #@todo: add option to strip the constant or referenced language
 						value = row[i].nil? ? row[defaultCol] : row[i]
 						value = "" if value.nil?
 						value.gsub!(/\\*\"/, "\\\"") #escape double quotes

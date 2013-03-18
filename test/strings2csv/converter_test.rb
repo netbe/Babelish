@@ -68,7 +68,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     lang_order = [:"test_data"]
     strings = {lang_order[0] => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
     
-    converter = Strings2CSV::Converter.new(:headers => %w{"variables" "english"})
+    converter = Strings2CSV::Converter.new(:headers => %w{variables english})
 
     converter.create_csv_file(keys, lang_order, strings)
     assert File.exist?(converter.csv_filename)
