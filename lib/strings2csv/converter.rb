@@ -3,9 +3,9 @@ module Strings2CSV
 
     attr_accessor :csv_filename, :headers, :filenames
 
-    def initialize(args = {:csv_filename => "translations.csv"})
+    def initialize(args = {})
       @default_header = 'Variables'
-      @csv_filename = args[:csv_filename]
+      @csv_filename = args[:csv_filename] || "translations.csv"
       @headers ||= args[:headers]
 
       @filenames ||= args[:filenames]
@@ -49,7 +49,7 @@ module Strings2CSV
     end
 
     # Load all strings of a given file
-    def self.load_strings(strings_filename)
+    def load_strings(strings_filename)
       strings = {}
       File.open(strings_filename, 'r') do |strings_file|
         strings_file.read.each_line do |line|     
@@ -59,7 +59,7 @@ module Strings2CSV
       strings
     end
     
-    def self.parse_dotstrings_line(line)
+    def parse_dotstrings_line(line)
       line.strip!
       if (line[0] != ?# and line[0] != ?=)
         m = line.match(/^[^\"]*\"(.+)\"[^=]+=[^\"]*\"(.*)\";/)
@@ -69,35 +69,43 @@ module Strings2CSV
 
    
     # Convert Localizable.strings files to one CSV file
-    def self.dotstrings_to_csv(filenames)
-      filenames ||= self.get_locale_paths
+    # output: 
+    def dotstrings_to_csv(write_to_file = true)
+      @filenames ||= self.get_locale_paths
 
       # Parse .strings files
       strings = {}
       keys = nil
-      headers = [self.default_header]
+      @headers = [self.default_header]
       lang_order = []
-      filenames.each do |fname|
-        header = fname.split('.')[0].to_sym if fname
-        puts "Parsing filename : #{fname}"
-        strings[header] = self.load_strings(fname)
+
+      @filenames.each do |fname|
+        header = basename(fname)
+        strings[header] = load_strings(fname)
         lang_order << header
-        puts self.column_name(header)
-        headers << self.column_name(header)
-        puts headers.inspect
-        puts lang_order.inspect
+        @headers << self.class.column_name(header)
         keys ||= strings[header].keys
       end
 
-      # Create csv file
-      puts "Creating #{self.csv_filename}"
-      self.create_csv_file(headers, keys, lang_order, strings)
+      if(write_to_file)
+        # Create csv file
+        puts "Creating #{@csv_filename}"
+        create_csv_file(keys, lang_order, strings)        
+      else
+        return keys, lang_order, strings
+      end
+    end
+
+    def basename(file_path)
+      filename = File.basename(file_path)
+      return filename.split('.')[0].to_sym if file_path
     end
 
     # Create the resulting file
-    def self.create_csv_file(headers, keys, lang_order, strings)
+    def create_csv_file(keys, lang_order, strings)
+      raise "csv_filename must not be nil" unless self.csv_filename
       CSVParserClass.open(self.csv_filename, "wb") do |csv|
-        csv << headers
+        csv << @headers
         keys.each do |key|
           line = [key]
           default_val = strings[self.default_lang][key] if strings[self.default_lang]
