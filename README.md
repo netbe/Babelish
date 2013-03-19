@@ -6,6 +6,10 @@ This script converts a csv file of translations into iOS .strings files and vice
 # Requirements
 * Needs fastercsv with ruby < 1.9
 
+# Setup
+
+Add the project as a gitsubmodule in your iOS project's git repository. **Use tag 0.1.5**
+
 # Usage
 Convert from CSV file to .strings files
 
@@ -30,5 +34,5 @@ Place ``i18n_config.rb`` (edit if needed) in the folder with your ``xx.lproj`` a
 
 
 # Todo
-* Add option for output CSV file
-* Add tests suite
+
+See GitHub isssues
