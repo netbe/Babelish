@@ -1,76 +1,122 @@
 #!/usr/bin/env ruby
 
+require 'yaml'
 require 'rubygems'
-require 'optparse'
+require 'thor'
 require './lib/csv2strings'
+class CSVConvertCommandLine < Thor
+  desc "csv2strings CSV_FILENAME", "convert CSV file to '.strings' file"
+  method_option :langs, :type => :hash, :required => true, :aliases => "-L", :desc => "languages to convert"
+  #method_option :csvfilename, :type => :string, :default => false, :required => true, :aliases => "-csv", :desc => "location to csv file"
+  def csv2strings(filename)
+  	converter = CSV2Strings::Converter.new(filename, options[:langs])
+  	converter.csv_to_dotstrings    
+  end
 
-def parse
-	# == Synopsis
-	# convert CSV files to Apple .strings files and vice-versa
-	#
-	# == Usage
-	# Strings to CSV : make CSV with xx.lproj/Localizable.strings files in current directory
-	#     ./convert.rb
-	# Strings to CSV : make CSV with custom .strings file list
-	#     ./convert.rb <filename1.strings> [...]
-	# CSV to Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file
-	#     ./convert.rb <filename.csv>\n\n
-	# Failed to load i18n_config.rb
-	# Put i18n_config.rb in current directory
-	options = {}
-	OptionParser.new do |opts|
-		opts.banner = "Usage: convert.rb [options]"
-		# Definition of options
-		options[:verbose] = false
-		opts.on( '-v', '--verbose', 'Output more information' ) do
-			 options[:verbose] = true
-		end
+  # desc "STRINGS_FILENAME", "convert '.strings' file to CSV file"
+  # method_option :csvfilename, :type => :string, :default => "translations.csv", :required => false, :aliases => "-csv", :desc => "location of output file"
+  # def stringfile2csvfile(filename)
+  # 	Strings2CSV::Converter.dotstrings_to_csv(filename)
+  # end
+
+
+  desc "", "convert '.strings' files to CSV file"
+  method_option :stingfilenames, :type => :array, :default => false, :required => true, :aliases => "-strings", :desc => "location of strings files"
+  method_option :csvfilename, :type => :string, :default => "translations.csv", :required => false, :aliases => "-csv", :desc => "location of output file"
+  def strings2csvfile
+  	Strings2CSV::Converter.dotstrings_to_csv(nil)    
+  end
+
+  
+  # # Set up a configuration file so credentials don't need to be entered again.
+  # desc "config", "configure the domain, username and password"
+  # option :domain, :aliases => "-d"
+  # option :username, :aliases => "-u"
+  # option :password, :aliases => "-pw"
+  
+  # def config 
+  #   # Open a configuration file in the user's home directory
+    
+  #   open('./.i18n_config', 'r') do |f|
+  #     # Throw the configuration settings into the fiile using Yaml
+  #     f.read 
+  #   end
+  # end
+end
+
+CSVConvertCommandLine.start
+
+# require 'rubygems'
+# require 'optparse'
+# require './lib/csv2strings'
+
+# def parse
+# 	# == Synopsis
+# 	# convert CSV files to Apple .strings files and vice-versa
+# 	#
+# 	# == Usage
+# 	# Strings to CSV : make CSV with xx.lproj/Localizable.strings files in current directory
+# 	#     ./convert.rb
+# 	# Strings to CSV : make CSV with custom .strings file list
+# 	#     ./convert.rb <filename1.strings> [...]
+# 	# CSV to Strings : make xx.lproj/Localizable.strings files (in cwd) with CSV file
+# 	#     ./convert.rb <filename.csv>\n\n
+# 	# Failed to load i18n_config.rb
+# 	# Put i18n_config.rb in current directory
+# 	options = {}
+# 	OptionParser.new do |opts|
+# 		opts.banner = "Usage: convert.rb [options]"
+# 		# Definition of options
+# 		options[:verbose] = false
+# 		opts.on( '-v', '--verbose', 'Output more information' ) do
+# 			 options[:verbose] = true
+# 		end
  
-		options[:logfile] = nil
-		opts.on( '-l', '--logfile FILE', 'Write log to FILE' ) do|file|
-			 options[:logfile] = file
-		end
+# 		options[:logfile] = nil
+# 		opts.on( '-l', '--logfile FILE', 'Write log to FILE' ) do|file|
+# 			 options[:logfile] = file
+# 		end
 
-		# This displays the help screen, all programs are
-		# assumed to have this option.
- 		opts.on( '-h', '--help', 'Display this screen' ) do
- 			puts opts
-   		exit
-   	end
+# 		# This displays the help screen, all programs are
+# 		# assumed to have this option.
+#  		opts.on( '-h', '--help', 'Display this screen' ) do
+#  			puts opts
+#    		exit
+#    	end
 
-	end.parse!
-	puts "Being verbose" if options[:verbose]
-	puts "Logging to file #{options[:logfile]}" if options[:logfile]
-	# exit
-end
+# 	end.parse!
+# 	puts "Being verbose" if options[:verbose]
+# 	puts "Logging to file #{options[:logfile]}" if options[:logfile]
+# 	# exit
+# end
 
-def usage
-	puts "TODO: usage"
-	exit
-end
+# def usage
+# 	puts "TODO: usage"
+# 	exit
+# end
 
-# Part of the script
-if $0 == __FILE__
-	# Shows help on how to use this script
-	parse
+# # Part of the script
+# if $0 == __FILE__
+# 	# Shows help on how to use this script
+# 	parse
 
-	# Main program
-	if ARGV.size < 1
+# 	# Main program
+# 	if ARGV.size < 1
 
-		if @no_config
-			puts "Error: not enough arguments"
-			usage
-		end
-		# Strings to CSV from Config
-		Strings2CSV::Converter.dotstrings_to_csv(nil) 
-	elsif filename = ARGV[0] and ARGV.size == 1 and File.extname(filename).downcase == '.csv'
-		CSV2Strings::Converter.csv_to_dotstrings(filename)
-	else
-		# Strings to CSV
-		# checks arguments
-		ARGV.each do |filename|
-			usage if File.extname(filename).downcase != '.strings'
-		end 
-		Strings2CSV::Converter.dotstrings_to_csv(ARGV)
-	end
-end
+# 		if @no_config
+# 			puts "Error: not enough arguments"
+# 			usage
+# 		end
+# 		# Strings to CSV from Config
+# 		Strings2CSV::Converter.dotstrings_to_csv(nil) 
+# 	elsif filename = ARGV[0] and ARGV.size == 1 and File.extname(filename).downcase == '.csv'
+# 		CSV2Strings::Converter.csv_to_dotstrings(filename)
+# 	else
+# 		# Strings to CSV
+# 		# checks arguments
+# 		ARGV.each do |filename|
+# 			usage if File.extname(filename).downcase != '.strings'
+# 		end 
+# 		Strings2CSV::Converter.dotstrings_to_csv(ARGV)
+# 	end
+# end
