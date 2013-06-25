@@ -1,52 +1,27 @@
 module Strings2CSV
   class Converter
 
-    attr_accessor :csv_filename, :headers, :filenames
+    attr_accessor :csv_filename, :headers, :filenames, :default_lang
 
-    def initialize(args = {})
-      @default_header = 'Variables'
-      @csv_filename = args[:csv_filename] || "translations.csv"
-      @headers ||= args[:headers]
-
-      @filenames ||= args[:filenames]
-    end
-
-    
-    # TODO replace these methods to instance variables
-    def default_lang 
-      return Strings2CSVConfig[:default_lang] if defined?(Strings2CSVConfig)
-      "default_lang"
-    end
-
-    # def csv_filename
-    #   return Strings2CSVConfig[:output_file] if defined?(Strings2CSVConfig)
-      
-    # end
-
-    # Get the first column name (reference) for CSV file
-    def default_header
-      return Strings2CSVConfig[:keys_column] if defined?(Strings2CSVConfig)
-      # name of the first given file
-      'Variables'
-    end
-
-    # Get the Column name of CSV file
-    # Default: name of file
-    # i.e. : en, fr, ...
-    def self.column_name(basename)
-      return Strings2CSVConfig[:langs][basename].to_s if defined?(Strings2CSVConfig)     
-      # name of the first given file
-      basename.to_s
-    end
-
-    # Retrieve ".strings" location path of Xcode project
-    def self.get_locale_paths
-      paths = []
-      Strings2CSVConfig[:langs].each do |locale,lang_name|
-        paths << "#{locale}.lproj/Localizable.strings"
+    def initialize(args = {:filenames => []})
+      if args[:filenames] && args[:headers]
+        raise ArgumentError.new("number of headers and files don't match, don't forget the constant column") unless args[:headers].size == (args[:filenames].size + 1)
       end
-      paths
+
+      @filenames = args[:filenames]     
+
+      @csv_filename = args[:csv_filename] || "translations.csv"
+      @default_lang = args[:default_lang]
+      @headers = args[:headers] || self.default_headers
     end
+
+    def default_headers
+      headers = ['Variables']
+      @filenames.each do |fname|
+        headers << basename(fname)
+      end
+    end
+
 
     # Load all strings of a given file
     def load_strings(strings_filename)
@@ -71,19 +46,15 @@ module Strings2CSV
     # Convert Localizable.strings files to one CSV file
     # output: 
     def dotstrings_to_csv(write_to_file = true)
-      @filenames ||= self.get_locale_paths
-
       # Parse .strings files
       strings = {}
       keys = nil
-      @headers = [self.default_header]
       lang_order = []
 
       @filenames.each do |fname|
         header = basename(fname)
         strings[header] = load_strings(fname)
-        lang_order << header
-        @headers << self.class.column_name(header)
+        lang_order << header       
         keys ||= strings[header].keys
       end
 

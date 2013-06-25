@@ -22,6 +22,7 @@ class Command < Thor
   desc "strings2csv", "convert '.strings' files to CSV file"
   method_option :filenames, :type => :array, :required => true, :aliases => "-i", :desc => "location of strings files"
   method_option :csv_filename, :type => :string, :default => "translations.csv", :aliases => "-o", :required => false, :desc => "location of output file"
+  method_option :headers, :type => :array, :required => false, :aliases => "-h", :desc => "override headers of columns, default is name of input files and 'Variables' for reference"
   method_option :dryrun, :type => :boolean, :default => false, :required => false, :aliases => "-n", :desc => "prints out content of hash without writing file"
   def strings2csv
     converter = Strings2CSV::Converter.new(options)

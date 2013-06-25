@@ -105,13 +105,12 @@ module CSV2Strings
 						value = self.process_value(row[i], row[defaultCol])
 						# files for a given language, i.e could group english US with english UK.
 						localized_files = files[i]
-						puts localized_files.inspect
-						# if localized_files
+						if localized_files
 							localized_files.each do |file|
 								nb_translations += 1
 								file.write "\"#{key}\" = \"#{value}\";\n"
 							end			
-						# end
+						end
 					end
 				end
 				rowIndex += 1

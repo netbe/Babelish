@@ -6,7 +6,6 @@ class CommandTest < Test::Unit::TestCase
 		command = "./bin/csv2strings csv2strings"
 		command += " test/data/test_data_multiple_langs.csv"
 		command += " --langs=English:en French:fr"
-		puts command
 		system(command)
 
 		assert File.exist?("./en.lproj/Localizable.strings")
@@ -59,13 +58,32 @@ class CommandTest < Test::Unit::TestCase
 		command = "./bin/csv2strings strings2csv"
 		command += " -i=test/data/test_data.strings"
 		command += " -o=myfile.csv"
-		puts command
 		system(command)
 
 		assert File.exist?("myfile.csv")
 
 		#clean up
 		system("rm -f myfile.csv")
+	end
+
+	def test_strings2csv_with_headers
+		command = "./bin/csv2strings strings2csv"
+		command += " -i=test/data/test_data.strings"
+		command += " -h=constants english"
+		system(command)
+
+		#TODO assertion or move test on at lib level
+
+		#clean up
+		system("rm -f translations.csv")
+	end
+
+	def test_strings2csv_with_two_files
+		command = "./bin/csv2strings strings2csv"
+		command += " --filenames=test/data/test_en.strings test/data/test_fr.strings"
+		command += " --headers=Constants English French"
+		command += " -o=enfr.csv"
+		system(command)
 	end
 
 end
