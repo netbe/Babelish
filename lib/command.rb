@@ -19,5 +19,14 @@ class Command < Thor
   	converter.csv_to_dotstrings    
   end
 
+  desc "strings2csv", "convert '.strings' files to CSV file"
+  method_option :filenames, :type => :array, :required => true, :aliases => "-i", :desc => "location of strings files"
+  method_option :csv_filename, :type => :string, :default => "translations.csv", :aliases => "-o", :required => false, :desc => "location of output file"
+  method_option :dryrun, :type => :boolean, :default => false, :required => false, :aliases => "-n", :desc => "prints out content of hash without writing file"
+  def strings2csv
+    converter = Strings2CSV::Converter.new(options)
+  	debug_values = converter.dotstrings_to_csv(!options[:dryrun])
+    puts debug_values.inspect if options[:dryrun]   
+  end
 
 end
