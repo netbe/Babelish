@@ -33,8 +33,7 @@ module CSV2Strings
 			return File.new(file_path,"w")
 		end
 
-		def process_header(excludedCols, defaultCol, files, row, index)
-			defaultCol = index if self.default_lang == row[index]
+		def process_header(excludedCols, files, row, index)
 			files[index] = []
 			lang_index = row[index]
 			
@@ -44,10 +43,20 @@ module CSV2Strings
 				files[index] << self.create_file_from_path(@output_file)
 			else
 				# create one file for each languages
-				self.langs[lang_index].each do |locale|
+				if self.langs[lang_index].is_a?(Array)
+
+					self.langs[lang_index].each do |locale|
+						filename = self.file_path_for_locale(locale)
+						files[index] << self.create_file_from_path(filename)
+					end
+				elsif self.langs[lang_index].is_a?(String)
+					locale = self.langs[lang_index]
 					filename = self.file_path_for_locale(locale)
 					files[index] << self.create_file_from_path(filename)
+				else
+					raise "wrong format or/and languages parameter" 
 				end
+
 			end
 		end
 
@@ -75,6 +84,7 @@ module CSV2Strings
 			defaultCol   = 0
 			nb_translations = 0
 			CSVParserClass.foreach(name, :quote_char => '"', :col_sep =>',', :row_sep => :auto) do |row|
+
 				if rowIndex == 0
 					return unless row.count > 1 #check there's at least two columns
 				else
@@ -86,18 +96,25 @@ module CSV2Strings
 					if rowIndex == 0 #header
 						# ignore all headers not listed in langs to create files
 						(excludedCols << i and next) unless self.langs.has_key?(row[i])
-						self.process_header(excludedCols, defaultCol, files, row, i)
+						self.process_header(excludedCols, files, row, i)
+						# define defaultCol
+						defaultCol = i if self.default_lang == row[i]
 					elsif !self.state_column || (row[self.state_column].nil? or row[self.state_column] == '' or !self.excluded_states.include? row[self.state_column])
 						# TODO: add option to strip the constant or referenced language
 						key = row[self.keys_column].strip 
 						value = self.process_value(row[i], row[defaultCol])
-						files[i].each do |file|
-							nb_translations += 1
-							file.write "\"#{key}\" = \"#{value}\";\n"
-						end
+						# files for a given language, i.e could group english US with english UK.
+						localized_files = files[i]
+						puts localized_files.inspect
+						# if localized_files
+							localized_files.each do |file|
+								nb_translations += 1
+								file.write "\"#{key}\" = \"#{value}\";\n"
+							end			
+						# end
 					end
-					rowIndex += 1
 				end
+				rowIndex += 1
 			end
 			puts "\n>>>Created #{files.size} files. Content: #{nb_translations} translations\n"
 

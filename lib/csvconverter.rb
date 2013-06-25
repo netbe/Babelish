@@ -1,6 +1,5 @@
 $: << File.expand_path(File.join(File.dirname(__FILE__)))
 require 'rubygems'
-require 'optparse'
 
 CSVGEM = RUBY_VERSION.match(/^[0-1]\.[0-8]\./) ? 'faster_csv' : 'csv'
 
