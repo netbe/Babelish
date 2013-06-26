@@ -30,4 +30,19 @@ class Command < Thor
     puts debug_values.inspect if options[:dryrun]   
   end
 
+  
+  # # Set up a configuration file so credentials don't need to be entered again.
+  # desc "config", "configure the domain, username and password"
+  # option :domain, :aliases => "-d"
+  # option :username, :aliases => "-u"
+  # option :password, :aliases => "-pw"
+  
+  # def config 
+  #   # Open a configuration file in the user's home directory
+    
+  #   open('./.i18n_config', 'r') do |f|
+  #     # Throw the configuration settings into the fiile using Yaml
+  #     f.read 
+  #   end
+  # end
 end
