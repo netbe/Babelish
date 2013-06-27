@@ -31,18 +31,17 @@ class Command < Thor
   end
 
   
-  # # Set up a configuration file so credentials don't need to be entered again.
-  # desc "config", "configure the domain, username and password"
-  # option :domain, :aliases => "-d"
-  # option :username, :aliases => "-u"
-  # option :password, :aliases => "-pw"
+  desc "config", "reads config file and prints out content" 
+  method_option :file, :type => :string, :required => false, :aliases => "-f",:default => '.csvconverter.yaml', :desc => "custom configuration file"
+  method_option :output, :type => :boolean, :required => false, :default => true
+  def config
+    args = options.dup
+    args[:file] ||= '.csvconverter.yaml'
+
+    config = YAML::load File.open(args[:file], 'r')
+    puts config.to_yaml if options[:output]
+    # carefull hash keuys are accessible by string not by symbol
+    config
+  end
   
-  # def config 
-  #   # Open a configuration file in the user's home directory
-    
-  #   open('./.i18n_config', 'r') do |f|
-  #     # Throw the configuration settings into the fiile using Yaml
-  #     f.read 
-  #   end
-  # end
 end
