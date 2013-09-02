@@ -3,32 +3,26 @@
 # Introduction
 This script converts a csv file of translations into iOS .strings files and vice-versa.
 
-# Requirements
-* Needs fastercsv with ruby < 1.9
+# Setup
+
+`gem install csvconverter`
 
 # Usage
-Convert from CSV file to .strings files
 
-    ./convert.rb filename.csv
+* Convert csv to localizable strings files:
 
-The CSV file needs one column per language and must have headers (for output filenames)
+`csv2strings <csvfilename>`
 
-Convert from ``.strings`` files to CSV file ``Translations.csv`` (configurable)
+* Convert localizable strings files to csv:
 
-    ./convert.rb filename1.strings filename2.strings
+`strings2csv <stringsfile1> <stringsfile2>`
 
-or to convert all ``xx.lproj/Localizable.strings`` to CSV
+* Use configuration file
 
-    ./convert.rb
-
-
-Place ``i18n_config.rb`` (edit if needed) in the folder with your ``xx.lproj`` and call the script from there
-
-    cp .i18n_config.rb iOSProject/resources/i18n_config.rb
-    cd iOSProject/resources
-    script/path/convert.rb
+You can use a configuration file to hold all your commandline arguments into a file (previous versions `i18n_config.rb`).
+Place `.csvconverter` file (edit if needed) in the folder with your ``xx.lproj`` and call the script from there. See `.csvconverter.sample`
 
 
 # Todo
-* Add option for output CSV file
-* Add tests suite
+
+See GitHub isssues
