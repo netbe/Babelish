@@ -5,3 +5,5 @@ i18n_config.rb
 .rbenv-version
 #*#
 *~
+.csvconverter
+coverage
