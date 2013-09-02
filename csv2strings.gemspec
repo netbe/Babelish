@@ -1,13 +1,13 @@
 Gem::Specification.new do |s|
   s.name        = 'csv2strings'
-  s.version     = '0.2'
-  s.date        = '2012-06-06'
+  s.version     = '0.2.0'
+  s.date        = '2013-09-02'
   s.summary     = "CSV to iOS Localizable.strings converter"
   s.description = "ruby script converts a CSV file of translations to Localizable.strings files and vice-versa"
   s.authors     = ["François Benaiteau"]
   s.email       = 'francois.benaiteau@gmail.com'
   s.homepage    = 'https://github.com/netbe/CSV-to-iOS-Localizable.strings-converter'
-  
+  s.license = 'MIT'  
   s.add_dependency "thor"
   s.add_dependency "fastercsv", :require => 'faster_csv' if RUBY_PLATFORM == 'ruby_19' 
   s.add_dependency "csv", :require => 'csv' if RUBY_PLATFORM == 'ruby_18'
