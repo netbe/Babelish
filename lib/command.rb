@@ -5,32 +5,37 @@ require 'csvconverter'
 
 class Command < Thor
 
-  desc "CSV_FILENAME", "convert CSV file (CSV_FILENAME) to '.strings' file"
-  method_option :filename, :type => :string, :desc => "CSV file"
+  desc "CSV_FILENAME", "convert CSV file to '.strings' file"
+  # required options but handled in method because of options read from yaml file
+  method_option :filename, :type => :string, :desc => "CSV file (CSV_FILENAME) to convert from"
   method_option :langs, :type => :hash, :aliases => "-L", :desc => "Languages to convert"
+  # optional options
   method_option :excluded_states, :type => :array, :aliases => "-x", :desc => "Exclude rows with given state"
   method_option :state_column, :type => :numeric, :aliases => "-s", :desc => "Position of column for state if any"
   method_option :keys_column,  :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
   method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
   method_option :default_path, :type => :string, :aliases => "-p", :desc => "Path of output files"
-  def csv2strings
-    unless options.has_key?(:filename)
+  def csv2strings(filename = nil)
+    unless filename || options.has_key?('filename')
       puts "No value provided for required options '--filename'"
       exit
     end
-    unless options.has_key?(:langs)
+    unless options.has_key?('langs')
       puts "No value provided for required options '--langs'"
       exit
     end
+    filename ||= options['filename']
 	  args = options.dup
   	args.delete(:langs)
     args.delete(:filename)
-  	converter = CSV2Strings::Converter.new(options[:filename], options[:langs], args)
+  	converter = CSV2Strings::Converter.new(filename, options[:langs], args)
   	converter.csv_to_dotstrings    
   end
 
   desc "FILENAMES", "convert '.strings' files to CSV file"
+  # required options but handled in method because of options read from yaml file
   method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of strings files (FILENAMES)"
+  # optional options
   method_option :csv_filename, :type => :string, :aliases => "-o", :desc => "location of output file"
   method_option :headers, :type => :array, :aliases => "-h", :desc => "override headers of columns, default is name of input files and 'Variables' for reference"
   method_option :dryrun, :type => :boolean, :aliases => "-n", :desc => "prints out content of hash without writing file"

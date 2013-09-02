@@ -4,5 +4,7 @@ require './lib/command'
 if ARGV.count == 1 && ARGV[0] == "help"
   Command.start(["help", "strings2csv"],{})
 else
-  Command.start(["strings2csv"],{})
+  args = ["strings2csv"]
+  args += ARGV
+  Command.start(args,{})
 end

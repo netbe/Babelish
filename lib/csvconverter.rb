@@ -12,12 +12,5 @@ rescue LoadError
 end
 
 CSVParserClass = CSVGEM == 'csv' ? CSV : FasterCSV
-
-begin
-	load 'i18n_config.rb'
-	@no_config = false
-rescue LoadError
-	@no_config = true
-end
 require "csv2strings/converter"
 require "strings2csv/converter"
