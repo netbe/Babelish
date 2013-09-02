@@ -18,10 +18,12 @@ class Command < Thor
   def csv2strings(filename = nil)
     unless filename || options.has_key?('filename')
       puts "No value provided for required options '--filename'"
+      help("csv2strings")
       exit
     end
     unless options.has_key?('langs')
       puts "No value provided for required options '--langs'"
+      help("csv2strings")
       exit
     end
     filename ||= options['filename']
@@ -40,6 +42,11 @@ class Command < Thor
   method_option :headers, :type => :array, :aliases => "-h", :desc => "override headers of columns, default is name of input files and 'Variables' for reference"
   method_option :dryrun, :type => :boolean, :aliases => "-n", :desc => "prints out content of hash without writing file"
   def strings2csv
+    unless options.has_key?('filenames')
+      puts "No value provided for required options '--filenames'"
+      help("strings2csv")
+      exit
+    end
     converter = Strings2CSV::Converter.new(options)
   	debug_values = converter.dotstrings_to_csv(!options[:dryrun])
     puts debug_values.inspect if options[:dryrun]   
