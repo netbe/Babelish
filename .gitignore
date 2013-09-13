@@ -1,7 +1,11 @@
 *.csv
 *.strings
 *.lproj
-i18n_config.rb
 .rbenv-version
-#*#
 *~
+*#
+*.gem
+*.sublime-project
+#*#
+.csvconverter
+coverage
