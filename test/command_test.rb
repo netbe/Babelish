@@ -4,7 +4,7 @@ require 'command'
 class CommandTest < Test::Unit::TestCase
 	def test_csv2strings_with_multiple_2_languages
 		command = "./bin/csv2strings"
-		command += " test/data/test_data_multiple_langs.csv"
+		command += " --filename test/data/test_data_multiple_langs.csv"
 		command += " --langs=English:en French:fr"
 		system(command)
 
@@ -18,7 +18,7 @@ class CommandTest < Test::Unit::TestCase
 
 	def test_csv2strings_with_default_path
 		command = "./bin/csv2strings"
-		command += " test/data/test_data_multiple_langs.csv"
+		command += " --filename test/data/test_data_multiple_langs.csv"
 		command += " --langs=English:en French:fr"
 		command += " --default_path=mynewlocation"
 		system(command)
@@ -67,7 +67,7 @@ class CommandTest < Test::Unit::TestCase
 	end
 
 	def test_strings2csv_with_headers
-		command = "./bin/csv2strings strings2csv"
+		command = "./bin/strings2csv"
 		command += " -i=test/data/test_data.strings"
 		command += " -h=constants english"
 		system(command)
@@ -79,7 +79,7 @@ class CommandTest < Test::Unit::TestCase
 	end
 
 	def test_strings2csv_with_two_files
-		command = "./bin/csv2strings strings2csv"
+		command = "./bin/strings2csv"
 		command += " --filenames=test/data/test_en.strings test/data/test_fr.strings"
 		command += " --headers=Constants English French"
 		command += " -o=enfr.csv"
