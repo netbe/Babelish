@@ -8,5 +8,4 @@ rescue LoadError
 end
 
 require 'test/unit'
-require "mocha"
-
+require 'mocha/setup'
