@@ -35,7 +35,7 @@ class CSV2StringsCommand < Command
     args.delete(:langs)
     args.delete(:filename)
     converter = CSV2Strings::Converter.new(filename, options[:langs], args)
-    converter.csv_to_dotstrings    
+    say converter.csv_to_dotstrings    
   end
 
 end
