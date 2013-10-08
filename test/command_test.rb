@@ -1,6 +1,6 @@
-require 'test_helper'
+require File.expand_path('../../lib/command', __FILE__)
+require File.expand_path('../test_helper', __FILE__)
 
-require 'command'
 class CommandTest < Test::Unit::TestCase
 	def test_csv2strings_with_multiple_2_languages
 		command = "./bin/csv2strings"
