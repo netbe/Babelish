@@ -35,6 +35,7 @@ class Command < Thor
     # add default values for options here
     defaults["csv_filename"] = "translations.csv" unless defaults.has_key?("csv_filename")
     defaults["dryrun"] = false unless defaults.has_key?("dryrun")
+    defaults["fetch"] = false unless defaults.has_key?("fetch")
     defaults["keys_column"] = 0 unless defaults.has_key?("keys_column")
     Thor::CoreExt::HashWithIndifferentAccess.new(defaults.merge(original_options))  
   end

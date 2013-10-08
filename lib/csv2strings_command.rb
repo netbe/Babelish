@@ -15,14 +15,17 @@ class CSV2StringsCommand < Command
   method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
   method_option :default_path, :type => :string, :aliases => "-p", :desc => "Path of output files"
   def csv2strings(filename = nil)
-    if options['fetch']
-      filename = invoke :csv_download 
-    end
-
     unless filename || options.has_key?('filename')
       say "No value provided for required options '--filename'"
       help("csv2strings")
       exit
+    end
+    
+    filename ||= options['filename']
+    if options['fetch']
+      say "Downloading file from Google Drive"
+      filename = invoke :csv_download, nil, {"gd_filename" => filename}
+      exit unless filename
     end
 
     unless options.has_key?('langs')
@@ -30,7 +33,7 @@ class CSV2StringsCommand < Command
       help("csv2strings")
       exit
     end
-    filename ||= options['filename']
+ 
     args = options.dup
     args.delete(:langs)
     args.delete(:filename)
