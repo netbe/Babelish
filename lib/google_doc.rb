@@ -11,9 +11,15 @@ class GoogleDoc
     unless @session
       self.authenticate
     end
-    file = @session.file_by_title(requested_filename)
-    file.export_as_file(output_filename,"csv")
-    output_filename
+    result = @session.file_by_title(requested_filename)   
+    if result.is_a? Array
+      file = result.first      
+    else
+      file = result
+    end
+    return nil unless file
+    file.export_as_file(output_filename, "csv")
+    return output_filename
   end
 
 end
