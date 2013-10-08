@@ -16,7 +16,7 @@ module CSV2Strings
 			@langs = langs
 
 			if !@langs.is_a?(Hash) || @langs.size == 0
-				raise "wrong format or/and languages parameter" 
+				raise "wrong format or/and languages parameter" + @langs.inspect
 			end
 			@output_file = (@langs.size == 1) ? args[:output_file] : nil
 
