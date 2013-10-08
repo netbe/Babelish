@@ -2,9 +2,31 @@ $: << File.expand_path(File.join(File.dirname(__FILE__)))
 require 'yaml'
 require 'thor'
 require 'csvconverter'
+require 'google_doc'
 
 class Command < Thor
+  include Thor::Actions
+  class_option :verbose, :type => :boolean
 
+  desc "csv_download", "Download Google Spreadsheet containing translations"
+  method_option :gd_filename, :type => :string, :required => :true, :desc => "File to download from Google Drive"
+  method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file"
+  def csv_download
+    filename = options['gd_filename']
+    gd = GoogleDoc.new
+    if options['output_filename']
+      file_path = gd.download filename.to_s, options['output_filename']      
+    else
+      file_path = gd.download filename.to_s
+    end
+    if file_path
+      say "File '#{filename}' downloaded to '#{file_path}'"
+    else
+      say "Could not download the requested file: #{filename}"
+    end
+    file_path
+  end
+  
   private
   def options
     original_options = super
