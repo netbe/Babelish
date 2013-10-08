@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
   s.add_dependency "thor"
   s.add_dependency "fastercsv", :require => 'faster_csv' if RUBY_PLATFORM == 'ruby_19' 
   s.add_dependency "csv", :require => 'csv' if RUBY_PLATFORM == 'ruby_18'
-  s.add_dependency "google_drive"
-  
+  s.add_dependency "google_drive", '0.3.6'
+  s.add_dependency "nokogiri", "<1.6.0"  if RUBY_PLATFORM == 'ruby_18'  
   s.add_development_dependency "rake"
 
   s.add_development_dependency "test-unit"
