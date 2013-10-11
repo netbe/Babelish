@@ -16,7 +16,7 @@ module CSV2Strings
 			@langs = langs
 
 			if !@langs.is_a?(Hash) || @langs.size == 0
-				raise "wrong format or/and languages parameter" 
+				raise "wrong format or/and languages parameter" + @langs.inspect
 			end
 			@output_file = (@langs.size == 1) ? args[:output_file] : nil
 
@@ -83,6 +83,7 @@ module CSV2Strings
 			excludedCols = []
 			defaultCol   = 0
 			nb_translations = 0
+			
 			CSVParserClass.foreach(name, :quote_char => '"', :col_sep =>',', :row_sep => :auto) do |row|
 
 				if rowIndex == 0
@@ -115,15 +116,17 @@ module CSV2Strings
 				end
 				rowIndex += 1
 			end
-			puts "\n>>>Created #{files.size} files. Content: #{nb_translations} translations\n"
+			info = "Created #{files.size} files. Content: #{nb_translations} translations\n"
+			info += "List of created files:\n"
 
 			# closing I/O
 			files.each do |key,locale_files|
 				locale_files.each do |file|
+					info += "#{file.path.to_s}\n"
 					file.close
 				end
 			end
-
+			info
 		end # end of method
 
 	end # end of class
