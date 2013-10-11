@@ -26,3 +26,7 @@ Place `.csvconverter` file (edit if needed) in the folder with your ``xx.lproj``
 # Todo
 
 See GitHub isssues
+
+# Known issues
+
+* Gdrive support does not work on 1.8.7
