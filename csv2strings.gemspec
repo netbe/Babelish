@@ -10,10 +10,14 @@ Gem::Specification.new do |s|
   s.license = 'MIT'  
   
   s.add_dependency "thor"
-  s.add_dependency "fastercsv", :require => 'faster_csv' if RUBY_PLATFORM == 'ruby_19' 
-  s.add_dependency "csv", :require => 'csv' if RUBY_PLATFORM == 'ruby_18'
-  s.add_dependency "google_drive", '0.3.6'
-  s.add_dependency "nokogiri", "1.5.10" if RUBY_PLATFORM == 'ruby_18'  
+
+
+  if RUBY_VERSION == '1.8.7'
+    s.add_dependency "fastercsv"
+    s.add_dependency "nokogiri", "= 1.5.10"
+  end
+
+  s.add_dependency "google_drive", '0.3.6'  
   s.add_development_dependency "rake"
 
   s.add_development_dependency "test-unit"
