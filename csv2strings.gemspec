@@ -1,3 +1,4 @@
+puts RUBY_VERSION
 Gem::Specification.new do |s|
   s.name        = 'csv2strings'
   s.version     = '0.2.1'
@@ -12,7 +13,7 @@ Gem::Specification.new do |s|
   s.add_dependency "thor"
 
 
-  if RUBY_VERSION == '1.8.7'
+  if RUBY_VERSION < '1.9'
     s.add_dependency "fastercsv"
     s.add_dependency "nokogiri", "= 1.5.10"
   end
