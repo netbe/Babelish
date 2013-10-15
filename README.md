@@ -5,7 +5,13 @@ This script converts a csv file of translations into iOS .strings files and vice
 
 # Setup
 
-`gem install csvconverter`
+For rubygems version: `gem install csv2strings`
+
+For dev version with Gdrive support:
+
+```
+gem "csv2strings", :git => "https://github.com/netbe/CSV-to-iOS-Localizable.strings-converter", :branch => "develop"
+```
 
 # Usage
 
