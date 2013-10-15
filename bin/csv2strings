@@ -1,11 +1,5 @@
 #!/usr/bin/env ruby
-require File.expand_path('../../lib/command', __FILE__)
+require File.expand_path('../../lib/csv2strings_command', __FILE__)
 
 
-if ARGV.count == 1 && ARGV[0] == "help"
-  Command.start(["help", "csv2strings"],{})
-else
-  args = ["csv2strings"]
-  args += ARGV
-  Command.start(args,{})
-end
+CSV2StringsCommand.start

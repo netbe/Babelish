@@ -36,3 +36,7 @@ Run `bundle install` to install all the dependencies. Tests are done with `Test:
 # Todo
 
 See GitHub isssues
+
+# Known issues
+
+None
