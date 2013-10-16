@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">android2csv</string>
+    <string name="action_greetings">Bonjour</string>
+    <string name="ANOTHER_STRING">testFR</string>
+    <string name="empty"></string>
+
+</resources>
