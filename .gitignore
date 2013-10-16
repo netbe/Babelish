@@ -6,6 +6,7 @@
 *#
 *.gem
 *.sublime-project
+*.sublime-workspace
 #*#
 .csvconverter
 coverage
