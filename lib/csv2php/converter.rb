@@ -1,4 +1,6 @@
 module CSV2Php
+    require File.expand_path('../../csv2base', __FILE__)
+
     class Converter < Csv2Base
         attr_accessor :php_tag
         attr_accessor :file_path

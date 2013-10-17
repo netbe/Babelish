@@ -1,5 +1,6 @@
 module Android2CSV
     require 'xmlsimple'
+    require File.expand_path('../../base2csv', __FILE__)
 
     class Converter < Base2Csv
 

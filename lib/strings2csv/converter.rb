@@ -1,5 +1,5 @@
 module Strings2CSV
-    class Converter < Base2Csv
+    require File.expand_path('../../base2csv', __FILE__)
 
         attr_accessor :csv_filename, :headers, :filenames, :default_lang
 

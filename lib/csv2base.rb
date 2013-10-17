@@ -1,5 +1,3 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__)))
-
 class Csv2Base
     attr_accessor :default_path, :output_file
     attr_accessor :langs

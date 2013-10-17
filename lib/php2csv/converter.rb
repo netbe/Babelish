@@ -1,4 +1,6 @@
 module Php2CSV
+    require File.expand_path('../../base2csv', __FILE__)
+
     class Converter < Base2Csv
 
         def initialize(args)
