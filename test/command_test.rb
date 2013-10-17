@@ -1,4 +1,4 @@
-require File.expand_path('../../lib/command', __FILE__)
+require File.expand_path('../../lib/commands/command', __FILE__)
 require File.expand_path('../test_helper', __FILE__)
 
 class CommandTest < Test::Unit::TestCase
