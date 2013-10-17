@@ -1,6 +1,8 @@
 $: << File.expand_path(File.join(File.dirname(__FILE__)))
 require 'yaml'
 require 'thor'
+require 'csv2base'
+require 'base2csv'
 require 'csvconverter'
 require 'google_doc'
 

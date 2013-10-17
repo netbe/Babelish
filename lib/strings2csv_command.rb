@@ -18,7 +18,7 @@ class Strings2CSVCommand < Command
       exit
     end
     converter = Strings2CSV::Converter.new(options)
-  	debug_values = converter.dotstrings_to_csv(!options[:dryrun])
+  	debug_values = converter.convert(!options[:dryrun])
     say debug_values.inspect if options[:dryrun]   
   end
 end
