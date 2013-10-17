@@ -1,7 +1,3 @@
-# Author: Markus Paeschke <a href="mailto:markus.paeschke@gmail.com">markus.paeschke@gmail.com</a> <a href="http://www.mpaeschke.de">http://www.mpaeschke.de</a>
-# 
-# Command class to encapsulate the csv2php class.
-
 $: << File.expand_path(File.join(File.dirname(__FILE__)))
 require "command"
 

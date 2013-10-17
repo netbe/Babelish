@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.date        = '2013-10-08'
   s.summary     = "CSV to iOS Localizable.strings converter"
   s.description = "ruby script converts a CSV file of translations to Localizable.strings files and vice-versa"
-  s.authors     = ["François Benaiteau"]
-  s.email       = 'francois.benaiteau@gmail.com'
+  s.authors     = ["François Benaiteau", "Markus Paeschke"]
+  s.email       = ['francois.benaiteau@gmail.com', 'markus.paeschke@gmail.com']
   s.homepage    = 'https://github.com/netbe/CSV-to-iOS-Localizable.strings-converter'
   s.license = 'MIT'  
   

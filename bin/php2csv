@@ -1,8 +1,4 @@
 #!/usr/bin/env ruby
-
-# Author: Markus Paeschke <a href="mailto:markus.paeschke@gmail.com">markus.paeschke@gmail.com</a> <a href="http://www.mpaeschke.de">http://www.mpaeschke.de</a>
-# 
-# Starts the php to csv command class.
 require File.expand_path('../../lib/php2csv_command', __FILE__)
 
 

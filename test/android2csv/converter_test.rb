@@ -1,5 +1,3 @@
-# Author: Markus Paeschke <a href="mailto:markus.paeschke@gmail.com">markus.paeschke@gmail.com</a> <a href="http://www.mpaeschke.de">http://www.mpaeschke.de</a>
-
 require File.expand_path('../../../lib/android2csv/converter', __FILE__)
 require File.expand_path('../../test_helper', __FILE__)
 
