@@ -4,9 +4,7 @@ module Android2CSV
 
     class Converter < Base2Csv
 
-        attr_accessor :csv_filename, :headers, :filenames, :default_lang
-
-        def initialize(args)
+        def initialize(args = {:filenames => []})
             super(args)
         end
 

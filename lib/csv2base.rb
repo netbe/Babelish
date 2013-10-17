@@ -80,7 +80,7 @@ class Csv2Base
     end
 
     def get_row_format(row_key, row_value)
-        return row_key + " = \"" + row_value + "\""
+        return "\"" + row_key + "\" = \"" + row_value + "\""
     end
 
     # Convert csv file to multiple Localizable.strings files for each column

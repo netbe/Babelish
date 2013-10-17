@@ -1,9 +1,9 @@
 module Strings2CSV
     require File.expand_path('../../base2csv', __FILE__)
 
-        attr_accessor :csv_filename, :headers, :filenames, :default_lang
+    class Converter < Base2Csv
 
-        def initialize(args)
+        def initialize(args = {:filenames => []})
             super(args)
         end
 

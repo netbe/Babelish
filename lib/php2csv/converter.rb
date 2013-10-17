@@ -3,7 +3,7 @@ module Php2CSV
 
     class Converter < Base2Csv
 
-        def initialize(args)
+        def initialize(args = {:filenames => []})
             super(args)
         end
 
