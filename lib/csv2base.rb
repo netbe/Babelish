@@ -6,11 +6,13 @@ class Csv2Base
     attr_accessor :excluded_states, :state_column, :keys_column
 
     def initialize(filename, langs, args = {})
-        args.merge!({
+        default_args = {
             :excluded_states => [],
             :state_column => nil,
             :keys_column => 0
-        })
+        }
+
+        args = default_args.merge!(args)
 
         @langs = langs
         if !@langs.is_a?(Hash) || @langs.size == 0
