@@ -72,6 +72,9 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
 
     converter.create_csv_file(keys, lang_order, strings)
     assert File.exist?(converter.csv_filename)
+
+    #clean up
+    system("rm -rf ./" + converter.csv_filename)
   end
 
   def test_initialize
