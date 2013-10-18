@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require File.expand_path('../../lib/commands/android2csv_command', __FILE__)
+
+
+Android2CSVCommand.start

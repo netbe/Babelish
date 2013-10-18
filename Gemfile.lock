@@ -5,6 +5,7 @@ PATH
       google_drive (= 0.3.6)
       nokogiri (= 1.5.10)
       thor
+      xml-simple
 
 GEM
   remote: http://rubygems.org/
@@ -38,6 +39,7 @@ GEM
     simplecov-html (0.5.3)
     test-unit (2.4.8)
     thor (0.18.1)
+    xml-simple (1.1.2)
 
 PLATFORMS
   ruby

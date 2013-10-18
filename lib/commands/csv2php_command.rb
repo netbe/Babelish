@@ -1,9 +1,10 @@
 $: << File.expand_path(File.join(File.dirname(__FILE__)))
 require "command"
-class CSV2StringsCommand < Command
-  default_task :csv2strings
 
-  desc "CSV_FILENAME", "convert CSV file to '.strings' file"
+class CSV2PhpCommand < Command
+  default_task :csv2php
+
+  desc "CSV_FILENAME", "convert CSV file to php language file file"
   # required options but handled in method because of options read from yaml file
   method_option :filename, :type => :string, :desc => "CSV file (CSV_FILENAME) to convert from or name of file in Google Drive"
   method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
@@ -14,10 +15,10 @@ class CSV2StringsCommand < Command
   method_option :keys_column,  :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
   method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
   method_option :default_path, :type => :string, :aliases => "-p", :desc => "Path of output files"
-  def csv2strings(filename = nil)
+  def csv2php(filename = nil)
     unless filename || options.has_key?('filename')
       say "No value provided for required options '--filename'"
-      help("csv2strings")
+      help("csv2php")
       exit
     end
     
@@ -30,15 +31,14 @@ class CSV2StringsCommand < Command
 
     unless options.has_key?('langs')
       say "No value provided for required options '--langs'"
-      help("csv2strings")
+      help("csv2php")
       exit
     end
  
     args = options.dup
     args.delete(:langs)
     args.delete(:filename)
-    converter = CSV2Strings::Converter.new(filename, options[:langs], args)
-    say converter.csv_to_dotstrings    
+    converter = CSV2Php::Converter.new(filename, options[:langs], args)
+    say converter.convert    
   end
-
 end

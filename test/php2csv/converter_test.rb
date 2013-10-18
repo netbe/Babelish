@@ -1,74 +1,74 @@
-require File.expand_path('../../../lib/strings2csv/converter', __FILE__)
+require File.expand_path('../../../lib/php2csv/converter', __FILE__)
 require File.expand_path('../../test_helper', __FILE__)
 
-class Strings2CSV::ConverterTest < Test::Unit::TestCase
+class Php2CSV::ConverterTest < Test::Unit::TestCase
   
   def test_parse_dotstrings_line_with_good_string
     input = String.new(<<-EOS)
-    "MY_CONSTANT" = "This is ok";
+    $lang['MY_CONSTANT'] = "This is ok";
     EOS
     expected_output = {"MY_CONSTANT"=>"This is ok"}
 
-    output = Strings2CSV::Converter.new.parse_dotstrings_line input
+    output = Php2CSV::Converter.new.parse_dotstrings_line input
     assert_equal output, expected_output
   end
 
   def test_parse_dotstrings_line_with_single_quote
     input = String.new(<<-EOS)
-    "MY_CONSTANT" = "This 'is' ok";
+    $lang['MY_CONSTANT'] = "This 'is' ok";
     EOS
     expected_output = {"MY_CONSTANT"=>"This 'is' ok"}
 
-    output = Strings2CSV::Converter.new.parse_dotstrings_line input
+    output = Php2CSV::Converter.new.parse_dotstrings_line input
     assert_equal output, expected_output
   end
 
   def test_parse_dotstrings_line_with_double_quotes
     input = String.new(<<-EOS)
-    "MY_CONSTANT" = "This "is" ok";
+    $lang['MY_CONSTANT'] = "This "is" ok";
     EOS
     expected_output = {"MY_CONSTANT"=>"This \"is\" ok"}
 
-    output = Strings2CSV::Converter.new.parse_dotstrings_line input
+    output = Php2CSV::Converter.new.parse_dotstrings_line input
     assert_equal output, expected_output
   end
 
   def test_parse_dotstrings_line_with_wrong_string
     input = String.new(<<-EOS)
-    "MY_CONSTANT" = "wrong syntax"
+    $lang['MY_CONSTANT'] = "wrong syntax"
     EOS
 
-    output = Strings2CSV::Converter.new.parse_dotstrings_line input
+    output = Php2CSV::Converter.new.parse_dotstrings_line input
     assert_nil output, "output should be nil with wrong syntax"
   end
 
   def test_load_strings_with_wrong_file
     assert_raise(Errno::ENOENT) do
-      output = Strings2CSV::Converter.new.load_strings "file that does not exist.strings"
+      output = Php2CSV::Converter.new.load_strings "file that does not exist.strings"
     end
   end
 
   def test_load_strings
-    expected_output = {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}
-    output = Strings2CSV::Converter.new.load_strings "test/data/test_data.strings"
+    expected_output = {"app_name" => "php2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}
+    output = Php2CSV::Converter.new.load_strings "test/data/php_lang.php"
     assert_equal expected_output, output
   end
 
   def test_dotstrings_to_csv
-    converter = Strings2CSV::Converter.new(:filenames => ["test/data/test_data.strings"])
+    converter = Php2CSV::Converter.new(:filenames => ["test/data/php_lang.php"])
     keys, lang_order, strings = converter.convert(false)
-    assert_equal ["test_data".to_sym], lang_order
-    assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"], keys
-    expected_strings = {lang_order[0] => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
+    assert_equal ["php_lang".to_sym], lang_order
+    assert_equal ["app_name", "action_greetings", "ANOTHER_STRING", "empty"], keys
+    expected_strings = {lang_order[0] => {"app_name" => "php2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}}
     assert_equal expected_strings, strings
   end
 
   def test_create_csv_file
-    keys = ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"]
-    lang_order = [:"test_data"]
-    strings = {lang_order[0] => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
+    keys = ["app_name", "action_greetings", "ANOTHER_STRING", "empty"]
+    lang_order = [:"php_lang"]
+    strings = {lang_order[0] => {"app_name" => "php2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}}
     
-    converter = Strings2CSV::Converter.new(:headers => %w{variables english})
+    converter = Php2CSV::Converter.new(:headers => %w{variables english})
 
     converter.create_csv_file(keys, lang_order, strings)
     assert File.exist?(converter.csv_filename)
@@ -79,9 +79,9 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
 
   def test_initialize
     csv_filename = "file.csv"
-    filenames = %w{"french.strings english.strings"}
+    filenames = %w{"french.php english.php"}
     headers = %w{"constants french english"}
-    converter = Strings2CSV::Converter.new({
+    converter = Php2CSV::Converter.new({
         :csv_filename => csv_filename,
         :headers => headers,
         :filenames => filenames
@@ -93,7 +93,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
   end
 
   def test_initialize_with_default_values
-    converter = Strings2CSV::Converter.new
+    converter = Php2CSV::Converter.new
     assert_not_nil converter.csv_filename
   end
 end
