@@ -20,7 +20,7 @@ class Base2Csv
     end
 
     def load_strings(strings_filename)
-
+        return {}
     end
     
     def convert(write_to_file = true)
@@ -38,7 +38,7 @@ class Base2Csv
         if(write_to_file)
             # Create csv file
             puts "Creating #{@csv_filename}"
-            create_csv_file(keys, lang_order, strings)        
+            create_csv_file(keys, lang_order, strings)
         else
             return keys, lang_order, strings
         end
