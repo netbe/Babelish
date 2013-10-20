@@ -11,10 +11,11 @@ module JSON2CSV
         def load_strings(strings_filename)
             strings = {}
             raise Errno::ENOENT unless File.exist?(strings_filename)
-            File.open(strings_filename, 'r') do |strings_file|
-                strings = JSON.parse(strings_file).to_hash
-            end
-            strings
+            json_file = File.open(strings_filename, 'r')
+            json_string = json_file.read
+            json_file.close
+            strings = JSON.parse(json_string).to_hash
+            return strings
         end
 
     end

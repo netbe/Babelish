@@ -1,6 +1,6 @@
 $: << File.expand_path(File.join(File.dirname(__FILE__)))
 require "command"
-class CSV2JOSNCommand < Command
+class CSV2JSONCommand < Command
   default_task :csv2json
 
   desc "CSV_FILENAME", "convert CSV file to JSON file"
@@ -37,7 +37,7 @@ class CSV2JOSNCommand < Command
     args = options.dup
     args.delete(:langs)
     args.delete(:filename)
-    converter = JSON2CSV::Converter.new(filename, options[:langs], args)
+    converter = CSV2JSON::Converter.new(filename, options[:langs], args)
     say converter.convert
   end
 
