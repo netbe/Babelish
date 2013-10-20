@@ -18,8 +18,9 @@ module Strings2CSV
         def load_strings(strings_filename)
             strings = {}
             File.open(strings_filename, 'r') do |strings_file|
-                strings_file.read.each_line do |line|     
-                    strings.merge!(self.parse_dotstrings_line(line))
+                strings_file.read.each_line do |line|
+                    converted_line = self.parse_dotstrings_line(line)
+                    strings.merge!(converted_line) unless converted_line.nil?
                 end
             end
             strings

@@ -4,6 +4,7 @@ class Csv2Base
     attr_accessor :csv_filename
     attr_accessor :default_lang
     attr_accessor :excluded_states, :state_column, :keys_column
+    attr_accessor :languages
 
     def initialize(filename, langs, args = {})
         default_args = {
@@ -26,6 +27,8 @@ class Csv2Base
         @state_column = args[:state_column]
         @keys_column = args[:keys_column]
         @default_lang = args[:default_lang]
+
+        @languages = []
     end
 
     def create_file_from_path(file_path)
@@ -37,37 +40,6 @@ class Csv2Base
     def file_path_for_locale(locale)
         require 'pathname' 
         Pathname.new(self.default_path) + "#{locale}" + "lang.txt"
-    end
-
-    def process_header(excludedCols, files, row, index)
-        files[index] = []
-        lang_index = row[index]
-        
-        # create output files here
-        if @output_file
-            # one single file
-            files[index] << self.create_file_from_path(@output_file)
-        else
-            # create one file for each langs
-            if self.langs[lang_index].is_a?(Array)
-
-                self.langs[lang_index].each do |locale|
-                    filename = self.file_path_for_locale(locale)
-                    files[index] << self.create_file_from_path(filename)
-                end
-            elsif self.langs[lang_index].is_a?(String)
-                locale = self.langs[lang_index]
-                filename = self.file_path_for_locale(locale)
-                files[index] << self.create_file_from_path(filename)
-            else
-                raise "wrong format or/and langs parameter" 
-            end
-
-        end
-    end
-
-    def process_footer(file)
-
     end
 
     def process_value(row_value, default_value)
@@ -87,12 +59,10 @@ class Csv2Base
 
     # Convert csv file to multiple Localizable.strings files for each column
     def convert(name = self.csv_filename)
-        files        = {}
         rowIndex     = 0
         excludedCols = []
         defaultCol   = 0
-        nb_translations = 0
-        
+
         CSVParserClass.foreach(name, :quote_char => '"', :col_sep =>',', :row_sep => :auto) do |row|
 
             if rowIndex == 0
@@ -103,6 +73,7 @@ class Csv2Base
                 next if row == nil or row[self.keys_column].nil?
             end
 
+            # go through columns
             row.size.times do |i|
                 next if excludedCols.include? i
 
@@ -110,37 +81,59 @@ class Csv2Base
                 if rowIndex == 0
                     # ignore all headers not listed in langs to create files
                     (excludedCols << i and next) unless self.langs.has_key?(row[i])
-                    self.process_header(excludedCols, files, row, i)
-                    # define defaultCol
+
                     defaultCol = i if self.default_lang == row[i]
+
+                    @languages[i] = Language.new(row[i], self.langs[row[i]], {})
 
                 elsif !self.state_column || (row[self.state_column].nil? or row[self.state_column] == '' or !self.excluded_states.include? row[self.state_column])
                     # TODO: add option to strip the constant or referenced language
-                    key = row[self.keys_column].strip 
+                    key = row[self.keys_column].strip
                     value = self.process_value(row[i], row[defaultCol])
-                    # files for a given language, i.e could group english US with english UK.
-                    localized_files = files[i]
-                    if localized_files
-                        localized_files.each do |file|
-                            nb_translations += 1
-                            file.write get_row_format(key, value)
-                        end         
-                    end
+
+                    @languages[i].add_content_pair(key, value)
                 end
             end
+
             rowIndex += 1
         end
-        info = "Created #{files.size} files. Content: #{nb_translations} translations\n"
-        info += "List of created files:\n"
 
-        # closing I/O
-        files.each do |key,locale_files|
-            locale_files.each do |file|
+        self.write_content
+    end
+
+    def write_content
+        info = "List of created files:\n"
+        count = 0
+        @languages.each do |language|
+            next if language.nil?
+
+            if @output_file
+                file = self.create_file_from_path(@output_file)
+            else
+                filename = self.file_path_for_locale(language.get_name)
+                file = self.create_file_from_path(filename)
+            end
+
+            if file
+                file.write hash_to_output(language.get_content)
                 info += "#{file.path.to_s}\n"
-                self.process_footer(file)
+                count += 1
                 file.close
             end
         end
-        info
-    end # end of method
+
+        info = "Created #{count} files.\n" + info
+
+        return info
+    end
+
+    def hash_to_output(content = {})
+        output = ''
+        if content && content.size > 0
+            content.each do |key, value|
+                output += get_row_format(key, value)
+            end
+        end
+        return output
+    end
 end

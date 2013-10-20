@@ -13,7 +13,8 @@ module Php2CSV
                 strings_file.read.each_line do |line|
                     parsed_line = self.parse_dotstrings_line(line)
                     unless parsed_line.nil?
-                        strings.merge!(parsed_line)
+                        converted_line = self.parse_dotstrings_line(line)
+                        strings.merge!(converted_line) unless converted_line.nil?
                     end
                 end
             end
