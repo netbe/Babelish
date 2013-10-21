@@ -5,7 +5,7 @@ class CSV2Strings::ConverterTest < Test::Unit::TestCase
   
     def test_converting_csv_to_dotstrings
         csv_file = "test/data/test_data.csv"
-        converter = CSV2Strings::Converter.new(csv_file, 'English' => [:en])
+        converter = CSV2Strings::Converter.new(csv_file, 'English' => "en")
         converter.convert
         assert File.exists?("en.lproj/Localizable.strings"), "the ouptut file does not exist"
 
@@ -17,7 +17,7 @@ class CSV2Strings::ConverterTest < Test::Unit::TestCase
         csv_file = "test/data/test_data.csv"
         single_file = 'myApp.strings'
         converter = CSV2Strings::Converter.new(csv_file, 
-                                        {'English' => [:en]},
+                                        {'English' => "en"},
                                          :output_file => single_file)
         converter.convert
         assert File.exists?(single_file), "the ouptut file does not exist"
