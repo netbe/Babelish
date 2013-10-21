@@ -13,7 +13,7 @@ module CSV2JSON
 
         def file_path_for_locale(locale)
             require 'pathname' 
-            Pathname.new(self.file_path) + "#{locale}.json"
+            Pathname.new(self.file_path) + "#{locale}.js"
         end
 
         def hash_to_output(content = {})
