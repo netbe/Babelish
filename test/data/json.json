@@ -1,6 +1,6 @@
 {
-	"app_name": "php2csv",
-	"action_greetings": "Hello",
+	"app_name": "json2csv",
+	"action_greetings": "hello",
 	"ANOTHER_STRING": "testEN",
-	"empty": "";
+	"empty": ""
 }
