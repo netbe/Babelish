@@ -50,7 +50,7 @@ class Csv2Base
         value.gsub!(/%\s+([a-zA-Z@])([^a-zA-Z@]|$)/, "%\\1\\2") #repair string formats ("% d points" etc)
         value.gsub!(/([^0-9\s\(\{\[^])%/, "\\1 %")
         value.strip!
-        return value
+        return value.force_encoding("UTF-8")
     end
 
     def get_row_format(row_key, row_value)
