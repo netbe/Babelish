@@ -2,7 +2,7 @@ require File.expand_path('../../../lib/strings2csv/converter', __FILE__)
 require File.expand_path('../../test_helper', __FILE__)
 
 class Strings2CSV::ConverterTest < Test::Unit::TestCase
-  
+
   def test_parse_dotstrings_line_with_good_string
     input = String.new(<<-EOS)
     "MY_CONSTANT" = "This is ok";
@@ -54,6 +54,12 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     assert_equal expected_output, output
   end
 
+  def test_load_strings_with_empty_lines
+    assert_nothing_raised do
+      output = Strings2CSV::Converter.new.load_strings "test/data/test_with_nil.strings"
+    end
+  end
+
   def test_dotstrings_to_csv
     converter = Strings2CSV::Converter.new(:filenames => ["test/data/test_data.strings"])
     keys, lang_order, strings = converter.dotstrings_to_csv(false)
@@ -67,7 +73,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     keys = ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"]
     lang_order = [:"test_data"]
     strings = {lang_order[0] => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
-    
+
     converter = Strings2CSV::Converter.new(:headers => %w{variables english})
 
     converter.create_csv_file(keys, lang_order, strings)
@@ -93,4 +99,6 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     converter = Strings2CSV::Converter.new
     assert_not_nil converter.csv_filename
   end
+
+
 end

@@ -86,5 +86,18 @@ class CommandTest < Test::Unit::TestCase
 		system(command)
 	end
 
+	def test_strings2csv_with_empty_lines
+		command = "./bin/strings2csv"
+		command += " -i=test/data/test_with_nil.strings"
+		command += " -o=test_with_nil.csv"
+		assert_nothing_raised do
+			system(command)
+		end
+		assert system("diff test_with_nil.csv test/data/test_with_nil.csv"), "no difference on output"
+
+		#clean up
+		system("rm -f test_with_nil.csv")
+	end
+
 end
- 
+
