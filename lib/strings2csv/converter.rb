@@ -8,7 +8,7 @@ module Strings2CSV
         raise ArgumentError.new("number of headers and files don't match, don't forget the constant column") unless args[:headers].size == (args[:filenames].size + 1)
       end
 
-      @filenames = args[:filenames]     
+      @filenames = args[:filenames]
 
       @csv_filename = args[:csv_filename] || "translations.csv"
       @default_lang = args[:default_lang]
@@ -27,13 +27,14 @@ module Strings2CSV
     def load_strings(strings_filename)
       strings = {}
       File.open(strings_filename, 'r') do |strings_file|
-        strings_file.read.each_line do |line|     
-          strings.merge!(self.parse_dotstrings_line(line))
+        strings_file.read.each_line do |line|
+          hash = self.parse_dotstrings_line(line)
+          strings.merge!(hash) if hash
         end
       end
       strings
     end
-    
+
     def parse_dotstrings_line(line)
       line.strip!
       if (line[0] != ?# and line[0] != ?=)
@@ -42,9 +43,9 @@ module Strings2CSV
       end
     end
 
-   
+
     # Convert Localizable.strings files to one CSV file
-    # output: 
+    # output:
     def dotstrings_to_csv(write_to_file = true)
       # Parse .strings files
       strings = {}
@@ -54,14 +55,14 @@ module Strings2CSV
       @filenames.each do |fname|
         header = basename(fname)
         strings[header] = load_strings(fname)
-        lang_order << header       
+        lang_order << header
         keys ||= strings[header].keys
       end
 
       if(write_to_file)
         # Create csv file
         puts "Creating #{@csv_filename}"
-        create_csv_file(keys, lang_order, strings)        
+        create_csv_file(keys, lang_order, strings)
       else
         return keys, lang_order, strings
       end
@@ -92,4 +93,4 @@ module Strings2CSV
 
   end
 end
-  
+
