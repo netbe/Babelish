@@ -64,7 +64,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     converter = Strings2CSV::Converter.new(:filenames => ["test/data/test_data.strings"])
     keys, lang_order, strings = converter.dotstrings_to_csv(false)
     assert_equal ["test_data".to_sym], lang_order
-    assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"], keys
+    assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"].sort, keys.sort
     expected_strings = {lang_order[0] => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
     assert_equal expected_strings, strings
   end
