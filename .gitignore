@@ -1,7 +1,6 @@
 *.csv
 *.strings
 *.lproj
-.rbenv-version
 *~
 *#
 *.gem
@@ -13,3 +12,8 @@ coverage
 # ignore Gemfile.lock as http://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
 # this should solve the fastercsv issue
 Gemfile.lock
+
+# Ruby package manager files
+.ruby-version
+.rbenv-version
+.rvmrc
