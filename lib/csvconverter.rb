@@ -8,7 +8,7 @@ begin
 rescue LoadError
 	puts "Failed to load #{CSVGEM} (ruby #{RUBY_VERSION})"
 	puts "gem install #{CSVGEM}"
-	exit
+	abort
 end
 
 CSVParserClass = CSVGEM == 'csv' ? CSV : FasterCSV
