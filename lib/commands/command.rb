@@ -14,11 +14,13 @@ class Command < Thor
   method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file"
   def csv_download
     filename = options['gd_filename']
+    worksheet_index = options['worksheet_index']
+    
     gd = GoogleDoc.new
     if options['output_filename']
-      file_path = gd.download filename.to_s, options['output_filename']      
+      file_path = gd.download filename.to_s, worksheet_index, options['output_filename']
     else
-      file_path = gd.download filename.to_s
+      file_path = gd.download filename.to_s, worksheet_index
     end
     if file_path
       say "File '#{filename}' downloaded to '#{file_path}'"
