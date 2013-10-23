@@ -20,7 +20,7 @@ class Csv2Base
             raise "wrong format or/and langs parameter" + @langs.inspect
         end
 
-        @output_file = (langs.size == 1) ? args[:output_file] : nil
+        @output_file = (langs.size == 1) ? args['output_file'] : nil
         @default_path = args[:default_path].to_s
         @csv_filename = filename
         @excluded_states = args[:excluded_states]
