@@ -62,21 +62,20 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
 
   def test_dotstrings_to_csv
     converter = Strings2CSV::Converter.new(:filenames => ["test/data/test_data.strings"])
-    keys, lang_order, strings = converter.dotstrings_to_csv(false)
-    assert_equal ["test_data".to_sym], lang_order
+    keys, strings = converter.dotstrings_to_csv(false)
     assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"].sort, keys.sort
-    expected_strings = {lang_order[0] => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
+    expected_strings = {"test/data/test_data.strings" => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
     assert_equal expected_strings, strings
   end
 
   def test_create_csv_file
     keys = ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"]
-    lang_order = [:"test_data"]
-    strings = {lang_order[0] => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
+    filename = "test_data"
+    strings = {filename => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
 
-    converter = Strings2CSV::Converter.new(:headers => %w{variables english})
+    converter = Strings2CSV::Converter.new(:headers => %w{variables english}, :filenames => [filename])
 
-    converter.create_csv_file(keys, lang_order, strings)
+    converter.create_csv_file(keys, strings)
     assert File.exist?(converter.csv_filename)
   end
 

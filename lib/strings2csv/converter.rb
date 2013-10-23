@@ -1,10 +1,12 @@
 module Strings2CSV
   class Converter
-
+    # default_lang is the the column to refer to if a value is missing
+    # actually default_lang = default_filename
     attr_accessor :csv_filename, :headers, :filenames, :default_lang
 
     def initialize(args = {:filenames => []})
-      if args[:filenames] && args[:headers]
+      raise ArgumentError.new("No filenames given") unless args[:filenames]
+      if args[:headers]
         raise ArgumentError.new("number of headers and files don't match, don't forget the constant column") unless args[:headers].size == (args[:filenames].size + 1)
       end
 
@@ -46,7 +48,7 @@ module Strings2CSV
 
 
     # Convert Localizable.strings files to one CSV file
-    # output:
+    # output: strings hash has filename for keys and the content of csv
     def dotstrings_to_csv(write_to_file = true)
       # Parse .strings files
       strings = {}
@@ -56,16 +58,15 @@ module Strings2CSV
       @filenames.each do |fname|
         header = fname
         strings[header] = load_strings(fname)
-        lang_order << header
         keys ||= strings[header].keys
       end
 
       if(write_to_file)
         # Create csv file
         puts "Creating #{@csv_filename}"
-        create_csv_file(keys, lang_order, strings)
+        create_csv_file(keys, strings)
       else
-        return keys, lang_order, strings
+        return keys, strings
       end
     end
 
@@ -75,14 +76,15 @@ module Strings2CSV
     end
 
     # Create the resulting file
-    def create_csv_file(keys, lang_order, strings)
+    def create_csv_file(keys, strings)
       raise "csv_filename must not be nil" unless self.csv_filename
       CSVParserClass.open(self.csv_filename, "wb") do |csv|
         csv << @headers
         keys.each do |key|
           line = [key]
           default_val = strings[self.default_lang][key] if strings[self.default_lang]
-          lang_order.each do |lang|
+          @filenames.each do |fname|
+            lang = fname
             current_val = strings[lang][key]
             line << ((lang != self.default_lang and current_val == default_val) ? '' : current_val)
           end
