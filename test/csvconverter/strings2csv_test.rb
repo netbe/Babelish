@@ -1,7 +1,5 @@
-require File.expand_path('../../../lib/strings2csv/converter', __FILE__)
-require File.expand_path('../../test_helper', __FILE__)
 
-class Strings2CSV::ConverterTest < Test::Unit::TestCase
+class Strings2CSVTest < Test::Unit::TestCase
 
   def test_parse_dotstrings_line_with_good_string
     input = String.new(<<-EOS)
@@ -9,7 +7,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     EOS
     expected_output = {"MY_CONSTANT"=>"This is ok"}
 
-    output = Strings2CSV::Converter.new.parse_dotstrings_line input
+    output = Strings2CSV.new.parse_dotstrings_line input
     assert_equal output, expected_output
   end
 
@@ -19,7 +17,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     EOS
     expected_output = {"MY_CONSTANT"=>"This 'is' ok"}
 
-    output = Strings2CSV::Converter.new.parse_dotstrings_line input
+    output = Strings2CSV.new.parse_dotstrings_line input
     assert_equal output, expected_output
   end
 
@@ -29,7 +27,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     EOS
     expected_output = {"MY_CONSTANT"=>"This \"is\" ok"}
 
-    output = Strings2CSV::Converter.new.parse_dotstrings_line input
+    output = Strings2CSV.new.parse_dotstrings_line input
     assert_equal output, expected_output
   end
 
@@ -38,30 +36,30 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     "MY_CONSTANT" = "wrong syntax"
     EOS
 
-    output = Strings2CSV::Converter.new.parse_dotstrings_line input
+    output = Strings2CSV.new.parse_dotstrings_line input
     assert_nil output, "output should be nil with wrong syntax"
   end
 
   def test_load_strings_with_wrong_file
     assert_raise(Errno::ENOENT) do
-      output = Strings2CSV::Converter.new.load_strings "file that does not exist.strings"
+      output = Strings2CSV.new.load_strings "file that does not exist.strings"
     end
   end
 
   def test_load_strings
     expected_output = {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}
-    output = Strings2CSV::Converter.new.load_strings "test/data/test_data.strings"
+    output = Strings2CSV.new.load_strings "test/data/test_data.strings"
     assert_equal expected_output, output
   end
 
   def test_load_strings_with_empty_lines
     assert_nothing_raised do
-      output = Strings2CSV::Converter.new.load_strings "test/data/test_with_nil.strings"
+      output = Strings2CSV.new.load_strings "test/data/test_with_nil.strings"
     end
   end
 
   def test_dotstrings_to_csv
-    converter = Strings2CSV::Converter.new(:filenames => ["test/data/test_data.strings"])
+    converter = Strings2CSV.new(:filenames => ["test/data/test_data.strings"])
     keys, strings = converter.dotstrings_to_csv(false)
     assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"], keys
     expected_strings = {"test/data/test_data.strings" => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
@@ -73,7 +71,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     filename = "test_data"
     strings = {filename => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
 
-    converter = Strings2CSV::Converter.new(:headers => %w{variables english}, :filenames => [filename])
+    converter = Strings2CSV.new(:headers => %w{variables english}, :filenames => [filename])
 
     converter.create_csv_file(keys, strings)
     assert File.exist?(converter.csv_filename)
@@ -83,7 +81,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
     csv_filename = "file.csv"
     filenames = %w{"french.strings english.strings"}
     headers = %w{"constants french english"}
-    converter = Strings2CSV::Converter.new({
+    converter = Strings2CSV.new({
         :csv_filename => csv_filename,
         :headers => headers,
         :filenames => filenames
@@ -95,7 +93,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
   end
 
   def test_initialize_with_default_values
-    converter = Strings2CSV::Converter.new
+    converter = Strings2CSV.new
     assert_not_nil converter.csv_filename
   end
 

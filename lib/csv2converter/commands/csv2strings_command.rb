@@ -20,7 +20,7 @@ class CSV2StringsCommand < Command
       help("csv2strings")
       exit
     end
-    
+
     filename ||= options['filename']
     if options['fetch']
       say "Downloading file from Google Drive"
@@ -33,12 +33,12 @@ class CSV2StringsCommand < Command
       help("csv2strings")
       exit
     end
- 
+
     args = options.dup
     args.delete(:langs)
     args.delete(:filename)
-    converter = CSV2Strings::Converter.new(filename, options[:langs], args)
-    say converter.csv_to_dotstrings    
+    converter = CSV2Strings.new(filename, options[:langs], args)
+    say converter.csv_to_dotstrings
   end
 
 end
