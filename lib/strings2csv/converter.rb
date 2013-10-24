@@ -58,7 +58,10 @@ module Strings2CSV
       @filenames.each do |fname|
         header = fname
         strings[header] = load_strings(fname)
-        keys ||= strings[header].keys
+        keys ||= []
+        strings[header].each do |key, value|
+          keys << key
+        end
       end
 
       if(write_to_file)

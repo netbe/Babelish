@@ -63,7 +63,7 @@ class Strings2CSV::ConverterTest < Test::Unit::TestCase
   def test_dotstrings_to_csv
     converter = Strings2CSV::Converter.new(:filenames => ["test/data/test_data.strings"])
     keys, strings = converter.dotstrings_to_csv(false)
-    assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"].sort, keys.sort
+    assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"], keys
     expected_strings = {"test/data/test_data.strings" => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
     assert_equal expected_strings, strings
   end
