@@ -1,5 +1,6 @@
 [![Build Status](https://secure.travis-ci.org/netbe/CSV-to-iOS-Localizable.strings-converter.png?branch=master)](http://travis-ci.org/netbe/CSV-to-iOS-Localizable.strings-converter)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/netbe/CSV-to-iOS-Localizable.strings-converter)
+[![Coverage Status](https://coveralls.io/repos/netbe/CSV-to-iOS-Localizable.strings-converter/badge.png)](https://coveralls.io/r/netbe/CSV-to-iOS-Localizable.strings-converter)
 # Introduction
 This script converts a csv file of translations into iOS .strings files and vice-versa.
 
@@ -33,10 +34,6 @@ Edge version can be found on `develop` branch.
 
 Run `bundle install` to install all the dependencies. Tests are done with `Test::Unit` so run `rake test` to run all the test suite.
 
-# Todo
+# Todo & Known issues
 
-See GitHub isssues
-
-# Known issues
-
-None
+See GitHub issues
