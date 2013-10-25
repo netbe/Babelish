@@ -1,5 +1,12 @@
 CSVGEM = RUBY_VERSION.match(/^[0-1]\.[0-8]\./) ? 'faster_csv' : 'csv'
 
+# if RUBY_VERSION.match(/^[0-1]\.[0-8]\./)
+#   require "orderedhash"
+#   ORDERED_HASH_CLASS = OrderedHash
+# else
+#   ORDERED_HASH_CLASS = Hash
+# end
+
 begin
 	require CSVGEM
 rescue LoadError
