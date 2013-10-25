@@ -1,5 +1,4 @@
-
-class Strings2CSVTest < Test::Unit::TestCase
+class TestStrings2CSV < Test::Unit::TestCase
 
   def test_parse_dotstrings_line_with_good_string
     input = String.new(<<-EOS)
@@ -96,6 +95,5 @@ class Strings2CSVTest < Test::Unit::TestCase
     converter = Strings2CSV.new
     assert_not_nil converter.csv_filename
   end
-
 
 end
