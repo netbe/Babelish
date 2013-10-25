@@ -1,4 +1,5 @@
-class CSV2StringsTest < Test::Unit::TestCase
+require 'test_helper'
+class TestCSV2Strings < Test::Unit::TestCase
 
 	def test_converting_csv_to_dotstrings
 		csv_file = "test/data/test_data.csv"
