@@ -18,3 +18,6 @@ end
 CSVParserClass = CSVGEM == 'csv' ? CSV : FasterCSV
 require "csvconverter/csv2strings"
 require "csvconverter/strings2csv"
+require "csvconverter/google_doc"
+
+require "csvconverter/commands/strings2csv_command"

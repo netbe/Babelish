@@ -1,3 +1,4 @@
+require 'test_helper'
 class TestStrings2CSV < Test::Unit::TestCase
 
   def test_parse_dotstrings_line_with_good_string
