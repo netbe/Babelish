@@ -10,7 +10,7 @@ class Android2CSV::ConverterTest < Test::Unit::TestCase
   end
 
   def test_load_strings
-    expected_output = {"app_name" => "android2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => nil}
+    expected_output = {"app_name" => "android2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}
     output = Android2CSV::Converter.new.load_strings "test/data/android.xml"
     assert_equal expected_output, output
   end
@@ -20,7 +20,7 @@ class Android2CSV::ConverterTest < Test::Unit::TestCase
     keys, lang_order, strings = converter.convert(false)
     assert_equal ["android".to_sym], lang_order
     assert_equal ["app_name", "action_greetings", "ANOTHER_STRING", "empty"], keys
-    expected_strings = {lang_order[0] => {"app_name" => "android2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => nil}}
+    expected_strings = {lang_order[0] => {"app_name" => "android2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}}
     assert_equal expected_strings, strings
   end
 

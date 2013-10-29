@@ -7,18 +7,18 @@ class GoogleDoc
     @session = GoogleDrive.saved_session
   end
 
-  def download(requested_filename, output_filename = "translations.csv")
+  def download(requested_filename, worksheet_index, output_filename = "translations.csv")
     unless @session
       self.authenticate
     end
-    result = @session.file_by_title(requested_filename)   
+    result = @session.file_by_title(requested_filename)
     if result.is_a? Array
-      file = result.first      
+      file = result.first
     else
       file = result
     end
     return nil unless file
-    file.export_as_file(output_filename, "csv")
+    file.export_as_file(output_filename, "csv", worksheet_index)
     return output_filename
   end
 

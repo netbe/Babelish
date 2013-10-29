@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency "nokogiri", "= 1.5.10"
   s.add_dependency "google_drive", '0.3.6'  
   s.add_dependency "xml-simple"
+  s.add_dependency "json"
   
   s.add_development_dependency "rake"
   s.add_development_dependency "test-unit"
