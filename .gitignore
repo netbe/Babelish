@@ -1,12 +1,16 @@
+# Generated files
 *.csv
 *.strings
 *.lproj
+*.gem
 *~
 *#
-*.gem
-*.sublime-project
 #*#
+
+# Config file
 .csvconverter
+
+# SimpleCov
 coverage
 
 # ignore Gemfile.lock as http://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
@@ -17,3 +21,7 @@ Gemfile.lock
 .ruby-version
 .rbenv-version
 .rvmrc
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project

@@ -1,8 +1,5 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__)))
 require 'yaml'
 require 'thor'
-require 'csvconverter'
-require 'google_doc'
 
 class Command < Thor
   include Thor::Actions

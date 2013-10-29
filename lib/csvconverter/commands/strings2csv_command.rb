@@ -1,6 +1,4 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__)))
-require "command"
-
+require "csvconverter/command"
 class Strings2CSVCommand < Command
   default_task :strings2csv
 
@@ -15,10 +13,10 @@ class Strings2CSVCommand < Command
     unless options.has_key?('filenames')
       say "No value provided for required options '--filenames'"
       help("strings2csv")
-      exit
+      return
     end
-    converter = Strings2CSV::Converter.new(options)
+    converter = Strings2CSV.new(options)
   	debug_values = converter.dotstrings_to_csv(!options[:dryrun])
-    say debug_values.inspect if options[:dryrun]   
+    say debug_values.inspect if options[:dryrun]
   end
 end

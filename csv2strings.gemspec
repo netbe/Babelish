@@ -15,12 +15,14 @@ Gem::Specification.new do |s|
   if RUBY_VERSION < '1.9'
     s.add_dependency "fastercsv"
     s.add_dependency "nokogiri", "= 1.5.10"
+    s.add_dependency "orderedhash"
   end
-  s.add_dependency "orderedhash", "~> 0.0.6"
-  s.add_dependency "google_drive", '0.3.6'
 
+  s.add_dependency "google_drive", '0.3.6'
   s.add_development_dependency "rake"
+
   s.add_development_dependency "test-unit"
+  s.add_development_dependency "simplecov"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

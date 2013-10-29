@@ -1,7 +1,11 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__)))
-require 'rubygems'
-
 CSVGEM = RUBY_VERSION.match(/^[0-1]\.[0-8]\./) ? 'faster_csv' : 'csv'
+
+if RUBY_VERSION.match(/^[0-1]\.[0-8]\./)
+  require "orderedhash"
+  ORDERED_HASH_CLASS = OrderedHash
+else
+  ORDERED_HASH_CLASS = Hash
+end
 
 begin
 	require CSVGEM
@@ -12,5 +16,6 @@ rescue LoadError
 end
 
 CSVParserClass = CSVGEM == 'csv' ? CSV : FasterCSV
-require "csv2strings/converter"
-require "strings2csv/converter"
+require "csvconverter/csv2strings"
+require "csvconverter/strings2csv"
+require "csvconverter/google_doc"
