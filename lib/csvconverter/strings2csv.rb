@@ -27,7 +27,7 @@ class Strings2CSV
 
   # Load all strings of a given file
   def load_strings(strings_filename)
-    strings = {}
+    strings = ORDERED_HASH_CLASS.new
     File.open(strings_filename, 'r') do |strings_file|
       strings_file.read.each_line do |line|
         hash = self.parse_dotstrings_line(line)
@@ -57,10 +57,7 @@ class Strings2CSV
     @filenames.each do |fname|
       header = fname
       strings[header] = load_strings(fname)
-      keys ||= []
-      strings[header].each do |key, value|
-        keys << key
-      end
+      keys ||= strings[header].keys
     end
 
     if(write_to_file)
