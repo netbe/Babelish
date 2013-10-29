@@ -1,5 +1,4 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__)))
-require "command"
+require "csvconverter/command"
 class CSV2StringsCommand < Command
   default_task :csv2strings
 

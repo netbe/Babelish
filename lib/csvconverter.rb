@@ -20,4 +20,6 @@ require "csvconverter/csv2strings"
 require "csvconverter/strings2csv"
 require "csvconverter/google_doc"
 
+# commands
 require "csvconverter/commands/strings2csv_command"
+require "csvconverter/commands/csv2strings_command"

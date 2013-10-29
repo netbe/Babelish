@@ -1,5 +1,6 @@
 require 'test_helper'
 class TestCommand < Test::Unit::TestCase
+
   def test_strings2csv
     options = {:filenames => ["test/data/test_data.strings"]}
     Strings2CSVCommand.new([], options).strings2csv
