@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
-$: << File.expand_path("../lib/", __FILE__)
+$: << File.expand_path("../../lib", __FILE__)
 require 'csvconverter/commands/strings2csv_command'
-
 
 Strings2CSVCommand.start
