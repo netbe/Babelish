@@ -13,10 +13,11 @@ class Base2Csv
     end
 
     def default_headers
-        headers = ['Variables']
+        headers = ["Variables"]
         @filenames.each do |fname|
-            headers << basename(fname)
+            headers << fname
         end
+        headers
     end
 
     def load_strings(strings_filename)
@@ -29,7 +30,7 @@ class Base2Csv
         lang_order = []
 
         @filenames.each do |fname|
-            header = basename(fname)
+            header = fname
             strings[header] = load_strings(fname)
             lang_order << header       
             keys ||= strings[header].keys
