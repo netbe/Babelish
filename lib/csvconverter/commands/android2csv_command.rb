@@ -1,6 +1,4 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__)))
-require "command"
-
+require "csvconverter/command"
 class Android2CSVCommand < Command
   default_task :android2csv
 
@@ -17,7 +15,7 @@ class Android2CSVCommand < Command
       help("android2csv")
       exit
     end
-    converter = Android2CSV::Converter.new(options)
+    converter = Android2CSV.new(options)
   	debug_values = converter.convert(!options[:dryrun])
     say debug_values.inspect if options[:dryrun]   
   end

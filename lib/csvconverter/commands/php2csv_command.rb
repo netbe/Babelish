@@ -1,24 +1,22 @@
-$: << File.expand_path(File.join(File.dirname(__FILE__)))
-require "command"
+require "csvconverter/command"
+class Php2CSVCommand < Command
+  default_task :php2csv
 
-class JSON2CSVCommand < Command
-  default_task :json2csv
-
-  desc "FILENAMES", "convert JSON files to CSV file"
+  desc "FILENAMES", "convert '.strings' files to CSV file"
   # required options but handled in method because of options read from yaml file
-  method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of JSON files (FILENAMES)"
+  method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of php language files (FILENAMES)"
   # optional options
   method_option :csv_filename, :type => :string, :aliases => "-o", :desc => "location of output file"
   method_option :headers, :type => :array, :aliases => "-h", :desc => "override headers of columns, default is name of input files and 'Variables' for reference"
   method_option :dryrun, :type => :boolean, :aliases => "-n", :desc => "prints out content of hash without writing file"
-  def json2csv
+  def php2csv
     unless options.has_key?('filenames')
       say "No value provided for required options '--filenames'"
-      help("json2csv")
+      help("php2csv")
       exit
     end
-    converter = JSON2CSV::Converter.new(options)
-  	debug_values = converter.convert(!options[:dryrun])
+    converter = Php2CSV.new(options)
+    debug_values = converter.convert(!options[:dryrun])
     say debug_values.inspect if options[:dryrun]   
   end
 end
