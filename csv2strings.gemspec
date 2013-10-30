@@ -1,7 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'csv2strings'
-  s.version     = '0.2.1'
-  s.date        = '2013-10-08'
+  s.version     = '0.2.2'
+  s.date        = '2013-10-30'
+
   s.summary     = "CSV to iOS Localizable.strings converter"
   s.description = "ruby script converts a CSV file of translations to Localizable.strings files and vice-versa"
   s.authors     = ["François Benaiteau", "Markus Paeschke"]
@@ -14,8 +15,10 @@ Gem::Specification.new do |s|
 
   if RUBY_VERSION < '1.9'
     s.add_dependency "fastercsv"
+    s.add_dependency "nokogiri", "= 1.5.10"
+    s.add_dependency "orderedhash"
   end
-  s.add_dependency "nokogiri", "= 1.5.10"
+
   s.add_dependency "google_drive", '0.3.6'  
   s.add_dependency "xml-simple"
   s.add_dependency "json"
