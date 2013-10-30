@@ -13,5 +13,9 @@ end
 require 'test/unit'
 
 require 'csvconverter'
+
 require "csvconverter/commands/strings2csv_command"
 require "csvconverter/commands/csv2strings_command"
+
+require "csvconverter/commands/android2csv_command"
+require "csvconverter/commands/csv2android_command"

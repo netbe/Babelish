@@ -1,5 +1,5 @@
 require 'test_helper'
-class TestCommand < Test::Unit::TestCase
+class TestCSV2StringsCommand < Test::Unit::TestCase
 
 	def test_csv2strings_with_multiple_2_languages
     options = {
