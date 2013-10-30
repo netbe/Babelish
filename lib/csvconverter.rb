@@ -29,6 +29,7 @@ require "csvconverter/base2csv"
 require "csvconverter/strings2csv"
 require "csvconverter/android2csv"
 require "csvconverter/php2csv"
+require "csvconverter/json2csv"
 
 # General
 require "csvconverter/language"
