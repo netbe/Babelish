@@ -23,5 +23,6 @@ require "csvconverter/csv2strings"
 require "csvconverter/base2csv"
 require "csvconverter/strings2csv"
 
+require "csvconverter/language"
 require "csvconverter/google_doc"
 
