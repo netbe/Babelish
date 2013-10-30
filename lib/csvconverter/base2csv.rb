@@ -27,21 +27,19 @@ class Base2Csv
     def convert(write_to_file = true)
         strings = {}
         keys = nil
-        lang_order = []
 
         @filenames.each do |fname|
             header = fname
             strings[header] = load_strings(fname)
-            lang_order << header       
             keys ||= strings[header].keys
         end
 
         if(write_to_file)
             # Create csv file
             puts "Creating #{@csv_filename}"
-            create_csv_file(keys, lang_order, strings)
+            create_csv_file(keys, strings)
         else
-            return keys, lang_order, strings
+            return keys, strings
         end
     end
 
@@ -51,14 +49,15 @@ class Base2Csv
     end
 
     # Create the resulting file
-    def create_csv_file(keys, lang_order, strings)
+    def create_csv_file(keys, strings)
         raise "csv_filename must not be nil" unless self.csv_filename
         CSVParserClass.open(self.csv_filename, "wb") do |csv|
             csv << @headers
             keys.each do |key|
                 line = [key]
                 default_val = strings[self.default_lang][key] if strings[self.default_lang]
-                lang_order.each do |lang|
+                @filenames.each do |fname|
+                    lang = fname
                     current_val = strings[lang][key]
                     line << ((lang != self.default_lang and current_val == default_val) ? '' : current_val)
                 end
