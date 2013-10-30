@@ -19,6 +19,7 @@ CSVParserClass = CSVGEM == 'csv' ? CSV : FasterCSV
 
 require "csvconverter/csv2base"
 require "csvconverter/csv2strings"
+require "csvconverter/csv2android"
 
 require "csvconverter/base2csv"
 require "csvconverter/strings2csv"
