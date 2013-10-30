@@ -1,7 +1,5 @@
-require File.expand_path('../../../lib/csv2base', __FILE__)
-require File.expand_path('../../test_helper', __FILE__)
-
-class Csv2Base::ConverterTest < Test::Unit::TestCase
+require 'test_helper'
+class TestCsv2Base < Test::Unit::TestCase
 
     def test_initialize
         csv_filename = "file.csv"
