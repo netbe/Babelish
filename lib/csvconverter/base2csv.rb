@@ -2,11 +2,13 @@ class Base2Csv
     attr_accessor :csv_filename, :headers, :filenames, :default_lang
 
     def initialize(args = {:filenames => []})
-        if args[:filenames] && args[:headers]
-            raise ArgumentError.new("number of headers and files don't match, don't forget the constant column") unless args[:headers].size == (args[:filenames].size + 1)
+        raise ArgumentError.new("No filenames given") unless args[:filenames]
+        if args[:headers]
+          raise ArgumentError.new("number of headers and files don't match, don't forget the constant column") unless args[:headers].size == (args[:filenames].size + 1)
         end
 
         @filenames = args[:filenames]     
+
         @csv_filename = args[:csv_filename] || "translations.csv"
         @default_lang = args[:default_lang]
         @headers = args[:headers] || self.default_headers

@@ -1,7 +1,5 @@
-require File.expand_path('../../../lib/base2csv', __FILE__)
-require File.expand_path('../../test_helper', __FILE__)
-
-class Base2Csv::ConverterTest < Test::Unit::TestCase
+require 'test_helper'
+class TestBase2Csv < Test::Unit::TestCase
   
   def test_load_strings
     expected_output = {}
@@ -11,12 +9,12 @@ class Base2Csv::ConverterTest < Test::Unit::TestCase
 
   def test_create_csv_file
     keys = ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"]
-    lang_order = [:"test_data"]
-    strings = {lang_order[0] => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
+    filename = "test_data"
+    strings = {filename => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
     
-    converter = Base2Csv.new(:headers => %w{variables english})
+    converter = Base2Csv.new(:headers => %w{variables english}, :filenames => [filename])
 
-    converter.create_csv_file(keys, lang_order, strings)
+    converter.create_csv_file(keys, strings)
     assert File.exist?(converter.csv_filename)
 
     #clean up
