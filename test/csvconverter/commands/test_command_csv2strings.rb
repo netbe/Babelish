@@ -32,7 +32,7 @@ class TestCommand < Test::Unit::TestCase
 		system("rm -rf ./mynewlocation")
 	end
 
-def test_csv2strings_with_fetch_google_doc
+  def test_csv2strings_with_fetch_google_doc
     options = {
       :filename => "my_trads",
       :langs => {"English" => "en", "French" => "fr"},
@@ -41,6 +41,20 @@ def test_csv2strings_with_fetch_google_doc
     assert_nothing_raised do
       CSV2StringsCommand.new([], options).csv2strings
     end
+  end
+
+  def test_csv2strings_with_config_file
+    system("cp .csvconverter.sample .csvconverter")
+
+    assert_nothing_raised do
+      CSV2StringsCommand.new.csv2strings
+    end
+
+  end
+
+  def teardown
+
+    system("rm -f .csvconverter")
   end
 end
 
