@@ -33,6 +33,7 @@ class TestCommand < Test::Unit::TestCase
 	end
 
   def test_csv2strings_with_fetch_google_doc
+    omit
     options = {
       :filename => "my_trads",
       :langs => {"English" => "en", "French" => "fr"},
