@@ -21,6 +21,9 @@ Gem::Specification.new do |s|
     s.add_dependency "google_drive"
   end
 
+  # google_drive dependency to ask for mail and password
+  s.add_dependency "highline"
+
   s.add_development_dependency "rake"
 
   s.add_development_dependency "test-unit"
