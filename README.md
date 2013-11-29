@@ -37,3 +37,7 @@ Run `bundle install` to install all the dependencies. Tests are done with `Test:
 # Todo & Known issues
 
 See GitHub issues
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/netbe/csv-to-ios-localizable.strings-converter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
