@@ -74,4 +74,22 @@ class TestCommand < Test::Unit::TestCase
     #clean up
     system("rm -f test_with_nil.csv")
   end
+
+  def test_strings2csv_utf16
+    options = {
+      :filenames => ["test/data/test_utf16.strings"],
+      :csv_filename => "test_utf16.csv"
+    }
+    # -i, -o
+
+
+    assert_nothing_raised do
+      Strings2CSVCommand.new([], options).strings2csv
+    end
+
+    #clean up
+    system("rm -f test_utf16.csv")
+
+  end
+
 end
