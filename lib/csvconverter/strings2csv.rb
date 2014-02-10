@@ -28,7 +28,15 @@ class Strings2CSV
   # Load all strings of a given file
   def load_strings(strings_filename)
     strings = ORDERED_HASH_CLASS.new
-    File.open(strings_filename, 'r') do |strings_file|
+    # Make sure we use correct encoding
+    encoding_infos = %x{ file -I '#{strings_filename}' }
+    unless $?.exitstatus
+      encoding = encoding_infos.split("=").last.chomp!
+      read_flags = "r:#{encoding}:utf-8"
+    else
+      read_flags = "r"
+    end
+    File.open(strings_filename, read_flags) do |strings_file|
       strings_file.read.each_line do |line|
         hash = self.parse_dotstrings_line(line)
         strings.merge!(hash) if hash
@@ -44,7 +52,6 @@ class Strings2CSV
       return {m[1] => m[2]} unless m.nil?
     end
   end
-
 
   # Convert Localizable.strings files to one CSV file
   # output: strings hash has filename for keys and the content of csv
