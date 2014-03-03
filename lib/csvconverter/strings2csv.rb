@@ -1,3 +1,4 @@
+require 'charlock_holmes'
 class Strings2CSV
   # default_lang is the the column to refer to if a value is missing
   # actually default_lang = default_filename
@@ -28,12 +29,17 @@ class Strings2CSV
   # Load all strings of a given file
   def load_strings(strings_filename)
     strings = ORDERED_HASH_CLASS.new
-    File.open(strings_filename, 'r') do |strings_file|
-      strings_file.read.each_line do |line|
-        hash = self.parse_dotstrings_line(line)
-        strings.merge!(hash) if hash
-      end
+
+    # Make sure we use correct encoding
+    contents = File.open(strings_filename).read
+    detection = CharlockHolmes::EncodingDetector.detect(contents)
+    utf8_encoded_content = CharlockHolmes::Converter.convert contents, detection[:encoding], 'UTF-8'
+
+    utf8_encoded_content.each_line do |line|
+      hash = self.parse_dotstrings_line(line)
+      strings.merge!(hash) if hash
     end
+
     strings
   end
 
