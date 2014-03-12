@@ -4,6 +4,11 @@
 # Introduction
 This script converts a csv file of translations into iOS .strings files and vice-versa.
 
+# Requirements
+
+* Ruby 1.9.2 or adbove
+* Needs [ICU](http://site.icu-project.org/). Via `brew install icu4c` on Mac or `apt-get install libicu-dev` on Linux
+
 # Setup
 
 `gem install csv2strings`
