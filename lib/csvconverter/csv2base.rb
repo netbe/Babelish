@@ -20,7 +20,7 @@ class Csv2Base
             raise "wrong format or/and langs parameter" + @langs.inspect
         end
 
-        @output_file = (langs.size == 1) ? args['output_file'] : nil
+        @output_file = args[:output_file]
         @default_path = args[:default_path].to_s
         @csv_filename = filename
         @excluded_states = args[:excluded_states]
@@ -83,13 +83,13 @@ class Csv2Base
                     (excludedCols << i and next) unless self.langs.has_key?(row[i])
 
                     defaultCol = i if self.default_lang == row[i]
-                    language = Language.new(row[i],)
+                    language = Language.new(row[i])
                     if self.langs[row[i]].is_a?(Array)
                         self.langs[row[i]].each do |id|
                             language.add_language_id(id.to_s)
                         end
                     else
-                        language.add_language_id(id.to_s)
+                        language.add_language_id(self.langs[row[i]].to_s)
                     end
                     @languages[i] = language
                 elsif !self.state_column || (row[self.state_column].nil? or row[self.state_column] == '' or !self.excluded_states.include? row[self.state_column])
@@ -125,12 +125,12 @@ class Csv2Base
                 file.write hash_to_output(language.content)
                 info += "#{file.path.to_s}\n"
                 count += 1
+
                 file.close
             end
         end
 
         info = "Created #{count} files.\n" + info
-
         return info
     end
 
