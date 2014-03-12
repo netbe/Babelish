@@ -9,9 +9,10 @@ class CSV2Php < Csv2Base
         @file_path = args[:default_path].to_s
     end
 
-    def file_path_for_locale(locale)
-        require 'pathname' 
-        Pathname.new(self.file_path) + "#{locale}" + "lang.php"
+    def language_filepaths(language)
+        require 'pathname'
+        filepath = Pathname.new(self.file_path) + "#{language.code}" + "lang.php"
+        return filepath ? [filepath] : []
     end
 
     def get_row_format(row_key, row_value)
