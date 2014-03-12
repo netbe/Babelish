@@ -1,6 +1,6 @@
 require 'test_helper'
 class TestPhp2CSV < Test::Unit::TestCase
-  
+
   def test_parse_dotstrings_line_with_good_string
     input = String.new(<<-EOS)
     $lang['MY_CONSTANT'] = "This is ok";
@@ -52,30 +52,6 @@ class TestPhp2CSV < Test::Unit::TestCase
     assert_equal expected_output, output
   end
 
-  def test_dotstrings_to_csv
-    omit
-    converter = Php2CSV.new(:filenames => ["test/data/php_lang.php"])
-    keys, lang_order, strings = converter.convert(false)
-    assert_equal ["php_lang".to_sym], lang_order
-    assert_equal ["app_name", "action_greetings", "ANOTHER_STRING", "empty"], keys
-    expected_strings = {lang_order[0] => {"app_name" => "php2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}}
-    assert_equal expected_strings, strings
-  end
-
-  def test_create_csv_file
-    omit
-    keys = ["app_name", "action_greetings", "ANOTHER_STRING", "empty"]
-    lang_order = [:"php_lang"]
-    strings = {lang_order[0] => {"app_name" => "php2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}}
-    
-    converter = Php2CSV.new(:headers => %w{variables english})
-
-    converter.create_csv_file(keys, lang_order, strings)
-    assert File.exist?(converter.csv_filename)
-
-    #clean up
-    system("rm -rf ./" + converter.csv_filename)
-  end
 
   def test_initialize
     csv_filename = "file.csv"
