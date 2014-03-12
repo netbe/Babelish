@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'csv2strings'
-  s.version     = '0.2.3'
-  s.date        = '2013-12-11'
+  s.version     = '0.2.4'
+  s.date        = '2014-03-12'
   s.summary     = "CSV to iOS Localizable.strings converter"
   s.description = "ruby script converts a CSV file of translations to Localizable.strings files and vice-versa"
   s.authors     = ["François Benaiteau"]
