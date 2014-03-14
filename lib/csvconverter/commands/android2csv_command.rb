@@ -6,7 +6,6 @@ class Android2CSVCommand < Command
   # required options but handled in method because of options read from yaml file
   method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of android strings xml files (FILENAMES)"
   # optional options
-  method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
   method_option :csv_filename, :type => :string, :aliases => "-o", :desc => "location of output file"
   method_option :headers, :type => :array, :aliases => "-h", :desc => "override headers of columns, default is name of input files and 'Variables' for reference"
   method_option :dryrun, :type => :boolean, :aliases => "-n", :desc => "prints out content of hash without writing file"
@@ -16,13 +15,6 @@ class Android2CSVCommand < Command
       help("android2csv")
       exit
     end
-    if options['fetch']
-      say "Downloading file from Google Drive"
-      filename = invoke :csv_download, nil, {"gd_filename" => filename}
-      exit unless filename
-    end
-
-
     converter = Android2CSV.new(options)
   	debug_values = converter.convert(!options[:dryrun])
     say debug_values.inspect if options[:dryrun]   
