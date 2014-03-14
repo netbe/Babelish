@@ -1,4 +1,3 @@
-require 'charlock_holmes'
 class Strings2CSV < Base2Csv
 
     def initialize(args = {:filenames => []})
@@ -17,12 +16,7 @@ class Strings2CSV < Base2Csv
   def load_strings(strings_filename)
     strings = ORDERED_HASH_CLASS.new
 
-    # Make sure we use correct encoding
-    contents = File.open(strings_filename).read
-    detection = CharlockHolmes::EncodingDetector.detect(contents)
-    utf8_encoded_content = CharlockHolmes::Converter.convert contents, detection[:encoding], 'UTF-8'
-
-    utf8_encoded_content.each_line do |line|
+    contents.each_line do |line|
       hash = self.parse_dotstrings_line(line)
       strings.merge!(hash) if hash
     end
