@@ -16,7 +16,7 @@ class GoogleDoc
     @session = GoogleDrive.saved_session
   end
 
-  def download(requested_filename, worksheet_index = 0, output_filename = "translations.csv")
+  def download(requested_filename, worksheet_index = nil, output_filename = "translations.csv")
     unless @session
       self.authenticate
     end
