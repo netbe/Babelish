@@ -44,7 +44,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
 
   def test_android2csv_with_two_files
     options = {
-      :filenames => ["test/data/test_en.strings", "test/data/test_fr.strings"],
+      :filenames => ["test/data/android-en.xml", "test/data/android-fr.xml"],
       :headers => %w{Constants English French},
       :csv_filename => "enfr.csv"
     }
