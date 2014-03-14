@@ -8,9 +8,10 @@ class CSV2JSON < Csv2Base
         @file_path = args[:default_path].to_s
     end
 
-    def file_path_for_locale(locale)
-        require 'pathname' 
-        Pathname.new(self.file_path) + "#{locale}.js"
+    def language_filepaths(language)
+        require 'pathname'
+        filepath = Pathname.new("#{self.file_path}#{language.code}.js")
+        return filepath ? [filepath] : []
     end
 
     def hash_to_output(content = {})

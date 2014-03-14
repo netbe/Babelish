@@ -1,25 +1,23 @@
 class Language
-	attr_accessor :fullname, :name, :content
+	attr_accessor :name, :content, :code, :regions
 
-	def initialize(fullname, name, content = {})
-		@fullname = fullname
+	def initialize(name, content = {})
 		@name = name
 		@content = content
 	end
 
 	def add_content_pair(key, value)
-		@content[key] = value 
+		@content[key] = value
 	end
 
-	def get_fullname
-		return @fullname
+	def add_language_id(language_id)
+		code, region = language_id.split('-')
+		@code ||= code
+		@regions ||= []
+		@regions << region if region
 	end
 
-	def get_name
-		return @name
-	end
-
-	def get_content
-		return @content
+	def region
+		self.regions.first
 	end
 end
