@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 $: << File.expand_path("../../lib", __FILE__)
+require 'csvconverter'
 require 'csvconverter/commands/android2csv_command'
 
 Android2CSVCommand.start
