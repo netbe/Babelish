@@ -1,6 +1,5 @@
 require 'yaml'
 require 'thor'
-require 'csvconverter/google_doc'
 class Command < Thor
   include Thor::Actions
   class_option :verbose, :type => :boolean
