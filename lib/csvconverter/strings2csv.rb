@@ -15,7 +15,8 @@ class Strings2CSV < Base2Csv
   # Load all strings of a given file
   def load_strings(strings_filename)
     strings = ORDERED_HASH_CLASS.new
-
+    
+    contents = File.open(strings_filename).read
     contents.each_line do |line|
       hash = self.parse_dotstrings_line(line)
       strings.merge!(hash) if hash
