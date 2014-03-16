@@ -1,8 +1,14 @@
 [![Build Status](https://secure.travis-ci.org/netbe/CSV-to-iOS-Localizable.strings-converter.png?branch=master)](http://travis-ci.org/netbe/CSV-to-iOS-Localizable.strings-converter)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/netbe/CSV-to-iOS-Localizable.strings-converter)
 [![Coverage Status](https://coveralls.io/repos/netbe/CSV-to-iOS-Localizable.strings-converter/badge.png)](https://coveralls.io/r/netbe/CSV-to-iOS-Localizable.strings-converter)
+[![Gem Version](https://badge.fury.io/rb/csv2strings.png)](http://badge.fury.io/rb/csv2strings)
 # Introduction
 This script converts a csv file of translations into iOS .strings files and vice-versa.
+
+# Requirements
+
+* Ruby 1.9.2 or adbove
+* Needs [ICU](http://site.icu-project.org/). Via `brew install icu4c` on Mac or `apt-get install libicu-dev` on Linux
 
 # Setup
 
@@ -37,3 +43,4 @@ Run `bundle install` to install all the dependencies. Tests are done with `Test:
 # Todo & Known issues
 
 See GitHub issues
+

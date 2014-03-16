@@ -1,4 +1,3 @@
-require 'yaml'
 require 'thor'
 class Command < Thor
   include Thor::Actions

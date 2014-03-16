@@ -3,3 +3,7 @@ filenames: ["test/data/test_en.strings", "test/data/test_fr.strings"]
 headers: ["Constants", "English", "French"]
 csv_filename: "testconfig.csv"
 dryrun: true
+
+filename: test/data/test_data.csv
+langs:
+  English: "en"
