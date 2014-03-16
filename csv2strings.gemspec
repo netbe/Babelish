@@ -29,7 +29,6 @@ if RUBY_VERSION < '1.9'
   # json support
   s.add_dependency "json"
 
-  s.add_development_dependency "m", "~> 1.3.1"
   s.add_development_dependency "rake"
   s.add_development_dependency "test-unit"
   s.add_development_dependency "simplecov"
