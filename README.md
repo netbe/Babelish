@@ -3,7 +3,11 @@
 [![Coverage Status](https://coveralls.io/repos/netbe/CSV-to-iOS-Localizable.strings-converter/badge.png)](https://coveralls.io/r/netbe/CSV-to-iOS-Localizable.strings-converter)
 [![Gem Version](https://badge.fury.io/rb/csv2strings.png)](http://badge.fury.io/rb/csv2strings)
 # Introduction
-This script converts a csv file of translations into iOS .strings files and vice-versa.
+This script converts a csv file of translations into the below file formats and vice-versa:
+* .strings (iOS)
+* .xml (Android)
+* .json
+* .php
 
 # Requirements
 
@@ -12,17 +16,10 @@ This script converts a csv file of translations into iOS .strings files and vice
 
 # Setup
 
-`gem install csv2strings`
+...
 
 # Usage
-
-* Convert csv to localizable strings files:
-
-`csv2strings <csvfilename>`
-
-* Convert localizable strings files to csv:
-
-`strings2csv <stringsfile1> <stringsfile2>`
+...
 
 * Use configuration file
 
