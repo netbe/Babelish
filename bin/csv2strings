@@ -2,6 +2,12 @@
 $: << File.expand_path("../../lib", __FILE__)
 
 require 'csvconverter'
-require 'csvconverter/commands/csv2strings_command'
+require 'csvconverter/command'
 
-CSV2StringsCommand.start
+args = [File.basename(__FILE__)]
+if ARGV.first == "help"
+  args.insert(0, ARGV.first)
+  ARGV.delete(ARGV.first)
+end
+args += ARGV
+Babelish::Command.start(args)
