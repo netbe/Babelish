@@ -23,4 +23,4 @@ excluded-states: ["Images", "Xib"] # Exclude rows with given state
 state-column: 3                    # Position of column for state if any
 keys-column: 0                     # Position of column for keys
 default-lang: "English"            # Default language to use for empty values if any
-default-path "resources/"          # Path of output files
+default-path: "resources/"          # Path of output files
