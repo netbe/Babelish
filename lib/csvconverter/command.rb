@@ -25,7 +25,7 @@ module Babelish
     end
 
     BASECLASSES = %w{Strings2CSV Android2CSV JSON2CSV Php2CSV}
-    
+
     BASECLASSES.each do |classname|
       desc "#{classname.downcase}", "convert given files to CSV file"
       method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of strings files (FILENAMES)", :required => true
@@ -74,13 +74,15 @@ module Babelish
         args.delete(:langs)
         args.delete(:filename)
 
-        converter = eval classname + ".new('#{filename}', #{options[:langs]}, #{args})"
+        class_object = eval classname
+        converter = class_object.new(filename, options[:langs],args)
         say converter.convert
       end
 
-      def base2csv
-        converter = eval classname + ".new(#{options})"
-        # converter = Strings2CSV.new(options)
+      def base2csv(classname)
+        class_object = eval classname
+        converter = class_object.new(options)
+
         debug_values = converter.convert(!options[:dryrun])
         say debug_values.inspect if options[:dryrun]
       end

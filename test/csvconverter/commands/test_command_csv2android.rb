@@ -6,7 +6,7 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
     	:filename => "test/data/test_data_multiple_langs.csv",
     	:langs => {"English" => "en", "French" => "fr"}
     }
-    CSV2AndroidCommand.new([], options).csv2android
+    Babelish::Command.new([], options).csv2android
 
 		assert File.exist?("./values-en/strings.xml")
 		assert File.exist?("./values-fr/strings.xml")
@@ -23,7 +23,7 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
     	:default_path => "mynewlocation"
     }
 
-		CSV2AndroidCommand.new([], options).csv2android
+		Babelish::Command.new([], options).csv2android
 		# testing
 		assert File.exist?("./mynewlocation/values-en/strings.xml"), "can't find output file for English"
 		assert File.exist?("./mynewlocation/values-fr/strings.xml"), "can't find output file for French"
@@ -33,4 +33,3 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
 	end
 
 end
-
