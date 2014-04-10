@@ -67,6 +67,7 @@ module Babelish
         if options[:fetch]
           say "Fetching csv file #{options[:filename]} from Google Drive"
           filename = download(options[:filename])
+          abort unless filename # no file downloaded
           args.delete(:fetch)
         else
           filename = options[:filename]
@@ -88,5 +89,12 @@ module Babelish
       end
     end
 
+    private
+    def options
+      original_options = super
+      return original_options unless File.exists?(".csvconverter")
+      defaults = ::YAML::load_file(".csvconverter") || {}
+      Thor::CoreExt::HashWithIndifferentAccess.new(defaults.merge(original_options))
+    end
   end
 end
