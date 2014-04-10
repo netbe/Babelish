@@ -1,5 +1,5 @@
-require 'thor'
 module Babelish
+  require 'thor'
   class Command < Thor
     include Thor::Actions
     class_option :verbose, :type => :boolean

@@ -6,7 +6,7 @@ class TestCsv2Base < Test::Unit::TestCase
         excluded_states = ["German"]
         state_column = "Local"
         keys_column = 23
-        converter = Csv2Base.new(csv_filename, {"English" => ["en"]}, {
+        converter = Babelish::Csv2Base.new(csv_filename, {"English" => ["en"]}, {
             :excluded_states => excluded_states,
             :state_column => state_column,
             :keys_column => keys_column
@@ -19,13 +19,13 @@ class TestCsv2Base < Test::Unit::TestCase
     end
 
     def test_initialize_with_default_values
-        converter = Csv2Base.new("file.csv", {"English" => ["en"]})
+        converter = Babelish::Csv2Base.new("file.csv", {"English" => ["en"]})
         assert_not_nil converter.csv_filename
     end
 
     def test_create_file_from_path
         test_file = "test_file.txt"
-        Csv2Base.new("file.csv", {"English" => ["en"]}).create_file_from_path test_file
+        Babelish::Csv2Base.new("file.csv", {"English" => ["en"]}).create_file_from_path test_file
         assert File.exist?(test_file)
 
         #clean up
@@ -34,7 +34,7 @@ class TestCsv2Base < Test::Unit::TestCase
 
     def test_get_row_format
         expected_output = "\"test_key\" = \"test_value\""
-        output = Csv2Base.new("file.csv", {"English" => ["en"]}).get_row_format("test_key", "test_value")
+        output = Babelish::Csv2Base.new("file.csv", {"English" => ["en"]}).get_row_format("test_key", "test_value")
         assert_equal expected_output, output
     end
 end

@@ -3,13 +3,13 @@ class TestAndroid2CSV < Test::Unit::TestCase
 
   def test_load_strings_with_wrong_file
     assert_raise(Errno::ENOENT) do
-      output = Android2CSV.new.load_strings "file that does not exist.strings"
+      output = Babelish::Android2CSV.new.load_strings "file that does not exist.strings"
     end
   end
 
   def test_load_strings
     expected_output = {"app_name" => "android2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}
-    output = Android2CSV.new.load_strings "test/data/android.xml"
+    output = Babelish::Android2CSV.new.load_strings "test/data/android.xml"
     assert_equal expected_output, output
   end
 
@@ -17,7 +17,7 @@ class TestAndroid2CSV < Test::Unit::TestCase
     csv_filename = "file.csv"
     filenames = %w{"french.strings english.strings"}
     headers = %w{"constants french english"}
-    converter = Android2CSV.new({
+    converter = Babelish::Android2CSV.new({
         :csv_filename => csv_filename,
         :headers => headers,
         :filenames => filenames
@@ -29,7 +29,7 @@ class TestAndroid2CSV < Test::Unit::TestCase
   end
 
   def test_initialize_with_default_values
-    converter = Android2CSV.new
+    converter = Babelish::Android2CSV.new
     assert_not_nil converter.csv_filename
   end
 end
