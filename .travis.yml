@@ -11,7 +11,7 @@ deploy:
   provider: rubygems
   api_key:
     secure: Xjq+v+jEU6wK4BtyfnV1elegNcxK6Ah/O99Sn9c2IlkCmJ1wxLBouqzEiSorSJ4IOMa5H2y3gwo5GXOr6Y7d8huyGrPuBeCSGqAmH77wNCIv7G+jnLiYb1sRZbtKcPW2QaN6JF81qDIelwyspMfo6/ug1qN1x323UaxZl7f7nUE=
-  gem: csv2strings
+  gem: babelish
   on:
     tags: true
     repo: netbe/CSV-to-iOS-Localizable.strings-converter

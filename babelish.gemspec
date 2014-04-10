@@ -1,9 +1,13 @@
 Gem::Specification.new do |s|
-  s.name        = 'csv2strings'
-  s.version     = '0.2.4'
+  s.name        = 'babelish'
+  s.version     = '0.3.0'
   s.date        = '2014-03-12'
-  s.summary     = "CSV to iOS Localizable.strings converter"
-  s.description = "ruby script converts a CSV file of translations to Localizable.strings files and vice-versa"
+  s.summary     = "CSV converter for localization files"
+  s.description = "This set of commands converts a CSV file to the following formats:\
+                  - .strings (iOS)
+                  - .xml (Android)
+                  - .json
+                  - .php"
   s.authors     = ["François Benaiteau", "Markus Paeschke"]
   s.email       = ['francois.benaiteau@gmail.com', 'markus.paeschke@gmail.com']
   s.homepage    = 'https://github.com/netbe/CSV-to-iOS-Localizable.strings-converter'

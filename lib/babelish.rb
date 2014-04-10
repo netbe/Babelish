@@ -36,19 +36,19 @@ else
 end
 
 # From CSV
-require "csvconverter/csv2base"
-require "csvconverter/csv2strings"
-require "csvconverter/csv2android"
-require "csvconverter/csv2php"
-require "csvconverter/csv2json"
+require "babelish/csv2base"
+require "babelish/csv2strings"
+require "babelish/csv2android"
+require "babelish/csv2php"
+require "babelish/csv2json"
 
 # To CSV
-require "csvconverter/base2csv"
-require "csvconverter/strings2csv"
-require "csvconverter/android2csv"
-require "csvconverter/php2csv"
-require "csvconverter/json2csv"
+require "babelish/base2csv"
+require "babelish/strings2csv"
+require "babelish/android2csv"
+require "babelish/php2csv"
+require "babelish/json2csv"
 
 # General
-require "csvconverter/language"
-require "csvconverter/google_doc"
+require "babelish/language"
+require "babelish/google_doc"

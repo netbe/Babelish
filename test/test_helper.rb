@@ -12,6 +12,6 @@ end
 
 require 'test/unit'
 
-require 'csvconverter'
+require 'babelish'
 
-require "csvconverter/command"
+require "babelish/command"

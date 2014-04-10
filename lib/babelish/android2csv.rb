@@ -21,4 +21,3 @@ class Android2CSV < Base2Csv
     end
 
 end
-

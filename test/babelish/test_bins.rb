@@ -10,7 +10,7 @@ class TestBins < Test::Unit::TestCase
   end
 
   def test_csv2strings_with_config_file
-    system("cp .csvconverter.sample .csvconverter")
+    system("cp .babelish.sample .babelish")
 
     assert_nothing_raised NameError do
       system("./bin/csv2strings")
@@ -19,6 +19,6 @@ class TestBins < Test::Unit::TestCase
   end
 
   def teardown
-    system("rm -f .csvconverter")
+    system("rm -f .babelish")
   end
 end

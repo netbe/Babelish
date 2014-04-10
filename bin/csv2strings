@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 $: << File.expand_path("../../lib", __FILE__)
 
-require 'csvconverter'
-require 'csvconverter/command'
+require 'babelish'
+require 'babelish/command'
 
 args = [File.basename(__FILE__)]
 if ARGV.first == "help"

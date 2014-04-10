@@ -45,7 +45,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
   end
 
   def test_csv2strings_with_config_file
-    system("cp .csvconverter.sample .csvconverter")
+    system("cp .babelish.sample .babelish")
 
     assert_nothing_raised do
       Babelish::Command.new.csv2strings
@@ -55,6 +55,6 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
 
   def teardown
 
-    system("rm -f .csvconverter")
+    system("rm -f .babelish")
   end
 end

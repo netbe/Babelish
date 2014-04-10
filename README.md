@@ -24,7 +24,7 @@ This script converts a csv file of translations into the below file formats and 
 * Use configuration file
 
 You can use a configuration file to hold all your commandline arguments into a file (previous versions `i18n_config.rb`).
-Place `.csvconverter` file (edit if needed) in the folder with your ``xx.lproj`` and call the script from there. See `.csvconverter.sample`
+Place `.babelish` file (edit if needed) in the folder with your ``xx.lproj`` and call the script from there. See `.babelish.sample`
 
 # Contributing
 

@@ -92,8 +92,8 @@ module Babelish
     private
     def options
       original_options = super
-      return original_options unless File.exists?(".csvconverter")
-      defaults = ::YAML::load_file(".csvconverter") || {}
+      return original_options unless File.exists?(".babelish")
+      defaults = ::YAML::load_file(".babelish") || {}
       Thor::CoreExt::HashWithIndifferentAccess.new(defaults.merge(original_options))
     end
   end
