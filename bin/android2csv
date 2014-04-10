@@ -3,6 +3,7 @@ $: << File.expand_path("../../lib", __FILE__)
 require 'babelish'
 require 'babelish/command'
 
+puts "DEPRECATED: use babelish command"
 args = [File.basename(__FILE__)]
 if ARGV.first == "help"
   args.insert(0, ARGV.first)
