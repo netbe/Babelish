@@ -3,7 +3,7 @@ module Babelish
   class Command < Thor
     include Thor::Actions
     class_option :verbose, :type => :boolean
-
+    map "-v" => :version
 
     CSVCLASSES = %w{CSV2Strings CSV2Android CSV2JSON CSV2Php}
 
@@ -44,6 +44,12 @@ module Babelish
     method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file"
     def csv_download
       download(options['gd_filename'], options['output_filename'])
+    end
+
+    desc "version", "Display current version"
+    def version
+      require "babelish/version"
+      say "Babelish #{Babelish::VERSION}"
     end
 
     no_tasks do
