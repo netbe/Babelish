@@ -1,9 +1,14 @@
+# -*- encoding: utf-8 -*-
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'babelish/version'
+
 Gem::Specification.new do |s|
   s.name        = 'babelish'
-  s.version     = '0.3.0'
-  s.date        = '2014-03-12'
+  s.version     = Babelish::VERSION
+  s.date        = '2014-04-10'
   s.summary     = "CSV converter for localization files"
-  s.description = "This set of commands converts a CSV file to the following formats:\
+  s.description = "This set of commands converts a CSV file to the following formats:
                   - .strings (iOS)
                   - .xml (Android)
                   - .json
