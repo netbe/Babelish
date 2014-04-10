@@ -11,20 +11,22 @@ This script converts a csv file of translations into the below file formats and 
 
 # Requirements
 
-* Ruby 1.9.2 or adbove
+* Ruby 1.9.2 or above
 * Needs [ICU](http://site.icu-project.org/). Via `brew install icu4c` on Mac or `apt-get install libicu-dev` on Linux
 
 # Setup
 
-...
+`gem install babelish`
 
 # Usage
-...
+
+` babelish help`
 
 * Use configuration file
 
-You can use a configuration file to hold all your commandline arguments into a file (previous versions `i18n_config.rb`).
-Place `.babelish` file (edit if needed) in the folder with your ``xx.lproj`` and call the script from there. See `.babelish.sample`
+You can use a configuration file to hold all your commandline arguments into a file.
+Place a `.babelish` file in your repo where you will run the command.
+See `.babelish.sample` as the possible values.
 
 # Contributing
 
@@ -40,4 +42,3 @@ Run `bundle install` to install all the dependencies. Tests are done with `Test:
 # Todo & Known issues
 
 See GitHub issues
-
