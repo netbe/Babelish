@@ -3,7 +3,7 @@ class TestBase2Csv < Test::Unit::TestCase
 
   def test_load_strings
     expected_output = {}
-    output = Babelish::Base2Csv.new.load_strings "test/data/test_data.strings"
+    output = Babelish::Base2Csv.new.send :load_strings, "test/data/test_data.strings"
     assert_equal expected_output, output
   end
 
@@ -14,7 +14,7 @@ class TestBase2Csv < Test::Unit::TestCase
 
     converter = Babelish::Base2Csv.new(:headers => %w{variables english}, :filenames => [filename])
 
-    converter.create_csv_file(keys, strings)
+    converter.send :create_csv_file, keys, strings
     assert File.exist?(converter.csv_filename)
 
     #clean up

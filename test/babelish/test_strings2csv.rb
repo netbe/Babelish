@@ -72,7 +72,7 @@ class TestStrings2CSV < Test::Unit::TestCase
 
     converter = Babelish::Strings2CSV.new(:headers => %w{variables english}, :filenames => [filename])
 
-    converter.create_csv_file(keys, strings)
+    converter.send :create_csv_file, keys, strings
     assert File.exist?(converter.csv_filename)
 
     #clean up
