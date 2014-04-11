@@ -80,13 +80,13 @@ class Commandline < Thor
       args.delete(:langs)
       args.delete(:filename)
 
-      class_object = eval "Babelish::" + classname
+      class_object = eval "Babelish::#{classname}"
       converter = class_object.new(filename, options[:langs],args)
       say converter.convert
     end
 
     def base2csv(classname)
-      class_object = eval "Babelish::" + classname
+      class_object = eval "Babelish::#{classname}"
       converter = class_object.new(options)
 
       debug_values = converter.convert(!options[:dryrun])
