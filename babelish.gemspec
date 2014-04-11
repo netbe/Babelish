@@ -42,6 +42,7 @@ if RUBY_VERSION < '1.9'
   s.add_development_dependency "rake"
   s.add_development_dependency "test-unit"
   s.add_development_dependency "simplecov"
+  s.add_development_dependency "yard"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
