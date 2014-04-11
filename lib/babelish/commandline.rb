@@ -4,11 +4,16 @@ class Commandline < Thor
   class_option :verbose, :type => :boolean
   map "-v" => :version
 
-  CSVCLASSES = %w{CSV2Strings CSV2Android CSV2JSON CSV2Php}
+  CSVCLASSES = [
+    {:name => "CSV2Strings", :ext => ".strings"},
+    {:name => "CSV2Android", :ext => ".xml"},
+    {:name => "CSV2JSON", :ext => ".json"},
+    {:name => "CSV2Php", :ext => ".php"},
+  ]
 
-  CSVCLASSES.each do |classname|
-    desc "#{classname.downcase}", "convert CSV file"
-    method_option :filename, :type => :string, :desc => "CSV file (CSV_FILENAME) to convert from or name of file in Google Drive", :required => true
+  CSVCLASSES.each do |klass|
+    desc "#{klass[:name].downcase}", "Convert CSV file to #{klass[:ext]}"
+    method_option :filename, :type => :string, :desc => "CSV file to convert from or name of file in Google Drive", :required => true
     method_option :langs, :type => :hash, :aliases => "-L", :desc => "Languages to convert. i.e. English:en", :required => true
 
     # optional options
@@ -18,23 +23,28 @@ class Commandline < Thor
     method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
     method_option :default_path, :type => :string, :aliases => "-p", :desc => "Path of output files"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
-    define_method("#{classname.downcase}") do
-      csv2base(classname)
+    define_method("#{klass[:name].downcase}") do
+      csv2base(klass[:name])
     end
   end
 
-  BASECLASSES = %w{Strings2CSV Android2CSV JSON2CSV Php2CSV}
+  BASECLASSES = [
+    {:name => "Strings2CSV", :ext => ".strings"},
+    {:name => "Android2CSV", :ext => ".xml"},
+    {:name => "JSON2CSV", :ext => ".json"},
+    {:name => "Php2CSV", :ext => ".php"},
+  ]
 
-  BASECLASSES.each do |classname|
-    desc "#{classname.downcase}", "convert given files to CSV file"
+  BASECLASSES.each do |klass|
+    desc "#{klass[:name].downcase}", "Convert #{klass[:ext]} files to CSV file"
     method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of strings files (FILENAMES)", :required => true
 
     # optional options
     method_option :csv_filename, :type => :string, :aliases => "-o", :desc => "location of output file"
     method_option :headers, :type => :array, :aliases => "-h", :desc => "override headers of columns, default is name of input files and 'Variables' for reference"
     method_option :dryrun, :type => :boolean, :aliases => "-n", :desc => "prints out content of hash without writing file"
-    define_method("#{classname.downcase}") do
-      base2csv(classname)
+    define_method("#{klass[:name].downcase}") do
+      base2csv(klass[:name])
     end
   end
 
