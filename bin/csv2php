@@ -1,6 +1,13 @@
 #!/usr/bin/env ruby
 $: << File.expand_path("../../lib", __FILE__)
-require 'csvconverter'
-require 'csvconverter/commands/csv2php_command'
+require 'babelish'
+require 'babelish/commandline'
 
-CSV2PhpCommand.start
+puts "DEPRECATED: use babelish command"
+args = [File.basename(__FILE__)]
+if ARGV.first == "help"
+  args.insert(0, ARGV.first)
+  ARGV.delete(ARGV.first)
+end
+args += ARGV
+Commandline.start(args)
