@@ -62,7 +62,6 @@ module Babelish
       headers
     end
 
-
     # Basename of given file
     #
     # @param [String, #read] file_path
