@@ -2,7 +2,7 @@ require 'test_helper'
 class TestAndroid2CSVCommand < Test::Unit::TestCase
  def test_android2csv
     options = {:filenames => ["test/data/android.xml"]}
-    Babelish::Command.new([], options).android2csv
+    Commandline.new([], options).android2csv
 
     assert File.exist?("translations.csv")
 
@@ -12,7 +12,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
 
   def test_android2csv_with_dryrun_option
     options = {:filenames => ["test/data/android.xml"], :dryrun => true}
-    Babelish::Command.new([], options).android2csv
+    Commandline.new([], options).android2csv
 
     assert !File.exist?("translations.csv")
 
@@ -23,7 +23,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
   def test_android2csv_with_output_file
     options = {:filenames => ["test/data/android.xml"], :csv_filename => "myfile.csv"}
     # -i, -o
-    Babelish::Command.new([], options).android2csv
+    Commandline.new([], options).android2csv
 
     assert File.exist?("myfile.csv")
 
@@ -34,7 +34,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
   def test_android2csv_with_headers
     options = {:filenames => ["test/data/android.xml"], :headers => ["constants", "english"]}
     # -i, -h
-    Babelish::Command.new([], options).android2csv
+    Commandline.new([], options).android2csv
 
     #TODO assertion or move test on at lib level
 
@@ -49,7 +49,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
       :csv_filename => "enfr.csv"
     }
     # --filenames, --headers, -o
-    Babelish::Command.new([], options).android2csv
+    Commandline.new([], options).android2csv
 
     #TODO assertion
 

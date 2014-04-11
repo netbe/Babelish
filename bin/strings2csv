@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 $: << File.expand_path("../../lib", __FILE__)
 require 'babelish'
-require 'babelish/command'
+require 'babelish/commandline'
 
 puts "DEPRECATED: use babelish command"
 args = [File.basename(__FILE__)]
@@ -10,4 +10,4 @@ if ARGV.first == "help"
   ARGV.delete(ARGV.first)
 end
 args += ARGV
-Babelish::Command.start(args)
+Commandline.start(args)

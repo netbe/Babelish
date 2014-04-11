@@ -3,7 +3,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
   def test_strings2csv
     options = {:filenames => ["test/data/test_data.strings"]}
-    Babelish::Command.new([], options).strings2csv
+    Commandline.new([], options).strings2csv
 
     assert File.exist?("translations.csv")
 
@@ -13,7 +13,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
   def test_strings2csv_with_dryrun_option
     options = {:filenames => ["test/data/test_data.strings"], :dryrun => true}
-    Babelish::Command.new([], options).strings2csv
+    Commandline.new([], options).strings2csv
 
     assert !File.exist?("translations.csv")
 
@@ -24,7 +24,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
   def test_strings2csv_with_output_file
     options = {:filenames => ["test/data/test_data.strings"], :csv_filename => "myfile.csv"}
     # -i, -o
-    Babelish::Command.new([], options).strings2csv
+    Commandline.new([], options).strings2csv
 
     assert File.exist?("myfile.csv")
 
@@ -35,7 +35,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
   def test_strings2csv_with_headers
     options = {:filenames => ["test/data/test_data.strings"], :headers => ["constants", "english"]}
     # -i, -h
-    Babelish::Command.new([], options).strings2csv
+    Commandline.new([], options).strings2csv
 
     #TODO assertion or move test on at lib level
 
@@ -50,7 +50,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
       :csv_filename => "enfr.csv"
     }
     # --filenames, --headers, -o
-    Babelish::Command.new([], options).strings2csv
+    Commandline.new([], options).strings2csv
 
     #TODO assertion
 
@@ -67,7 +67,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
 
     assert_nothing_raised do
-      Babelish::Command.new([], options).strings2csv
+      Commandline.new([], options).strings2csv
     end
     assert system("diff test_with_nil.csv test/data/test_with_nil.csv"), "no difference on output"
 
@@ -84,7 +84,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
 
     assert_nothing_raised do
-      Babelish::Command.new([], options).strings2csv
+      Commandline.new([], options).strings2csv
     end
 
     #clean up

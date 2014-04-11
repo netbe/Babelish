@@ -14,4 +14,4 @@ require 'test/unit'
 
 require 'babelish'
 
-require "babelish/command"
+require "babelish/commandline"

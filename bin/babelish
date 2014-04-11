@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 $: << File.expand_path("../../lib", __FILE__)
 require 'babelish'
-require 'babelish/command'
+require 'babelish/commandline'
 
-Babelish::Command.start(ARGV)
+Commandline.start(ARGV)

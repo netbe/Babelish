@@ -6,7 +6,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     	:filename => "test/data/test_data_multiple_langs.csv",
     	:langs => {"English" => "en", "French" => "fr"}
     }
-    Babelish::Command.new([], options).csv2strings
+    Commandline.new([], options).csv2strings
 
 		assert File.exist?("./en.lproj/Localizable.strings")
 		assert File.exist?("./fr.lproj/Localizable.strings")
@@ -22,7 +22,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     	:langs => {"English" => "en", "French" => "fr"},
     	:default_path => "mynewlocation"
     }
-    Babelish::Command.new([], options).csv2strings
+    Commandline.new([], options).csv2strings
 
 		# testing
 		assert File.exist?("./mynewlocation/en.lproj/Localizable.strings"), "can't find output file for English"
@@ -40,7 +40,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       :fetch => true
     }
     assert_nothing_raised do
-      Babelish::Command.new([], options).csv2strings
+      Commandline.new([], options).csv2strings
     end
   end
 
@@ -48,7 +48,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     system("cp .babelish.sample .babelish")
 
     assert_nothing_raised do
-      Babelish::Command.new.csv2strings
+      Commandline.new.csv2strings
     end
 
   end
