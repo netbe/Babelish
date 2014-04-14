@@ -11,7 +11,7 @@ module Babelish
 
     def language_filepaths(language)
       require 'pathname'
-      filepath = Pathname.new("#{self.file_path}#{language.code}.js")
+      filepath = Pathname.new("#{@file_path}#{language.code}.js")
       return filepath ? [filepath] : []
     end
 

@@ -91,7 +91,7 @@ class Commandline < Thor
       args.delete(:filename)
 
       class_object = eval "Babelish::#{classname}"
-      converter = class_object.new(filename, options[:langs],args)
+      converter = class_object.new(filename, options[:langs], args)
       say converter.convert
     end
 
@@ -108,7 +108,7 @@ class Commandline < Thor
   def options
     original_options = super
     return original_options unless File.exists?(".babelish")
-    defaults = ::YAML::load_file(".babelish") || {}
+    defaults = ::YAML.load_file(".babelish") || {}
     Thor::CoreExt::HashWithIndifferentAccess.new(defaults.merge(original_options))
   end
 end

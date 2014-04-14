@@ -5,7 +5,7 @@ class TestPhp2CSV < Test::Unit::TestCase
     input = String.new(<<-EOS)
     $lang['MY_CONSTANT'] = "This is ok";
     EOS
-    expected_output = {"MY_CONSTANT"=>"This is ok"}
+    expected_output = {"MY_CONSTANT" => "This is ok"}
 
     output = Babelish::Php2CSV.new.parse_dotstrings_line input
     assert_equal output, expected_output
@@ -15,7 +15,7 @@ class TestPhp2CSV < Test::Unit::TestCase
     input = String.new(<<-EOS)
     $lang['MY_CONSTANT'] = "This 'is' ok";
     EOS
-    expected_output = {"MY_CONSTANT"=>"This 'is' ok"}
+    expected_output = {"MY_CONSTANT" => "This 'is' ok"}
 
     output = Babelish::Php2CSV.new.parse_dotstrings_line input
     assert_equal output, expected_output
@@ -25,7 +25,7 @@ class TestPhp2CSV < Test::Unit::TestCase
     input = String.new(<<-EOS)
     $lang['MY_CONSTANT'] = "This "is" ok";
     EOS
-    expected_output = {"MY_CONSTANT"=>"This \"is\" ok"}
+    expected_output = {"MY_CONSTANT" => "This \"is\" ok"}
 
     output = Babelish::Php2CSV.new.parse_dotstrings_line input
     assert_equal output, expected_output
@@ -52,24 +52,23 @@ class TestPhp2CSV < Test::Unit::TestCase
     assert_equal expected_output, output
   end
 
-
   def test_initialize
     csv_filename = "file.csv"
     filenames = %w{"french.php english.php"}
     headers = %w{"constants french english"}
     converter = Babelish::Php2CSV.new({
-        :csv_filename => csv_filename,
-        :headers => headers,
-        :filenames => filenames
-    })
+      :csv_filename => csv_filename,
+      :headers => headers,
+      :filenames => filenames
+      })
 
-    assert_equal csv_filename, converter.csv_filename
-    assert_equal headers, converter.headers
-    assert_equal filenames, converter.filenames
-  end
+      assert_equal csv_filename, converter.csv_filename
+      assert_equal headers, converter.headers
+      assert_equal filenames, converter.filenames
+    end
 
-  def test_initialize_with_default_values
-    converter = Babelish::Php2CSV.new
-    assert_not_nil converter.csv_filename
+    def test_initialize_with_default_values
+      converter = Babelish::Php2CSV.new
+      assert_not_nil converter.csv_filename
+    end
   end
-end

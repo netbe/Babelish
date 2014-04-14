@@ -19,7 +19,7 @@ module Babelish
 
     def download(requested_filename, worksheet_index = nil, output_filename = "translations.csv")
       unless @session
-        self.authenticate
+        authenticate
       end
       result = @session.file_by_title(requested_filename)
       if result.is_a? Array

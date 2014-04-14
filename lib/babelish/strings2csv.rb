@@ -10,7 +10,7 @@ module Babelish
 
     def parse_dotstrings_line(line)
       line.strip!
-      if (line[0] != ?# and line[0] != ?=)
+      if line[0] != ?# && line[0] != ?=
         m = line.match(/^[^\"]*\"(.+)\"[^=]+=[^\"]*\"(.*)\";/)
         return {m[1] => m[2]} unless m.nil?
       end

@@ -1,6 +1,6 @@
 require 'test_helper'
 class TestAndroid2CSVCommand < Test::Unit::TestCase
- def test_android2csv
+  def test_android2csv
     options = {:filenames => ["test/data/android.xml"]}
     Commandline.new([], options).android2csv
 

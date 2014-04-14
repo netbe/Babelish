@@ -13,10 +13,10 @@ module Babelish
       filepaths = []
 
       if language.regions.empty?
-        filepaths << Pathname.new(self.file_path) + "#{language.code}.lproj/Localizable.strings"
+        filepaths << Pathname.new(@file_path) + "#{language.code}.lproj/Localizable.strings"
       else
         language.regions.each do |region|
-          filepaths << Pathname.new(self.file_path) + "#{language.code}-#{region}.lproj/Localizable.strings"
+          filepaths << Pathname.new(@file_path) + "#{language.code}-#{region}.lproj/Localizable.strings"
         end
       end
       filepaths

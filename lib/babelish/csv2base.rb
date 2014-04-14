@@ -35,7 +35,7 @@ module Babelish
     def create_file_from_path(file_path)
       path = File.dirname(file_path)
       FileUtils.mkdir_p path
-      return File.new(file_path,"w")
+      return File.new(file_path, "w")
     end
 
     def language_filepaths(language)
@@ -64,7 +64,7 @@ module Babelish
         excludedCols = []
         defaultCol   = 0
 
-        CSV.foreach(name, :quote_char => '"', :col_sep =>',', :row_sep => :auto) do |row|
+        CSV.foreach(name, :quote_char => '"', :col_sep => ',', :row_sep => :auto) do |row|
 
           if rowIndex == 0
             #check there's at least two columns
@@ -105,7 +105,7 @@ module Babelish
           rowIndex += 1
         end
 
-        self.write_content
+        write_content
       end
 
       def write_content
@@ -116,10 +116,10 @@ module Babelish
 
           files = []
           if @output_file
-            files << self.create_file_from_path(@output_file)
+            files << create_file_from_path(@output_file)
           else
-            self.language_filepaths(language).each do |filename|
-              files << self.create_file_from_path(filename)
+            language_filepaths(language).each do |filename|
+              files << create_file_from_path(filename)
             end
           end
           files.each do |file|
