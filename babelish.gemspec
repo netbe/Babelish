@@ -20,15 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "thor"
 
-
-if RUBY_VERSION < '1.9'
-    s.add_dependency "fastercsv"
-    s.add_dependency "nokogiri", "= 1.5.10"
-    s.add_dependency "google_drive", '0.3.6'
-    s.add_dependency "orderedhash"
-  else
-    s.add_dependency "google_drive"
-  end
+  s.add_dependency "google_drive"
   # utf8 encoding
   s.add_dependency "charlock_holmes"
   # google_drive dependency to ask for mail and password

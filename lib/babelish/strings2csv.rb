@@ -19,14 +19,10 @@ module Babelish
 
     # Load all strings of a given file
     def load_strings(strings_filename)
-      strings = ORDERED_HASH_CLASS.new
-
-      # Make sure we use correct encoding
-      contents = File.open(strings_filename).read
-      detection = CharlockHolmes::EncodingDetector.detect(contents)
-      utf8_encoded_content = CharlockHolmes::Converter.convert contents, detection[:encoding], 'UTF-8'
-
-      utf8_encoded_content.each_line do |line|
+      strings = {}
+      
+        contents = File.open(strings_filename, "r:utf-8:utf-8")
+      contents.each_line do |line|
         hash = self.parse_dotstrings_line(line)
         strings.merge!(hash) if hash
       end

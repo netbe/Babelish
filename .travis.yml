@@ -1,8 +1,4 @@
 language: ruby
-before_install:
-  - sudo apt-get install libtool
-  - sudo apt-get install libmagic-dev
-  - sudo apt-get install libicu-dev
 rvm:
   - 1.9.2
   - 1.9.3
