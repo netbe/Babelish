@@ -12,7 +12,6 @@ This script converts a csv file of translations into the below file formats and 
 # Requirements
 
 * Ruby 1.9.2 or above
-* Needs [ICU](http://site.icu-project.org/). Via `brew install icu4c` on Mac or `apt-get install libicu-dev` on Linux
 
 # Setup
 

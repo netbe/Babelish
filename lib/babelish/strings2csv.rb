@@ -21,7 +21,15 @@ module Babelish
     def load_strings(strings_filename)
       strings = {}
       
+      # genstrings uses utf16, so that's what we expect. utf8 should not be impact
+      file = File.open(strings_filename, "r:utf-16:utf-8")
+      begin
+        contents = file.read
+      rescue Encoding::InvalidByteSequenceError => e
+        puts e.to_s
+        # faults back to utf8
         contents = File.open(strings_filename, "r:utf-8:utf-8")
+      end
       contents.each_line do |line|
         hash = self.parse_dotstrings_line(line)
         strings.merge!(hash) if hash
