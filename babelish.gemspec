@@ -21,8 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency "thor"
 
   s.add_dependency "google_drive"
-  # utf8 encoding
-  s.add_dependency "charlock_holmes"
   # google_drive dependency to ask for mail and password
   s.add_dependency "highline"
 
