@@ -23,8 +23,8 @@ This script converts a csv file of translations into the below file formats and 
 * Use configuration file
 
 You can use a configuration file to hold all your commandline arguments into a file.
-Place a `.babelish` file in your repo where you will run the command.
-See `.babelish.sample` as the possible values.
+Place a `.babelish` file (YAML) in your repo where you will run the command.
+See [.babelish.sample](.babelish.sample) file in the doc folder. as the possible values.
 
 # Contributing
 
