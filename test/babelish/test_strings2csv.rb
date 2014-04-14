@@ -58,6 +58,18 @@ class TestStrings2CSV < Test::Unit::TestCase
     end
   end
 
+  def test_load_strings_with_empty_lines_and_comments
+    assert_nothing_raised do
+      output = Babelish::Strings2CSV.new.load_strings "test/data/xcode_empty.strings"
+    end
+  end
+
+  def test_load_strings_with_genstrings_file
+    assert_nothing_raised do
+      output = Babelish::Strings2CSV.new.load_strings "test/data/genstrings.strings"
+    end
+  end
+
   def test_dotstrings_to_csv
     converter = Babelish::Strings2CSV.new(:filenames => ["test/data/test_data.strings"])
     keys, strings = converter.convert(false)

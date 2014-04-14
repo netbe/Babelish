@@ -3,7 +3,7 @@ class TestBase2Csv < Test::Unit::TestCase
 
   def test_load_strings
     expected_output = {}
-    output = Babelish::Base2Csv.new.send :load_strings, "test/data/test_data.strings"
+    output = Babelish::Base2Csv.new.send :load_strings, nil
     assert_equal expected_output, output
   end
 
