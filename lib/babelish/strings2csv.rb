@@ -20,13 +20,13 @@ module Babelish
     # Load all strings of a given file
     def load_strings(strings_filename)
       strings = {}
-      
+
       # genstrings uses utf16, so that's what we expect. utf8 should not be impact
       file = File.open(strings_filename, "r:utf-16:utf-8")
       begin
         contents = file.read
       rescue Encoding::InvalidByteSequenceError => e
-        puts e.to_s
+        # silent error
         # faults back to utf8
         contents = File.open(strings_filename, "r:utf-8:utf-8")
       end
