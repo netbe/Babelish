@@ -10,4 +10,4 @@ deploy:
   gem: babelish
   on:
     tags: true
-    repo: netbe/CSV-to-iOS-Localizable.strings-converter
+    repo: netbe/Babelish
