@@ -59,7 +59,7 @@ module Babelish
       end
 
       # Convert csv file to multiple Localizable.strings files for each column
-      def convert(name = self.csv_filename)
+      def convert(name = @csv_filename)
         rowIndex     = 0
         excludedCols = []
         defaultCol   = 0
@@ -71,7 +71,7 @@ module Babelish
             return unless row.count > 1
           else
             #skip empty lines (or sections)
-            next if row == nil or row[self.keys_column].nil?
+            next if row == nil or row[@keys_column].nil?
           end
 
           # go through columns
@@ -81,21 +81,21 @@ module Babelish
             #header
             if rowIndex == 0
               # ignore all headers not listed in langs to create files
-              (excludedCols << i and next) unless self.langs.has_key?(row[i])
+              (excludedCols << i and next) unless @langs.has_key?(row[i])
 
               defaultCol = i if self.default_lang == row[i]
               language = Language.new(row[i])
-              if self.langs[row[i]].is_a?(Array)
-                self.langs[row[i]].each do |id|
+              if @langs[row[i]].is_a?(Array)
+                @langs[row[i]].each do |id|
                   language.add_language_id(id.to_s)
                 end
               else
-                language.add_language_id(self.langs[row[i]].to_s)
+                language.add_language_id(@langs[row[i]].to_s)
               end
               @languages[i] = language
-            elsif !self.state_column || (row[self.state_column].nil? or row[self.state_column] == '' or !self.excluded_states.include? row[self.state_column])
+            elsif !@state_column || (row[@state_column].nil? || row[@state_column] == '' || !@excluded_states.include?(row[@state_column]))
               # TODO: add option to strip the constant or referenced language
-              key = row[self.keys_column].strip
+              key = row[@keys_column].strip
               value = self.process_value(row[i], row[defaultCol])
 
               @languages[i].add_content_pair(key, value)

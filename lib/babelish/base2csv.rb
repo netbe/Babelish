@@ -31,7 +31,7 @@ module Babelish
         keys ||= strings[header].keys
       end
 
-      if(write_to_file)
+      if write_to_file
         # Create csv file
         puts "Creating #{@csv_filename}"
         create_csv_file(keys, strings)
@@ -78,15 +78,15 @@ module Babelish
     # @param [Array] keys references of all translations
     # @param [Array] strings translations of all languages
     def create_csv_file(keys, strings)
-      raise "csv_filename must not be nil" unless self.csv_filename
-      CSV.open(self.csv_filename, "wb") do |csv|
+      raise "csv_filename must not be nil" unless @csv_filename
+      CSV.open(@csv_filename, "wb") do |csv|
         csv << @headers
         keys.each do |key|
           line = [key]
-          default_val = strings[self.default_lang][key] if strings[self.default_lang]
+          default_val = strings[@default_lang][key] if strings[@default_lang]
           @filenames.each do |fname|
             lang = fname
-            current_val = (lang != self.default_lang && strings[lang][key] == default_val) ? '' : strings[lang][key]
+            current_val = (lang != default_lang && strings[lang][key] == default_val) ? '' : strings[lang][key]
             line << current_val
           end
           csv << line
