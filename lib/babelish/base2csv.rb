@@ -79,15 +79,15 @@ module Babelish
     # @param [Array] strings translations of all languages
     def create_csv_file(keys, strings)
       raise "csv_filename must not be nil" unless self.csv_filename
-      CSVParserClass.open(self.csv_filename, "wb") do |csv|
+      CSV.open(self.csv_filename, "wb") do |csv|
         csv << @headers
         keys.each do |key|
           line = [key]
           default_val = strings[self.default_lang][key] if strings[self.default_lang]
           @filenames.each do |fname|
             lang = fname
-            current_val = strings[lang][key]
-            line << ((lang != self.default_lang and current_val == default_val) ? '' : current_val)
+            current_val = (lang != self.default_lang && strings[lang][key] == default_val) ? '' : strings[lang][key]
+            line << current_val
           end
           csv << line
         end

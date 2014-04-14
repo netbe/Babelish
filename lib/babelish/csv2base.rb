@@ -64,7 +64,7 @@ module Babelish
         excludedCols = []
         defaultCol   = 0
 
-        CSVParserClass.foreach(name, :quote_char => '"', :col_sep =>',', :row_sep => :auto) do |row|
+        CSV.foreach(name, :quote_char => '"', :col_sep =>',', :row_sep => :auto) do |row|
 
           if rowIndex == 0
             #check there's at least two columns
