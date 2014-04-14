@@ -27,7 +27,7 @@ module Babelish
       rescue Encoding::InvalidByteSequenceError => e
         # silent error
         # faults back to utf8
-        contents = File.open(strings_filename, "r:utf-8:utf-8")
+        contents = File.open(strings_filename, "r:utf-8")
       end
       contents.each_line do |line|
         hash = self.parse_dotstrings_line(line)
