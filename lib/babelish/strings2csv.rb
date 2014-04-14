@@ -1,5 +1,4 @@
 module Babelish
-  require 'charlock_holmes'
   class Strings2CSV < Base2Csv
     # default_lang is the the column to refer to if a value is missing
     # actually default_lang = default_filename
