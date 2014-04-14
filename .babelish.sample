@@ -1,0 +1,26 @@
+# This is a sample configuration file
+
+# Base2CSV
+
+## required, location of strings files (FILENAMES)
+filenames: ["test/data/test_en.strings", "test/data/test_fr.strings"]
+
+## optional
+# headers: ["Constants", "English", "French"] # override headers of columns, default is name of input files and 'Variables' for reference
+# csv_filename: "testconfig.csv"              # location of output file
+# dryrun: true                                # prints out content of hash without writing file
+
+# CSV2Base
+
+## required
+filename: test/data/test_data.csv  # CSV file (CSV_FILENAME) to convert from or name of file in Google Drive
+langs:                             # Languages to convert. i.e. English:en
+  English: "en"
+
+## optional
+# fetch: true                        # set to true to get file(filename) from google drive
+# excluded-states: ["Images", "Xib"] # Exclude rows with given state
+# state-column: 3                    # Position of column for state if any
+# keys-column: 0                     # Position of column for keys
+# default-lang: "English"            # Default language to use for empty values if any
+# default-path: "resources/"          # Path of output files
