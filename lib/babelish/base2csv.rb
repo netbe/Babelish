@@ -12,7 +12,7 @@ module Babelish
 
       @csv_filename = args[:csv_filename] || "translations.csv"
       @default_lang = args[:default_lang]
-      @headers = args[:headers] || self.default_headers
+      @headers = args[:headers] || default_headers
     end
 
     public
