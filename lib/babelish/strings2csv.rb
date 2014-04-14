@@ -24,6 +24,12 @@ module Babelish
       file = File.open(strings_filename, "r:utf-16:utf-8")
       begin
         contents = file.read
+        if RUBY_VERSION == "1.9.2"
+          # fixes conversion, see http://po-ru.com/diary/fixing-invalid-utf-8-in-ruby-revisited/
+          require 'iconv'
+          ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+          contents = ic.iconv(contents + ' ')[0..-2]
+        end
       rescue Encoding::InvalidByteSequenceError => e
         # silent error
         # faults back to utf8
