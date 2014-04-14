@@ -1,7 +1,6 @@
-[![Build Status](https://secure.travis-ci.org/netbe/CSV-to-iOS-Localizable.strings-converter.png?branch=master)](http://travis-ci.org/netbe/CSV-to-iOS-Localizable.strings-converter)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/netbe/CSV-to-iOS-Localizable.strings-converter)
-[![Coverage Status](https://coveralls.io/repos/netbe/CSV-to-iOS-Localizable.strings-converter/badge.png)](https://coveralls.io/r/netbe/CSV-to-iOS-Localizable.strings-converter)
-[![Gem Version](https://badge.fury.io/rb/csv2strings.png)](http://badge.fury.io/rb/csv2strings)
+[![Build Status](https://secure.travis-ci.org/netbe/Babelish.png?branch=master)](http://travis-ci.org/netbe/Babelish)
+[![Code Climate](https://codeclimate.com/github/netbe/Babelish.png)](https://codeclimate.com/github/netbe/Babelish)[![Coverage Status](https://coveralls.io/repos/netbe/Babelish/badge.png)](https://coveralls.io/r/netbe/Babelish)
+[![Gem Version](https://badge.fury.io/rb/babelish.svg)](http://badge.fury.io/rb/babelish)
 # Introduction
 This script converts a csv file of translations into the below file formats and vice-versa:
 * .strings (iOS)
@@ -29,7 +28,9 @@ See `.babelish.sample` as the possible values.
 
 # Contributing
 
-If you feel like it, just create a pull request with a branch like `feature/<nameofbranch>` to `develop` branch
+Want to add another support for a new format or/and usage? Add a new feature? Fix a bug?
+
+Just create a pull request with a branch like `feature/<nameofbranch>` or `hotfix/<nameofbranch>`.
 
 
 ## Development
