@@ -35,7 +35,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
   def test_csv2strings_with_fetch_google_doc
     omit if ENV['TRAVIS']
     options = {
-      :filename => "my_trads",
+      :filename => "my_strings",
       :langs => {"English" => "en", "French" => "fr"},
       :fetch => true
     }
@@ -52,6 +52,25 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     end
 
   end
+
+  def test_csv2strings_with_worksheets_option
+    omit if ENV['TRAVIS']
+    options = {
+      :filename => "my_strings",
+      :langs => {"English" => "en", "French" => "fr"},
+      :fetch => true,
+      :worksheets => %w(Localizable Root)
+    }
+
+    Commandline.new([], options).csv2strings
+    # testing
+    assert File.exist?("./en.lproj/Localizable.strings"), "can't find output file for English"
+    assert File.exist?("./fr.lproj/Localizable.strings"), "can't find output file for French"
+    assert File.exist?("./en.lproj/Root.strings"), "can't find output file for English"
+    assert File.exist?("./fr.lproj/Root.strings"), "can't find output file for French"
+
+  end
+
 
   def teardown
 

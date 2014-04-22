@@ -1,4 +1,5 @@
 require 'thor'
+require 'pathname'
 class Commandline < Thor
   include Thor::Actions
   class_option :verbose, :type => :boolean
@@ -23,6 +24,7 @@ class Commandline < Thor
     method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
     method_option :default_path, :type => :string, :aliases => "-p", :desc => "Path of output files"
     method_option :output_file, :type => :string,  :desc => "Path of a single output file"
+    method_option :worksheets, :type => :array,  :desc => "Convert multiple sheets"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
     define_method("#{klass[:name].downcase}") do
       csv2base(klass[:name])
@@ -98,25 +100,35 @@ class Commandline < Thor
       else
         say "Could not download the requested file: #{filename}"
       end
-      files.first
+      files
     end
 
     def csv2base(classname)
       args = options.dup
       if options[:fetch]
         say "Fetching csv file #{options[:filename]} from Google Drive"
-        filename = download(options[:filename])
-        abort unless filename # no file downloaded
+        files = download(options[:filename])
+        abort if files.empty? # no file downloaded
         args.delete(:fetch)
       else
-        filename = options[:filename]
+        files = [options[:filename]]
       end
       args.delete(:langs)
       args.delete(:filename)
 
-      class_object = eval "Babelish::#{classname}"
-      converter = class_object.new(filename, options[:langs], args)
-      say converter.convert
+      files.each_with_index do |filename, index|
+        if  options[:worksheets]
+          puts options[:worksheets].inspect
+          path = args[:default_path] || ""
+          args[:output_file] = Pathname.new(path) + options[:worksheets][index]
+          args[:output_file] = args[:output_file].to_s
+          puts args.inspect
+        end
+
+        class_object = eval "Babelish::#{classname}"
+        converter = class_object.new(filename, options[:langs], args)
+        say converter.convert
+      end
     end
 
     def base2csv(classname)
@@ -129,6 +141,7 @@ class Commandline < Thor
   end
 
   private
+
   def options
     original_options = super
     return original_options unless File.exists?(".babelish")
