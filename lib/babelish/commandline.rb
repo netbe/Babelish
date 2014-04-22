@@ -55,6 +55,19 @@ class Commandline < Thor
     download(options['gd_filename'], options['output_filename'])
   end
 
+  desc "open FILE", "Open local csv file in default editor or Google Spreadsheet containing translations in default browser"
+  def open(file = "translations.csv")
+    filename = file || options["filename"]
+    if File.exists?(filename)
+      say "Opening local file '#{filename}'"
+      system "open \"#{filename}\""
+    else
+      say "Opening Google Drive file '#{filename}'"
+      gd = Babelish::GoogleDoc.new
+      gd.open filename.to_s
+    end
+  end
+
   desc "version", "Display current version"
   def version
     require "babelish/version"
