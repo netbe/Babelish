@@ -22,6 +22,7 @@ class Commandline < Thor
     method_option :keys_column,  :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
     method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
     method_option :default_path, :type => :string, :aliases => "-p", :desc => "Path of output files"
+    method_option :output_file, :type => :string,  :desc => "Path of a single output file"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
     define_method("#{klass[:name].downcase}") do
       csv2base(klass[:name])
