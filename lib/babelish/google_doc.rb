@@ -21,10 +21,10 @@ module Babelish
 
     def open(requested_filename)
       file = file_with_name(requested_filename)
-      unless file
-        puts "can't open requested file"
-      else
+      if file
         system "open \"#{file.human_url}\""
+      else
+        puts "can't open requested file"
       end
     end
 
