@@ -49,10 +49,17 @@ class Commandline < Thor
   end
 
   desc "csv_download", "Download Google Spreadsheet containing translations"
-  method_option :gd_filename, :type => :string, :required => :true, :desc => "File to download from Google Drive"
-  method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file"
+  method_option :gd_filename, :type => :string, :required => :true, :desc => "File to download from Google Drive."
+  method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0."
+  method_option :all, :type => :boolean, :lazy_default => true, :desc => "Download all worksheets to individual csv files."
+  method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file."
   def csv_download
-    download(options['gd_filename'], options['output_filename'])
+    all = options[:sheet] ? false : options[:all]
+    if all
+      download(options['gd_filename'])
+    else
+      download(options['gd_filename'], options['output_filename'], options['sheet'])
+    end
   end
 
   desc "open FILE", "Open local csv file in default editor or Google Spreadsheet containing translations in default browser"
@@ -75,19 +82,22 @@ class Commandline < Thor
   end
 
   no_tasks do
-    def download(filename, output_filename = nil)
+    def download(filename, output_filename = nil, worksheet_index = nil)
       gd = Babelish::GoogleDoc.new
-      if output_filename
-        file_path = gd.download filename.to_s, output_filename
+      if output_filename || worksheet_index
+        file_path = gd.download_spreadsheet filename.to_s, output_filename, worksheet_index
+        files = [file_path].compact
       else
-        file_path = gd.download filename.to_s
+        files = gd.download filename.to_s
+        file_path = files.join("\n")
       end
+
       if file_path
-        say "File '#{filename}' downloaded to '#{file_path}'"
+        say "File '#{filename}' downloaded to :\n#{file_path.to_s}"
       else
         say "Could not download the requested file: #{filename}"
       end
-      file_path
+      files.first
     end
 
     def csv2base(classname)
