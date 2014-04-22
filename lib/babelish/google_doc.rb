@@ -12,7 +12,7 @@ module Babelish
   class GoogleDoc
     attr_accessor :session
 
-    def download(requested_filename, output_filename = "translations.csv")
+    def download(requested_filename, worksheet_index = 0, output_filename = "translations.csv")
       file = file_with_name(requested_filename)
       return nil unless file
       file.export_as_file(output_filename, "csv", worksheet_index)
