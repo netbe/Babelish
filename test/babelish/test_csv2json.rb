@@ -16,7 +16,8 @@ class TestCSV2JSON < Test::Unit::TestCase
     single_file = 'myfile.js'
     converter = Babelish::CSV2JSON.new(csv_file,
     {'English' => "en"},
-    :output_basename => 'myfile')
+    :output_basename => 'myfile',
+    :ignore_lang_path => true)
     converter.convert
     assert File.exists?(single_file), "the ouptut file does not exist"
 

@@ -28,4 +28,4 @@ langs:                             # Languages to convert. i.e. English:en
 # output-basenames:
 #   - Localizable
 #   - info
-# ignore_lang_path: true
+# ignore_lang_path: true            # does not care about lang component path. i.e: en.lproj/

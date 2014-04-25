@@ -16,7 +16,8 @@ class TestCSV2Php < Test::Unit::TestCase
     single_file = 'myApp.php'
     converter = Babelish::CSV2Php.new(csv_file,
     {'English' => "en"},
-    :output_basename => 'myApp')
+    :output_basename => 'myApp',
+    :ignore_lang_path => true)
     converter.convert
     assert File.exists?(single_file), "the ouptut file does not exist"
 
