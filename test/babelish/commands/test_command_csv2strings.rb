@@ -16,17 +16,17 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     system("rm -rf ./fr.lproj/")
   end
 
-  def test_csv2strings_with_default_path
+  def test_csv2strings_with_output_dir
     options = {
     	:filename => "test/data/test_data_multiple_langs.csv",
     	:langs => {"English" => "en", "French" => "fr"},
-    	:default_path => "mynewlocation"
+    	:output_dir => "mynewlocation"
     }
     Commandline.new([], options).csv2strings
 
     # testing
-    assert File.exist?("./mynewlocation/en.lproj/Localizable.strings"), "can't find output file for English"
-    assert File.exist?("./mynewlocation/fr.lproj/Localizable.strings"), "can't find output file for French"
+    assert File.exist?("./mynewlocation/en.lproj/Localizable.strings"), "can't find output file for English in mynewlocation folder"
+    assert File.exist?("./mynewlocation/fr.lproj/Localizable.strings"), "can't find output file for French in mynewlocation folder"
 
     #clean up
     system("rm -rf ./mynewlocation")
@@ -42,6 +42,10 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     assert_nothing_raised do
       Commandline.new([], options).csv2strings
     end
+
+    #clean up
+    system("rm -rf ./en.lproj/")
+    system("rm -rf ./fr.lproj/")
   end
 
   def test_csv2strings_with_config_file
@@ -51,26 +55,53 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       Commandline.new.csv2strings
     end
 
+    #clean up
+    system("rm -rf ./en.lproj/")
+    system("rm -rf ./fr.lproj/")
   end
 
-  def test_csv2strings_with_worksheets_option
+  def test_csv2strings_with_output_basenames_option
     omit if ENV['TRAVIS']
     options = {
       :filename => "my_strings",
       :langs => {"English" => "en", "French" => "fr"},
       :fetch => true,
-      :worksheets => %w(Localizable Root)
+      :output_basenames => %w(sheet1 sheet2),
     }
 
     Commandline.new([], options).csv2strings
     # testing
-    assert File.exist?("./en.lproj/Localizable.strings"), "can't find output file for English"
-    assert File.exist?("./fr.lproj/Localizable.strings"), "can't find output file for French"
-    assert File.exist?("./en.lproj/Root.strings"), "can't find output file for English"
-    assert File.exist?("./fr.lproj/Root.strings"), "can't find output file for French"
+    assert File.exist?("./en.lproj/sheet1.strings"), "can't find output file for sheet1 English"
+    assert File.exist?("./fr.lproj/sheet1.strings"), "can't find output file for sheet1 French"
+    assert File.exist?("./en.lproj/sheet2.strings"), "can't find output file for sheet2 English"
+    assert File.exist?("./fr.lproj/sheet2.strings"), "can't find output file for sheet2 French"
 
+    #clean up
+    system("rm -rf ./en.lproj/")
+    system("rm -rf ./fr.lproj/")
   end
 
+  def test_csv2strings_with_ignore_lang_path_option
+    omit if ENV['TRAVIS']
+    options = {
+      :filename => "my_strings",
+      :langs => {"English" => "en", "French" => "fr"},
+      :fetch => true,
+      :ignore_lang_path => true,
+      :output_basenames => %w(sheet1 sheet2),
+    }
+
+    Commandline.new([], options).csv2strings
+    # testing
+    assert File.exist?("./sheet1.strings"), "can't find output file for sheet1 English with_ignore_lang_path_option"
+    assert File.exist?("./sheet1.strings"), "can't find output file for sheet1 French with_ignore_lang_path_option"
+    assert File.exist?("./sheet2.strings"), "can't find output file for sheet2 English with_ignore_lang_path_option"
+    assert File.exist?("./sheet2.strings"), "can't find output file for sheet2 French with_ignore_lang_path_option"
+
+    #clean up
+    system("rm -rf ./en.lproj/")
+    system("rm -rf ./fr.lproj/")
+  end
 
   def teardown
 

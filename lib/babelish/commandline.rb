@@ -14,17 +14,19 @@ class Commandline < Thor
 
   CSVCLASSES.each do |klass|
     desc "#{klass[:name].downcase}", "Convert CSV file to #{klass[:ext]}"
-    method_option :filename, :type => :string, :desc => "CSV file to convert from or name of file in Google Drive", :required => true
+    method_option :filename, :type => :string, :aliases => "-i", :desc => "CSV file to convert from or name of file in Google Drive", :required => true
     method_option :langs, :type => :hash, :aliases => "-L", :desc => "Languages to convert. i.e. English:en", :required => true
+
+
 
     # optional options
     method_option :excluded_states, :type => :array, :aliases => "-x", :desc => "Exclude rows with given state"
     method_option :state_column, :type => :numeric, :aliases => "-s", :desc => "Position of column for state if any"
     method_option :keys_column,  :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
     method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
-    method_option :default_path, :type => :string, :aliases => "-p", :desc => "Path of output files"
-    method_option :output_file, :type => :string,  :desc => "Path of a single output file"
-    method_option :worksheets, :type => :array,  :desc => "Convert multiple sheets"
+    method_option :output_dir, :type => :string, :aliases => "-d", :desc => "Path of output files"
+    method_option :output_basenames, :type => :array, :aliases => "-o", :desc => "Basename of output files"
+    method_option :ignore_lang_path, :type => :boolean, :aliases => "-I", :default => false, :desc => "Ignore the path component of langs"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
     define_method("#{klass[:name].downcase}") do
       csv2base(klass[:name])
@@ -117,15 +119,15 @@ class Commandline < Thor
       args.delete(:filename)
 
       files.each_with_index do |filename, index|
-        if  options[:worksheets]
           puts options[:worksheets].inspect
-          path = args[:default_path] || ""
-          args[:output_file] = Pathname.new(path) + options[:worksheets][index]
-          args[:output_file] = args[:output_file].to_s
           puts args.inspect
+        puts index
+        if options[:output_basenames]
+          args[:output_basename] = options[:output_basenames][index]
         end
 
         class_object = eval "Babelish::#{classname}"
+        args = Thor::CoreExt::HashWithIndifferentAccess.new(args)
         converter = class_object.new(filename, options[:langs], args)
         say converter.convert
       end
