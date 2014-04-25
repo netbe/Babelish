@@ -1,5 +1,4 @@
 require 'thor'
-require 'pathname'
 class Commandline < Thor
   include Thor::Actions
   class_option :verbose, :type => :boolean
@@ -119,9 +118,6 @@ class Commandline < Thor
       args.delete(:filename)
 
       files.each_with_index do |filename, index|
-          puts options[:worksheets].inspect
-          puts args.inspect
-        puts index
         if options[:output_basenames]
           args[:output_basename] = options[:output_basenames][index]
         end

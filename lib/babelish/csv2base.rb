@@ -1,3 +1,4 @@
+require 'pathname'
 module Babelish
   class Csv2Base
     attr_accessor :output_dir, :output_basename
