@@ -7,7 +7,7 @@ module Babelish
     def initialize(filename, langs, args = {})
       super(filename, langs, args)
 
-      @file_path = args[:default_path].to_s
+      @file_path = args[:output_dir].to_s
     end
 
     def language_filepaths(language)
@@ -31,6 +31,10 @@ module Babelish
         output += "</resources>"
       end
       return output
+    end
+
+    def extension
+      "xml"
     end
   end
 end

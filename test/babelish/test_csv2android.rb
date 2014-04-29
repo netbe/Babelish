@@ -16,7 +16,8 @@ class TestCSV2Android < Test::Unit::TestCase
     single_file = 'myApp.xml'
     converter = Babelish::CSV2Android.new(csv_file,
     {'English' => "en"},
-    :output_file => single_file)
+    :output_basename => 'myApp',
+    :ignore_lang_path => true)
     converter.convert
     assert File.exists?(single_file), "the ouptut file does not exist"
 

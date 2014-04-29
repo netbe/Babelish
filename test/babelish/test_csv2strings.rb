@@ -13,7 +13,8 @@ class TestCSV2Strings < Test::Unit::TestCase
     single_file = 'myApp.strings'
     converter = Babelish::CSV2Strings.new(csv_file,
     {'English' => [:en]},
-    :output_file => single_file)
+    :output_basename => 'myApp',
+    :ignore_lang_path => true)
     converter.convert
     assert File.exists?(single_file), "the ouptut file does not exist"
   end

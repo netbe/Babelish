@@ -1,22 +1,16 @@
 module Babelish
   class CSV2Strings < Csv2Base
-    attr_accessor :file_path
-
-    def initialize(filename, langs, args = {})
-      super(filename, langs, args)
-
-      @file_path = args[:default_path].to_s
-    end
 
     def language_filepaths(language)
       require 'pathname'
       filepaths = []
+      filename = @output_basename || 'Localizable'
 
       if language.regions.empty?
-        filepaths << Pathname.new(@file_path) + "#{language.code}.lproj/Localizable.strings"
+        filepaths << Pathname.new(@output_dir) + "#{language.code}.lproj/#{filename}.strings"
       else
         language.regions.each do |region|
-          filepaths << Pathname.new(@file_path) + "#{language.code}-#{region}.lproj/Localizable.strings"
+          filepaths << Pathname.new(@output_dir) + "#{language.code}-#{region}.lproj/#{filename}.strings"
         end
       end
       filepaths
@@ -26,5 +20,8 @@ module Babelish
       return "\"#{row_key}\" = \"#{row_value}\";\n"
     end
 
+    def extension
+      "strings"
+    end
   end
 end

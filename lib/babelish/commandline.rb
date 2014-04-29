@@ -13,16 +13,19 @@ class Commandline < Thor
 
   CSVCLASSES.each do |klass|
     desc "#{klass[:name].downcase}", "Convert CSV file to #{klass[:ext]}"
-    method_option :filename, :type => :string, :desc => "CSV file to convert from or name of file in Google Drive", :required => true
+    method_option :filename, :type => :string, :aliases => "-i", :desc => "CSV file to convert from or name of file in Google Drive", :required => true
     method_option :langs, :type => :hash, :aliases => "-L", :desc => "Languages to convert. i.e. English:en", :required => true
+
+
 
     # optional options
     method_option :excluded_states, :type => :array, :aliases => "-x", :desc => "Exclude rows with given state"
     method_option :state_column, :type => :numeric, :aliases => "-s", :desc => "Position of column for state if any"
     method_option :keys_column,  :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
     method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
-    method_option :default_path, :type => :string, :aliases => "-p", :desc => "Path of output files"
-    method_option :output_file, :type => :string,  :desc => "Path of a single output file"
+    method_option :output_dir, :type => :string, :aliases => "-d", :desc => "Path of output files"
+    method_option :output_basenames, :type => :array, :aliases => "-o", :desc => "Basename of output files"
+    method_option :ignore_lang_path, :type => :boolean, :aliases => "-I", :default => false, :desc => "Ignore the path component of langs"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
     define_method("#{klass[:name].downcase}") do
       csv2base(klass[:name])
@@ -50,10 +53,17 @@ class Commandline < Thor
   end
 
   desc "csv_download", "Download Google Spreadsheet containing translations"
-  method_option :gd_filename, :type => :string, :required => :true, :desc => "File to download from Google Drive"
-  method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file"
+  method_option :gd_filename, :type => :string, :required => :true, :desc => "File to download from Google Drive."
+  method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0."
+  method_option :all, :type => :boolean, :lazy_default => true, :desc => "Download all worksheets to individual csv files."
+  method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file."
   def csv_download
-    download(options['gd_filename'], options['output_filename'])
+    all = options[:sheet] ? false : options[:all]
+    if all
+      download(options['gd_filename'])
+    else
+      download(options['gd_filename'], options['output_filename'], options['sheet'])
+    end
   end
 
   desc "open FILE", "Open local csv file in default editor or Google Spreadsheet containing translations in default browser"
@@ -76,37 +86,47 @@ class Commandline < Thor
   end
 
   no_tasks do
-    def download(filename, output_filename = nil)
+    def download(filename, output_filename = nil, worksheet_index = nil)
       gd = Babelish::GoogleDoc.new
-      if output_filename
-        file_path = gd.download filename.to_s, output_filename
+      if output_filename || worksheet_index
+        file_path = gd.download_spreadsheet filename.to_s, output_filename, worksheet_index
+        files = [file_path].compact
       else
-        file_path = gd.download filename.to_s
+        files = gd.download filename.to_s
+        file_path = files.join("\n")
       end
+
       if file_path
-        say "File '#{filename}' downloaded to '#{file_path}'"
+        say "File '#{filename}' downloaded to :\n#{file_path.to_s}"
       else
         say "Could not download the requested file: #{filename}"
       end
-      file_path
+      files
     end
 
     def csv2base(classname)
       args = options.dup
       if options[:fetch]
         say "Fetching csv file #{options[:filename]} from Google Drive"
-        filename = download(options[:filename])
-        abort unless filename # no file downloaded
+        files = download(options[:filename])
+        abort if files.empty? # no file downloaded
         args.delete(:fetch)
       else
-        filename = options[:filename]
+        files = [options[:filename]]
       end
       args.delete(:langs)
       args.delete(:filename)
 
-      class_object = eval "Babelish::#{classname}"
-      converter = class_object.new(filename, options[:langs], args)
-      say converter.convert
+      files.each_with_index do |filename, index|
+        if options[:output_basenames]
+          args[:output_basename] = options[:output_basenames][index]
+        end
+
+        class_object = eval "Babelish::#{classname}"
+        args = Thor::CoreExt::HashWithIndifferentAccess.new(args)
+        converter = class_object.new(filename, options[:langs], args)
+        say converter.convert
+      end
     end
 
     def base2csv(classname)
@@ -119,6 +139,7 @@ class Commandline < Thor
   end
 
   private
+
   def options
     original_options = super
     return original_options unless File.exists?(".babelish")

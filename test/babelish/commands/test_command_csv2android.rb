@@ -16,11 +16,11 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
     system("rm -rf ./values-fr/")
   end
 
-  def test_csv2android_with_default_path
+  def test_csv2android_with_output_dir
     options = {
     	:filename => "test/data/test_data_multiple_langs.csv",
     	:langs => {"English" => "en", "French" => "fr"},
-    	:default_path => "mynewlocation"
+    	:output_dir => "mynewlocation"
     }
 
     Commandline.new([], options).csv2android
