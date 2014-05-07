@@ -39,4 +39,36 @@ class TestCommandLine < Test::Unit::TestCase
     system("rm -f .babelish")
   end
 
+  def test_base2csv_with_config_file_all_required_options
+    options = {
+      :filenames => ["test/data/test_en.strings", "test/data/test_fr.strings"],
+    }
+    config_file = File.new(".babelish", "w")
+    config_file.write options.to_yaml
+    config_file.close
+
+    assert_nothing_raised do
+      Commandline.new.strings2csv
+    end
+
+    #clean up
+    system("rm -f translations.csv")
+    system("rm -f .babelish")
+  end
+
+  def test_base2csv_with_config_without_filenames_fails
+    options = {
+    }
+    config_file = File.new(".babelish", "w")
+    config_file.write options.to_yaml
+    config_file.close
+
+    assert_raises do
+      Commandline.new.strings2csv
+    end
+
+    #clean up
+    system("rm -f .babelish")
+  end
+
 end

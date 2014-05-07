@@ -41,7 +41,7 @@ class Commandline < Thor
 
   BASECLASSES.each do |klass|
     desc "#{klass[:name].downcase}", "Convert #{klass[:ext]} files to CSV file"
-    method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of strings files (FILENAMES)", :required => true
+    method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of strings files (FILENAMES)"
 
     # optional options
     method_option :csv_filename, :type => :string, :aliases => "-o", :desc => "location of output file"
