@@ -4,7 +4,7 @@ class TestBins < Test::Unit::TestCase
   def test_csv2strings_with_google_doc
     omit if ENV['TRAVIS']
     assert_nothing_raised do
-      system("./bin/csv2strings --fetch --filename test.csv")
+      system("./bin/csv2strings --fetch --filename my_strings --langs English:en")
     end
     assert_equal $?.exitstatus, 0
   end

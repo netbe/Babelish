@@ -138,6 +138,10 @@ class Commandline < Thor
     end
   end
 
+  def self.exit_on_failure?
+    true
+  end
+  
   private
 
   def options
