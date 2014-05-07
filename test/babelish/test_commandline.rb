@@ -57,14 +57,43 @@ class TestCommandLine < Test::Unit::TestCase
   end
 
   def test_base2csv_with_config_without_filenames_fails
-    options = {
-    }
+    options = {}
     config_file = File.new(".babelish", "w")
     config_file.write options.to_yaml
     config_file.close
 
     assert_raises do
       Commandline.new.strings2csv
+    end
+
+    #clean up
+    system("rm -f .babelish")
+  end
+
+  def test_csv_download_without_gd_filename_fails
+    options = {}
+    config_file = File.new(".babelish", "w")
+    config_file.write options.to_yaml
+    config_file.close
+
+    assert_raises do
+      Commandline.new.csv_download
+    end
+
+    #clean up
+    system("rm -f .babelish")
+  end
+
+
+  def test_csv_download_with_required_params
+    omit if ENV['TRAVIS']
+    options = {:gd_filename => "my_strings"}
+    config_file = File.new(".babelish", "w")
+    config_file.write options.to_yaml
+    config_file.close
+
+    assert_nothing_raised do
+      Commandline.new.csv_download
     end
 
     #clean up

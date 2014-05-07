@@ -16,8 +16,6 @@ class Commandline < Thor
     method_option :filename, :type => :string, :aliases => "-i", :desc => "CSV file to convert from or name of file in Google Drive"
     method_option :langs, :type => :hash, :aliases => "-L", :desc => "Languages to convert. i.e. English:en"
 
-
-
     # optional options
     method_option :excluded_states, :type => :array, :aliases => "-x", :desc => "Exclude rows with given state"
     method_option :state_column, :type => :numeric, :aliases => "-s", :desc => "Position of column for state if any"
@@ -53,16 +51,18 @@ class Commandline < Thor
   end
 
   desc "csv_download", "Download Google Spreadsheet containing translations"
-  method_option :gd_filename, :type => :string, :required => :true, :desc => "File to download from Google Drive."
+  method_option :gd_filename, :type => :string, :desc => "File to download from Google Drive."
   method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0."
   method_option :all, :type => :boolean, :lazy_default => true, :desc => "Download all worksheets to individual csv files."
   method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file."
   def csv_download
     all = options[:sheet] ? false : options[:all]
+    filename = options['gd_filename']
+    raise ArgumentError.new("csv_download command : missing file to download") unless filename
     if all
-      download(options['gd_filename'])
+      download(filename)
     else
-      download(options['gd_filename'], options['output_filename'], options['sheet'])
+      download(filename, options['output_filename'], options['sheet'])
     end
   end
 
@@ -141,7 +141,7 @@ class Commandline < Thor
   def self.exit_on_failure?
     true
   end
-  
+
   private
 
   def options
