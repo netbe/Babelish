@@ -9,6 +9,15 @@ class TestBins < Test::Unit::TestCase
     assert_equal $?.exitstatus, 0
   end
 
+  def test_csv2strings_with_google_doc_missing_langs
+    omit if ENV['TRAVIS']
+    assert_nothing_raised do
+      system("./bin/csv2strings --fetch --filename my_strings")
+    end
+    assert_equal $?.exitstatus, 1
+  end
+
+
   def test_csv2strings_with_config_file
     system("cp .babelish.sample .babelish")
 
