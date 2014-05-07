@@ -21,9 +21,9 @@ module Babelish
       @langs = langs
 
       # check input types
-      raise "wrong value of filename: " + filename.inspect unless filename.is_a?(String)
+      raise ArgumentError.new("wrong value of filename: #{filename.inspect}") unless filename.is_a?(String)
       if !@langs.is_a?(Hash) || @langs.size == 0
-        raise "wrong format or/and langs parameter: " + @langs.inspect
+        raise ArgumentError.new("wrong format or/and langs parameter: #{@langs.inspect}")
       end
 
       @output_basename = args[:output_basename]
