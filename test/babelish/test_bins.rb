@@ -17,7 +17,6 @@ class TestBins < Test::Unit::TestCase
     assert_equal $?.exitstatus, 1
   end
 
-
   def test_csv2strings_with_config_file
     system("cp .babelish.sample .babelish")
 
