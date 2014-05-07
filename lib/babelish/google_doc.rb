@@ -14,7 +14,7 @@ module Babelish
 
     def download(requested_filename)
       file = file_with_name(requested_filename)
-      return nil unless file
+      return [] unless file
       files = []
       file.worksheets.each_with_index do |worksheet, index|
         files << download_spreadsheet(requested_filename, "translations_#{worksheet.title}.csv", index)
