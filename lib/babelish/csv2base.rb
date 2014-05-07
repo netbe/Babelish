@@ -19,9 +19,13 @@ module Babelish
       args = default_args.merge!(args)
       args = Thor::CoreExt::HashWithIndifferentAccess.new(args)
       @langs = langs
+
+      # check input types
+      raise "wrong value of filename: " + filename.inspect unless filename.is_a?(String)
       if !@langs.is_a?(Hash) || @langs.size == 0
         raise "wrong format or/and langs parameter: " + @langs.inspect
       end
+
       @output_basename = args[:output_basename]
       @output_dir = args[:output_dir].to_s
       @csv_filename = filename

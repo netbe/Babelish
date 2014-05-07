@@ -13,8 +13,8 @@ class Commandline < Thor
 
   CSVCLASSES.each do |klass|
     desc "#{klass[:name].downcase}", "Convert CSV file to #{klass[:ext]}"
+    method_option :filename, :type => :string, :aliases => "-i", :desc => "CSV file to convert from or name of file in Google Drive"
     method_option :langs, :type => :hash, :aliases => "-L", :desc => "Languages to convert. i.e. English:en"
-    method_option :filename, :type => :string, :aliases => "-i", :desc => "CSV file to convert from or name of file in Google Drive", :required => true
 
 
 
