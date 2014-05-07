@@ -20,7 +20,7 @@ module Babelish
       args = Thor::CoreExt::HashWithIndifferentAccess.new(args)
       @langs = langs
       if !@langs.is_a?(Hash) || @langs.size == 0
-        raise "wrong format or/and langs parameter" + @langs.inspect
+        raise "wrong format or/and langs parameter: " + @langs.inspect
       end
       @output_basename = args[:output_basename]
       @output_dir = args[:output_dir].to_s
