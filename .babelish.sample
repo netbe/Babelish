@@ -24,7 +24,6 @@ langs:                             # Languages to convert. i.e. English:en
 # keys_column: 0                     # Position of column for keys
 # default_lang: "English"            # Default language to use for empty values if any
 # output_dir: "resources/"         # Path of output files
-# output_file: "myOnlyFile.strings"  # --IGNORED-- Path of a single output file. Overrides 'output_dir'
 # output_basenames:
 #   - Localizable
 #   - info
