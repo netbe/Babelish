@@ -9,6 +9,7 @@
 
 # Config file
 .babelish
+.babelish.token
 
 # SimpleCov
 coverage
@@ -28,3 +29,4 @@ Gemfile.lock
 
 doc
 .yardoc
+

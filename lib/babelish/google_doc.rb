@@ -40,8 +40,8 @@ module Babelish
     end
 
     def authenticate
-      # will try to get token from ~/.ruby_google_drive.token
-      @session = GoogleDrive.saved_session
+      # will try to get token and store in file below
+      @session = GoogleDrive.saved_session ".babelish.token"
     end
 
     def file_with_name(name)
