@@ -25,6 +25,7 @@ class Commandline < Thor
     method_option :output_basenames, :type => :array, :aliases => "-o", :desc => "Basename of output files"
     method_option :ignore_lang_path, :type => :boolean, :aliases => "-I", :default => false, :desc => "Ignore the path component of langs"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
+    method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0."
     define_method("#{klass[:name].downcase}") do
       csv2base(klass[:name])
     end
@@ -108,7 +109,7 @@ class Commandline < Thor
       args = options.dup
       if options[:fetch]
         say "Fetching csv file #{options[:filename]} from Google Drive"
-        files = download(options[:filename])
+        files = download(options[:filename], nil, options[:sheet])
         abort if files.empty? # no file downloaded
         args.delete(:fetch)
       else
