@@ -93,7 +93,7 @@ class Commandline < Thor
         files = [file_path].compact
       else
         files = gd.download filename.to_s
-        file_path = files.join("\n")
+        file_path = files.join("\n") unless files.empty?
       end
 
       if file_path
