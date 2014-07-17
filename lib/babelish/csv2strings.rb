@@ -4,13 +4,11 @@ module Babelish
     def language_filepaths(language)
       require 'pathname'
       filepaths = []
-      filename = @output_basename || 'Localizable'
-
       if language.regions.empty?
-        filepaths << Pathname.new(@output_dir) + "#{language.code}.lproj/#{filename}.strings"
+        filepaths << Pathname.new(@output_dir) + "#{language.code}.lproj/#{output_basename}.#{extension}"
       else
         language.regions.each do |region|
-          filepaths << Pathname.new(@output_dir) + "#{language.code}-#{region}.lproj/#{filename}.strings"
+          filepaths << Pathname.new(@output_dir) + "#{language.code}-#{region}.lproj/#{output_basename}.#{extension}"
         end
       end
       filepaths
@@ -22,6 +20,10 @@ module Babelish
 
     def extension
       "strings"
+    end
+
+    def output_basename
+      @output_basename || 'Localizable'
     end
   end
 end

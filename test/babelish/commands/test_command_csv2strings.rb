@@ -103,6 +103,21 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     system("rm -rf ./fr.lproj/")
   end
 
+  def test_csv2strings_with_ignore_lang_path_option_local
+    options = {
+      :filename => "test/data/test_data.csv",
+      :langs => {"English" => "en"},
+      :ignore_lang_path => true,
+    }
+
+    Commandline.new([], options).csv2strings
+    # testing
+    assert File.exist?("./Localizable.strings"), "can't find output file for English with_ignore_lang_path_option"
+
+    #clean up
+    system("rm -f ./Localizable.strings")
+  end
+
   def teardown
 
     system("rm -f .babelish")

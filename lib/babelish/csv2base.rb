@@ -54,7 +54,7 @@ module Babelish
     end
 
     def default_filepath
-      Pathname.new(@output_dir) + "#{@output_basename}.#{extension}"
+      Pathname.new(@output_dir) + "#{output_basename}.#{extension}"
     end
 
     def process_value(row_value, default_value)
