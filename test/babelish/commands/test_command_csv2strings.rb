@@ -85,7 +85,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     omit if ENV['TRAVIS']
     options = {
       :filename => "my_strings",
-      :langs => {"English" => "en", "French" => "fr"},
+      :langs => {"English" => "en"},
       :fetch => true,
       :ignore_lang_path => true,
       :output_basenames => %w(sheet1 sheet2),
@@ -94,13 +94,11 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     Commandline.new([], options).csv2strings
     # testing
     assert File.exist?("./sheet1.strings"), "can't find output file for sheet1 English with_ignore_lang_path_option"
-    assert File.exist?("./sheet1.strings"), "can't find output file for sheet1 French with_ignore_lang_path_option"
     assert File.exist?("./sheet2.strings"), "can't find output file for sheet2 English with_ignore_lang_path_option"
-    assert File.exist?("./sheet2.strings"), "can't find output file for sheet2 French with_ignore_lang_path_option"
 
     #clean up
-    system("rm -rf ./en.lproj/")
-    system("rm -rf ./fr.lproj/")
+    system("rm -f sheet1.strings")
+    system("rm -f sheet2.strings")
   end
 
   def test_csv2strings_with_ignore_lang_path_option_local
