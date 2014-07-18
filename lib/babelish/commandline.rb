@@ -23,7 +23,7 @@ class Commandline < Thor
     method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
     method_option :output_dir, :type => :string, :aliases => "-d", :desc => "Path of output files"
     method_option :output_basenames, :type => :array, :aliases => "-o", :desc => "Basename of output files"
-    method_option :ignore_lang_path, :type => :boolean, :aliases => "-I", :default => false, :desc => "Ignore the path component of langs"
+    method_option :ignore_lang_path, :type => :boolean, :aliases => "-I", :lazy_default => false, :desc => "Ignore the path component of langs"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
     method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0."
     define_method("#{klass[:name].downcase}") do
