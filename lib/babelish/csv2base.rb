@@ -94,10 +94,11 @@ module Babelish
 
           #header
           if rowIndex == 0
+            # defaultCol can be the keyValue
+            defaultCol = i if self.default_lang == row[i]
             # ignore all headers not listed in langs to create files
             (excludedCols << i and next) unless @langs.has_key?(row[i])
 
-            defaultCol = i if self.default_lang == row[i]
             language = Language.new(row[i])
             if @langs[row[i]].is_a?(Array)
               @langs[row[i]].each do |id|
@@ -110,7 +111,8 @@ module Babelish
           elsif !@state_column || (row[@state_column].nil? || row[@state_column] == '' || !@excluded_states.include?(row[@state_column]))
             # TODO: add option to strip the constant or referenced language
             key = row[@keys_column].strip
-            value = self.process_value(row[i], row[defaultCol])
+            default_value =  self.default_lang ? row[defaultCol] : nil
+            value = self.process_value(row[i], default_value)
 
             @languages[i].add_content_pair(key, value)
           end
