@@ -24,7 +24,7 @@ langs:                               # Languages to convert. i.e. English:en
 # keys_column: 0                     # Position of column for keys
 # default_lang: "English"            # Header name of column containing fallback value if value is empty
 # output_dir: "resources/"           # Path of output files
-# output_basenames:
+# output_basenames:                  # Basename of output files
 #  - Localizable
 #  - info
 # ignore_lang_path: true             # does not care about lang component path. i.e: en.lproj/
