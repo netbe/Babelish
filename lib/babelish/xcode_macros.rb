@@ -1,9 +1,8 @@
 module Babelish
   module XcodeMacros
-
     def self.write_macros(file_path, table, keys)
       file = File.new(file_path, "w")
-      file.write self.process(table, keys)
+      file.write process(table, keys)
       file.close
     end
 
@@ -16,6 +15,5 @@ module Babelish
       end
       content
     end
-
   end
 end
