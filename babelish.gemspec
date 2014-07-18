@@ -6,7 +6,7 @@ require 'babelish/version'
 Gem::Specification.new do |s|
   s.name        = 'babelish'
   s.version     = Babelish::VERSION
-  s.date        = '2014-05-07'
+  s.date        = '2014-07-18'
   s.summary     = "CSV converter for localization files"
   s.description = "This set of commands converts a CSV file to the following formats:
                   - .strings (iOS)
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
                   - .php"
   s.authors     = ["François Benaiteau", "Markus Paeschke"]
   s.email       = ['francois.benaiteau@gmail.com', 'markus.paeschke@gmail.com']
-  s.homepage    = 'https://github.com/netbe/CSV-to-iOS-Localizable.strings-converter'
+  s.homepage    = 'http://netbe.github.io/Babelish/'
   s.license = 'MIT'
 
   s.add_dependency "thor"
