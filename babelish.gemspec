@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "thor"
 
-  s.add_dependency "google_drive"
+  s.add_dependency "google_drive", "~> 0.3.10"
   # google_drive dependency to ask for mail and password
   s.add_dependency "highline"
 
