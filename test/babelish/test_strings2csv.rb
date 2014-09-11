@@ -40,6 +40,15 @@ class TestStrings2CSV < Test::Unit::TestCase
     assert_nil output, "output should be nil with wrong syntax"
   end
 
+  def test_parse_dotstrings_line_with_comment
+    input = String.new(<<-EOS)
+    /* Class = "IBUIButton"; normalTitle = "Wibble"; ObjectID = "xxx-xx-123"; */
+    EOS
+
+    output = Babelish::Strings2CSV.new.parse_dotstrings_line input
+    assert_nil output, "output should be nil with comment"
+  end
+
   def test_load_strings_with_wrong_file
     assert_raise(Errno::ENOENT) do
       output = Babelish::Strings2CSV.new.load_strings "file that does not exist.strings"
