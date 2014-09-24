@@ -15,8 +15,13 @@ module Babelish
 
     def process(table, keys)
       keys.each do |key|
+        macro_name = "LS_#{key.upcase}" 
+        macro_name += "_#{table.upcase}" if table != "Localizable" 
+        macro_name.gsub!(' ', '')
+        macro_name.gsub!('.', '_')
+        macro_name.gsub!('-', '_')
         @content << String.new(<<-EOS)
-#define #{key} NSLocalizedStringFromTable(@"#{key}",@"#{table}",@"")
+#define #{macro_name} NSLocalizedStringFromTable(@"#{key}",@"#{table}",@"")
         EOS
       end
       @content
