@@ -11,7 +11,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     assert File.exist?("./en.lproj/Localizable.strings")
     assert File.exist?("./fr.lproj/Localizable.strings")
 
-    #clean up
+    # clean up
     system("rm -rf ./en.lproj/")
     system("rm -rf ./fr.lproj/")
   end
@@ -28,7 +28,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     assert File.exist?("./mynewlocation/en.lproj/Localizable.strings"), "can't find output file for English in mynewlocation folder"
     assert File.exist?("./mynewlocation/fr.lproj/Localizable.strings"), "can't find output file for French in mynewlocation folder"
 
-    #clean up
+    # clean up
     system("rm -rf ./mynewlocation")
   end
 
@@ -43,7 +43,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       Commandline.new([], options).csv2strings
     end
 
-    #clean up
+    # clean up
     system("rm -rf ./en.lproj/")
     system("rm -rf ./fr.lproj/")
   end
@@ -55,7 +55,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       Commandline.new.csv2strings
     end
 
-    #clean up
+    # clean up
     system("rm -rf ./en.lproj/")
     system("rm -rf ./fr.lproj/")
   end
@@ -76,7 +76,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     assert File.exist?("./en.lproj/sheet2.strings"), "can't find output file for sheet2 English"
     assert File.exist?("./fr.lproj/sheet2.strings"), "can't find output file for sheet2 French"
 
-    #clean up
+    # clean up
     system("rm -rf ./en.lproj/")
     system("rm -rf ./fr.lproj/")
   end
@@ -96,7 +96,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     assert File.exist?("./sheet1.strings"), "can't find output file for sheet1 English with_ignore_lang_path_option"
     assert File.exist?("./sheet2.strings"), "can't find output file for sheet2 English with_ignore_lang_path_option"
 
-    #clean up
+    # clean up
     system("rm -f sheet1.strings")
     system("rm -f sheet2.strings")
   end
@@ -112,8 +112,24 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     # testing
     assert File.exist?("./Localizable.strings"), "can't find output file for English with_ignore_lang_path_option"
 
-    #clean up
+    # clean up
     system("rm -f ./Localizable.strings")
+  end
+
+  def test_csv2string_with_macros_filename
+    options = {
+      :filename => "test/data/test_data.csv",
+      :macros_filename => "Babelish.h",
+      :langs => { "English" => "en" }
+    }
+
+    Commandline.new([], options).csv2strings
+    # testing
+    assert File.exist?("./Babelish.h"), "can't find macros file"
+
+    # clean up
+    system("rm -f ./Localizable.strings")
+    system("rm -f ./Babelish.h")
   end
 
   def teardown

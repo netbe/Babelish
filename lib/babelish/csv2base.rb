@@ -43,6 +43,18 @@ module Babelish
       return File.new(file_path, "w")
     end
 
+    def keys
+      @languages.each do |lang|
+        next unless lang
+        return lang.content.keys unless lang.content.keys.empty?
+      end
+      return []
+    end
+
+    def table
+      output_basename
+    end
+
     def language_filepaths(language)
       #implement in subclass
       []

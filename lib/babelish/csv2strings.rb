@@ -1,5 +1,6 @@
 module Babelish
   class CSV2Strings < Csv2Base
+    attr_accessor :languages
 
     def language_filepaths(language)
       require 'pathname'
