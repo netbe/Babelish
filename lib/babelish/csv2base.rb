@@ -44,7 +44,11 @@ module Babelish
     end
 
     def keys
-      @languages.first ? @languages.first.content.keys : []
+      @languages.each do |lang|
+        next unless lang
+        return lang.content.keys unless lang.content.keys.empty?
+      end
+      return []
     end
 
     def table
