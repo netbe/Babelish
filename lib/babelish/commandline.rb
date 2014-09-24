@@ -133,10 +133,10 @@ class Commandline < Thor
         say converter.convert
         xcode_macros.process(converter.table, converter.keys) if options[:macros_filename]
       end
-        if options[:macros_filename]
-          say "generating macros"
-          xcode_macros.write_content(options[:macros_filename])
-        end
+      if options[:macros_filename]
+        say "generating macros"
+        xcode_macros.write_content(options[:macros_filename])
+      end
     end
 
     def base2csv(classname)
