@@ -77,7 +77,6 @@ class TestCSV2Strings < Test::Unit::TestCase
 "ANOTHER_STRING" = "ANOTHER_STRING";
     EOS
     csv_file = "test/data/test_data_multiple_langs.csv"
-    spanish_file = "es.lproj/Localizable.strings"
     converter = Babelish::CSV2Strings.new(csv_file,
     {'English' => [:en], "French" => "fr", "German" => "de", "Spanish" => "es"},
     :default_lang => "variables")

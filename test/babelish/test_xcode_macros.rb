@@ -34,7 +34,6 @@ class TestXcodeMacros < Test::Unit::TestCase
     system("rm -f ./Babelish.h")
   end
 
-
   def test_write_macros_process
     keys = ["login.title", "login.button"]
     table = "Localizable"
