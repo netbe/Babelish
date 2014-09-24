@@ -32,7 +32,7 @@ module Babelish
 //  https://github.com/netbe/babelish
 //
         EOS
-      header.gsub! "file_path", file_path
+      header.gsub! "file_path", File.basename(file_path)
       file = File.new(file_path, "w")
       file.write header + @content
       file.close
