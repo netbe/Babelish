@@ -43,6 +43,14 @@ module Babelish
       return File.new(file_path, "w")
     end
 
+    def keys
+      @languages.first ? @languages.first.content.keys : []
+    end
+
+    def table
+      output_basename
+    end
+
     def language_filepaths(language)
       #implement in subclass
       []

@@ -116,6 +116,22 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
     system("rm -f ./Localizable.strings")
   end
 
+  def test_csv2string_with_macros_filename
+    options = {
+      :filename => "test/data/test_data.csv",
+      :macros_filename => "Babelish.h",
+      :langs => {"English" => "en"}
+    }
+
+    Commandline.new([], options).csv2strings
+    # testing
+    assert File.exist?("./Babelish.h"), "can't find macros file"
+
+    #clean up
+    system("rm -f ./Localizable.strings")
+    system("rm -f ./Babelish.h")
+  end
+
   def teardown
 
     system("rm -f .babelish")

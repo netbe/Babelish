@@ -25,7 +25,10 @@ class Commandline < Thor
     method_option :output_basenames, :type => :array, :aliases => "-o", :desc => "Basename of output files"
     method_option :ignore_lang_path, :type => :boolean, :aliases => "-I", :lazy_default => false, :desc => "Ignore the path component of langs"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
-    method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0."
+    method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0"
+    if klass[:name] == "CSV2Strings"
+      method_option :macros_filename, :type => :boolean, :aliases => "-m", :lazy_default => false, :desc => "Filename containing defines of localized keys"
+    end
     define_method("#{klass[:name].downcase}") do
       csv2base(klass[:name])
     end
@@ -118,6 +121,7 @@ class Commandline < Thor
       args.delete(:langs)
       args.delete(:filename)
 
+      xcode_macros = Babelish::XcodeMacros.new if options[:macros_filename]
       files.each_with_index do |filename, index|
         if options[:output_basenames]
           args[:output_basename] = options[:output_basenames][index]
@@ -127,7 +131,12 @@ class Commandline < Thor
         args = Thor::CoreExt::HashWithIndifferentAccess.new(args)
         converter = class_object.new(filename, options[:langs], args)
         say converter.convert
+        xcode_macros.process(converter.table, converter.keys) if options[:macros_filename]
       end
+        if options[:macros_filename]
+          say "generating macros"
+          xcode_macros.write_content(options[:macros_filename])
+        end
     end
 
     def base2csv(classname)

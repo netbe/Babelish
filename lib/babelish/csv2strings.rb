@@ -1,5 +1,15 @@
 module Babelish
   class CSV2Strings < Csv2Base
+    attr_accessor :languages
+
+    def initialize(filename, langs, args = {})
+      super(filename, langs, args)
+      default_args = {
+        :excluded_states => [],
+        :state_column => nil,
+        :keys_column => 0
+      }
+    end
 
     def language_filepaths(language)
       require 'pathname'
