@@ -115,9 +115,9 @@ class TestStrings2CSV < Test::Unit::TestCase
       assert_equal filenames, converter.filenames
     end
 
-    def test_initialize_with_default_values
-      converter = Babelish::Strings2CSV.new
-      assert_not_nil converter.csv_filename
-    end
+  def test_initialize_with_default_values
+    converter = Babelish::Strings2CSV.new
+    assert_not_nil converter.csv_filename
+  end
 
   end
