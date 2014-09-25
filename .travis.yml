@@ -11,3 +11,4 @@ deploy:
   on:
     tags: true
     repo: netbe/Babelish
+    all_branches: true
