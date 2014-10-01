@@ -75,7 +75,6 @@ module Babelish
       value.gsub!(/\\*\"/, "\\\"") #escape double quotes
       value.gsub!(/\s*(\n|\\\s*n)\s*/, "\\n") #replace new lines with \n + strip
       value.gsub!(/%\s+([a-zA-Z@])([^a-zA-Z@]|$)/, "%\\1\\2") #repair string formats ("% d points" etc)
-      value.gsub!(/([^0-9\s\(\{\[^])%/, "\\1 %")
       value.strip!
       return value.to_utf8
     end
