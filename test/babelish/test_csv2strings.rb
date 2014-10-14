@@ -90,11 +90,11 @@ class TestCSV2Strings < Test::Unit::TestCase
 "GREETINGS" = "hello_%@";
 "ANOTHER_STRING" = "hello";
     EOS
-    csv_file = 'test/data/test_data_with_percent.csv'
-    converter = Babelish::CSV2Strings.new(csv_file, 'English' => [:en])
+    csv_file = "test/data/test_data_with_percent.csv"
+    converter = Babelish::CSV2Strings.new(csv_file, "English" => [:en])
     converter.convert
-    result = File.read('en.lproj/Localizable.strings')
+    result = File.read("en.lproj/Localizable.strings")
     assert_equal expected_output, result
-    system('rm -rf *.lproj')
+    system("rm -rf *.lproj")
   end
 end
