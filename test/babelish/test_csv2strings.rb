@@ -97,4 +97,17 @@ class TestCSV2Strings < Test::Unit::TestCase
     assert_equal expected_output, result
     system("rm -rf *.lproj")
   end
+
+  def test_converting_csv_to_dotstrings_with_spaces
+    expected_output = String.new(<<-EOS)
+"GREETINGS" = "hello ";
+"ANOTHER_STRING" = " my other string with space at begin";
+    EOS
+    csv_file = "test/data/test_data_with_spaces.csv"
+    converter = Babelish::CSV2Strings.new(csv_file, "English" => [:en])
+    converter.convert
+    result = File.read("en.lproj/Localizable.strings")
+    assert_equal expected_output, result
+    system("rm -rf *.lproj")
+  end
 end

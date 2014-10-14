@@ -72,10 +72,11 @@ module Babelish
     def process_value(row_value, default_value)
       value = row_value.nil? ? default_value : row_value
       value = "" if value.nil?
-      value.gsub!(/\\*\"/, "\\\"") #escape double quotes
-      value.gsub!(/\s*(\n|\\\s*n)\s*/, "\\n") #replace new lines with \n + strip
-      value.gsub!(/%\s+([a-zA-Z@])([^a-zA-Z@]|$)/, "%\\1\\2") #repair string formats ("% d points" etc)
-      value.strip!
+      value.gsub!(/\\*\"/, "\\\"") # escape double quotes
+      value.gsub!(/\s*(\n|\\\s*n)\s*/, "\\n") # replace new lines with \n + strip
+      # The following value processing should be optional
+      value.gsub!(/%\s+([a-zA-Z@])([^a-zA-Z@]|$)/, "%\\1\\2") # repair string formats ("% d points" etc)
+      value.strip! # avoid case where space exist but gdoc don't show it in view mode
       return value.to_utf8
     end
 
