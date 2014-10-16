@@ -34,6 +34,7 @@ module Babelish
       @keys_column = args[:keys_column]
       @default_lang = args[:default_lang]
       @ignore_lang_path = args[:ignore_lang_path]
+      @skip_newlines_strip = args[:skip_newlines_strip]
       @languages = []
     end
 
@@ -73,7 +74,13 @@ module Babelish
       value = row_value.nil? ? default_value : row_value
       value = "" if value.nil?
       value.gsub!(/\\*\"/, "\\\"") #escape double quotes
-      value.gsub!(/\s*(\n|\\\s*n)\s*/, "\\n") #replace new lines with \n + strip
+      
+      if @skip_newlines_strip
+        value.gsub!(/\n/, "\\n") #replace new lines with \n, dont strip
+      else
+        value.gsub!(/\s*(\n|\\\s*n)\s*/, "\\n") #replace new lines with \n + strip
+      end
+      
       value.gsub!(/%\s+([a-zA-Z@])([^a-zA-Z@]|$)/, "%\\1\\2") #repair string formats ("% d points" etc)
       value.strip!
       return value.to_utf8
