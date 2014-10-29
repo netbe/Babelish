@@ -76,7 +76,6 @@ module Babelish
       value.gsub!(/\s*(\n|\\\s*n)\s*/, "\\n") # replace new lines with \n + strip
       # The following value processing should be optional
       value.gsub!(/%\s+([a-zA-Z@])([^a-zA-Z@]|$)/, "%\\1\\2") # repair string formats ("% d points" etc)
-      value.strip! # avoid case where space exist but gdoc don't show it in view mode
       return value.to_utf8
     end
 
