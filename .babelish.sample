@@ -1,6 +1,6 @@
 # This is a sample configuration file
 
-# Base2CSV
+###################################### Base2CSV ######################################
 
 ## required, location of strings files (FILENAMES)
 filenames: ["test/data/test_en.strings", "test/data/test_fr.strings"]
@@ -10,7 +10,7 @@ filenames: ["test/data/test_en.strings", "test/data/test_fr.strings"]
 # csv_filename: "testconfig.csv"              # location of output file
 # dryrun: true                                # prints out content of hash without writing file
 
-# CSV2Base
+###################################### CSV2Base ######################################
 
 ## required
 filename: test/data/test_data.csv    # CSV file (CSV_FILENAME) to convert from or name of file in Google Drive
@@ -30,3 +30,4 @@ langs:                               # Languages to convert. i.e. English:en
 # ignore_lang_path: true             # does not care about lang component path. i.e: en.lproj/
 # sheet: 0                           # Index of worksheet to download. First index is 0.
 # macros_filename: Babelish.h        # File to output the defines of localized strings
+# stripping: false				     # Strips values inside the spreadsheet

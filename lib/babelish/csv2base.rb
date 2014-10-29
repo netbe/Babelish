@@ -34,7 +34,7 @@ module Babelish
       @keys_column = args[:keys_column]
       @default_lang = args[:default_lang]
       @ignore_lang_path = args[:ignore_lang_path]
-      @skip_newlines_strip = args[:skip_newlines_strip]
+      @stripping = args[:stripping]
       @languages = []
     end
 
@@ -73,13 +73,9 @@ module Babelish
     def process_value(row_value, default_value)
       value = row_value.nil? ? default_value : row_value
       value = "" if value.nil?
-      value.gsub!(/\\*\"/, "\\\"") #escape double quotes
-      
-      if @skip_newlines_strip
-        value.gsub!(/\n/, "\\n") #replace new lines with \n, dont strip
-      else
-        value.gsub!(/\s*(\n|\\\s*n)\s*/, "\\n") #replace new lines with \n + strip
-      end
+      value.gsub!(/\\*\"/, "\\\"") # escape double quotes
+      value.gsub!(/\n/, "\\n") # replace new lines with \n, dont strip
+      value.strip! if @stripping
       return value.to_utf8
     end
 
@@ -124,8 +120,8 @@ module Babelish
             end
             @languages[i] = language
           elsif !@state_column || (row[@state_column].nil? || row[@state_column] == '' || !@excluded_states.include?(row[@state_column]))
-            # TODO: add option to strip the constant or referenced language
-            key = row[@keys_column].strip
+            key = row[@keys_column]
+            key.strip! if @stripping
             default_value =  self.default_lang ? row[defaultCol] : nil
             value = self.process_value(row[i], default_value)
 
