@@ -15,11 +15,13 @@ module Babelish
 
     def process(table, keys)
       keys.each do |key|
-        macro_name = "LS_#{key.upcase}" 
+        clean_key = key.gsub(' ', '')
+        clean_key.gsub!(/[[:punct:]]/, '_')       
+        clean_key.gsub!('__', '_')
+        clean_key = clean_key[1..clean_key.size-1] if clean_key[0] == '_'
+        clean_key = clean_key[0..clean_key.size-2] if clean_key.size > 1 and clean_key[clean_key.size-1] == '_'
+        macro_name = "LS_#{clean_key.upcase}" 
         macro_name += "_#{table.upcase}" if table != "Localizable" 
-        macro_name.gsub!(' ', '')
-        macro_name.gsub!('.', '_')
-        macro_name.gsub!('-', '_')
         @content << String.new(<<-EOS)
 #define #{macro_name} NSLocalizedStringFromTable(@"#{key}",@"#{table}",@"")
         EOS
