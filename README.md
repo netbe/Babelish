@@ -40,7 +40,7 @@ Options:
 ```
 
 You can use a **configuration file** to hold all your commandline arguments into a file.
-Place a `.babelish` file (YAML) in your repo where you will run the command.
+Place a `.babelish` file (YAML) in your repo where you will run the command. In case you need to reset the Google Drive token you have to delete the .babelish.token file.
 See [.babelish.sample](.babelish.sample) file in the doc folder. as the possible values.
 
 *For previous CSV-to-iOS-Localizable.strings-converter, rename your `.csvconverter` into `.babelish`.*
