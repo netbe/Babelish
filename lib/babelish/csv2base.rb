@@ -79,8 +79,8 @@ module Babelish
       return value.to_utf8
     end
 
-    def get_row_format(row_key, row_value)
-      return "\"" + row_key + "\" = \"" + row_value + "\""
+    def get_row_format(row_key, row_value, indentation = 0)
+      return "\"" + row_key + "\"" + " " * indentation + " = \"" + row_value + "\""
     end
 
     # Convert csv file to multiple Localizable.strings files for each column
@@ -164,9 +164,10 @@ module Babelish
 
     def hash_to_output(content = {})
       output = ''
+      indentation = content.map(&:first).max{|a, b| a.length <=> b.length}.length
       if content && content.size > 0
         content.each do |key, value|
-          output += get_row_format(key, value)
+          output += get_row_format(key, value, indentation - key.length)
         end
       end
       return output
