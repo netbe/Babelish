@@ -21,6 +21,7 @@ class Commandline < Thor
     method_option :state_column, :type => :numeric, :aliases => "-s", :desc => "Position of column for state if any"
     method_option :keys_column,  :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
     method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
+    method_option :csv_separator, :type => :string, :aliases => "-cs", :desc => "CSV column separator character"
     method_option :output_dir, :type => :string, :aliases => "-d", :desc => "Path of output files"
     method_option :output_basenames, :type => :array, :aliases => "-o", :desc => "Basename of output files"
     method_option :stripping, :type => :boolean, :aliases => "-N", :default => false, :desc => "Strips values of spreadsheet"
