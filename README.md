@@ -23,18 +23,18 @@ Requires Ruby 1.9.2 or above.
 ```
 › babelish help
 Commands:
-  babelish android2csv -i, --filenames=one two three              # Convert .xml files to CSV file
-  babelish csv2android --filename=FILENAME -L, --langs=key:value  # Convert CSV file to .xml
-  babelish csv2json --filename=FILENAME -L, --langs=key:value     # Convert CSV file to .json
-  babelish csv2php --filename=FILENAME -L, --langs=key:value      # Convert CSV file to .php
-  babelish csv2strings --filename=FILENAME -L, --langs=key:value  # Convert CSV file to .strings
-  babelish csv_download --gd-filename=GD_FILENAME                 # Download Google Spreadsheet containing translations
-  babelish help [COMMAND]                                         # Describe available commands or one specific command
-  babelish json2csv -i, --filenames=one two three                 # Convert .json files to CSV file
-  babelish php2csv -i, --filenames=one two three                  # Convert .php files to CSV file
-  babelish strings2csv -i, --filenames=one two three              # Convert .strings files to CSV file
-  babelish version                                                # Display current version
-
+  babelish android2csv     # Convert .xml files to CSV file
+  babelish csv2android     # Convert CSV file to .xml
+  babelish csv2json        # Convert CSV file to .json
+  babelish csv2php         # Convert CSV file to .php
+  babelish csv2strings     # Convert CSV file to .strings
+  babelish csv_download    # Download Google Spreadsheet containing translations
+  babelish help [COMMAND]  # Describe available commands or one specific command
+  babelish json2csv        # Convert .json files to CSV file
+  babelish open FILE       # Open local csv file in default editor or Google Spreadsheet containing translations in default browser
+  babelish php2csv         # Convert .php files to CSV file
+  babelish strings2csv     # Convert .strings files to CSV file
+  babelish version         # Display current version
 Options:
   [--verbose], [--no-verbose]
 ```
