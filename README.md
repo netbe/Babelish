@@ -45,6 +45,9 @@ See [.babelish.sample](.babelish.sample) file in the doc folder. as the possible
 
 *For previous CSV-to-iOS-Localizable.strings-converter, rename your `.csvconverter` into `.babelish`.*
 
+**For more details, check the documentation:**
+https://github.com/netbe/Babelish/wiki/How-to-Use
+
 # Contributing
 
 Want to add another support for a new format or/and usage? Add a new feature? Fix a bug?
