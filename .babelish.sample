@@ -20,6 +20,7 @@ langs:                               # Languages to convert. i.e. English:en
 ## optional
 # fetch: true                        # set to true to get file(filename) from google drive
 # excluded_states: ["Images", "Xib"] # Exclude rows with given state
+# comments_column: 4                 # Position of column for comments if any
 # state_column: 3                    # Position of column for state if any
 # keys_column: 0                     # Position of column for keys
 # default_lang: "English"            # Header name of column containing fallback value if value is empty

@@ -1,0 +1,6 @@
+
+/* this is a greeting string */
+"GREETINGS"      = "Salut";
+
+/* this is another example */
+"ANOTHER_STRING" = "testEN";

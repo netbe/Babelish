@@ -16,8 +16,8 @@ module Babelish
       return filepath ? [filepath] : []
     end
 
-    def get_row_format(row_key, row_value)
-      return "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
+    def get_row_format(row_key, row_value, comment = nil, indentation = 0)
+        return "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
     end
 
     def hash_to_output(content = {})
