@@ -23,7 +23,7 @@ class TestCSV2Strings < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_default_lang
     expected_output = String.new(<<-EOS)
-"GREETINGS" = "Buenos dias";
+"GREETINGS"      = "Buenos dias";
 "ANOTHER_STRING" = "testEN";
     EOS
     csv_file = "test/data/test_data_multiple_langs.csv"
@@ -40,7 +40,7 @@ class TestCSV2Strings < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_with_no_default_lang_is_empty
     expected_output = String.new(<<-EOS)
-"GREETINGS" = "Buenos dias";
+"GREETINGS"      = "Buenos dias";
 "ANOTHER_STRING" = "";
     EOS
     csv_file = "test/data/test_data_multiple_langs.csv"
@@ -56,7 +56,7 @@ class TestCSV2Strings < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_default_lang_to_key
     expected_output = String.new(<<-EOS)
-"GREETINGS" = "Buenos dias";
+"GREETINGS"      = "Buenos dias";
 "ANOTHER_STRING" = "ANOTHER_STRING";
     EOS
     csv_file = "test/data/test_data_multiple_langs.csv"
@@ -73,7 +73,7 @@ class TestCSV2Strings < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_keys
     expected_output = String.new(<<-EOS)
-"GREETINGS" = "Buenos dias";
+"GREETINGS"      = "Buenos dias";
 "ANOTHER_STRING" = "ANOTHER_STRING";
     EOS
     csv_file = "test/data/test_data_multiple_langs.csv"
@@ -87,7 +87,7 @@ class TestCSV2Strings < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_with_percent
     expected_output = String.new(<<-EOS)
-"GREETINGS" = "hello_%@";
+"GREETINGS"      = "hello_%@";
 "ANOTHER_STRING" = "hello";
     EOS
     csv_file = "test/data/test_data_with_percent.csv"
@@ -100,7 +100,7 @@ class TestCSV2Strings < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_with_spaces
     expected_output = String.new(<<-EOS)
-"GREETINGS " = "hello ";
+"GREETINGS "     = "hello ";
 "ANOTHER_STRING" = " my other string with space at begin";
     EOS
     csv_file = "test/data/test_data_with_spaces.csv"
@@ -113,8 +113,8 @@ class TestCSV2Strings < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_with_percent_space
     expected_output = String.new(<<-EOS)
-"GREETINGS" = "you have %d points";
-"ANOTHER_STRING" = "this is a string with 10% of juice";
+"GREETINGS"       = "you have %d points";
+"ANOTHER_STRING"  = "this is a string with 10% of juice";
 "ANOTHER_EXAMPLE" = "tu as fait 10% d'efforts";
     EOS
     csv_file = "test/data/test_data_with_percent_space.csv"
@@ -127,7 +127,7 @@ class TestCSV2Strings < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_with_stripping_option
     expected_output = String.new(<<-EOS)
-"GREETINGS" = "hello";
+"GREETINGS"      = "hello";
 "ANOTHER_STRING" = "my other string with space at begin";
     EOS
     csv_file = "test/data/test_data_with_spaces.csv"
