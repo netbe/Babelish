@@ -70,7 +70,7 @@ class TestStrings2CSV < Test::Unit::TestCase
                        "this is a name"=>"a definition"
                       }
     output = Babelish::Strings2CSV.new.load_strings "test/data/test_space.strings"
-    puts output.inspect
+    assert_equal expected_output, output
   end
 
   def test_load_strings_with_empty_lines

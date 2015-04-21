@@ -1,0 +1,10 @@
+"name"= "definition";
+"name1"="definition1";
+"name2"           =           "definition2";
+"name3" = "definition3"   ;
+"name4" = "definition4";
+"this is a name"="a definition";
+wrong format "should be ignored" = "really"  ;
+"should be ignored"wrong format = "really"  ;
+"should be ignored"= "really"  dd;
+"should be ignored"=aa "really";
