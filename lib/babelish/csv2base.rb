@@ -7,7 +7,7 @@ module Babelish
     attr_accessor :csv_filename
     attr_accessor :default_lang
     attr_accessor :csv_separator
-    attr_accessor :excluded_states, :state_column, :keys_column
+    attr_accessor :excluded_states, :state_column, :keys_column, :comments_column
     attr_accessor :languages
 
     def initialize(filename, langs, args = {})
@@ -59,6 +59,10 @@ module Babelish
 
     def table
       output_basename
+    end
+
+    def comments
+      @comments  
     end
 
     def language_filepaths(language)

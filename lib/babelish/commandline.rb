@@ -134,7 +134,7 @@ class Commandline < Thor
         args = Thor::CoreExt::HashWithIndifferentAccess.new(args)
         converter = class_object.new(filename, options[:langs], args)
         say converter.convert
-        xcode_macros.process(converter.table, converter.keys) if options[:macros_filename]
+        xcode_macros.process(converter.table, converter.keys, converter.comments) if options[:macros_filename]
       end
       if options[:macros_filename]
         say "generating macros"
