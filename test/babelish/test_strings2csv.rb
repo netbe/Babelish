@@ -5,30 +5,30 @@ class TestStrings2CSV < Test::Unit::TestCase
     input = String.new(<<-EOS)
     "MY_CONSTANT" = "This is ok";
     EOS
-    expected_output = {"MY_CONSTANT"=>"This is ok"}
+    expected_output = ["MY_CONSTANT","This is ok"]
 
     output = Babelish::Strings2CSV.new.parse_dotstrings_line input
-    assert_equal output, expected_output
+    assert_equal expected_output, output 
   end
 
   def test_parse_dotstrings_line_with_single_quote
     input = String.new(<<-EOS)
     "MY_CONSTANT" = "This 'is' ok";
     EOS
-    expected_output = {"MY_CONSTANT"=>"This 'is' ok"}
+    expected_output = ["MY_CONSTANT","This 'is' ok"]
 
     output = Babelish::Strings2CSV.new.parse_dotstrings_line input
-    assert_equal output, expected_output
+    assert_equal expected_output, output
   end
 
   def test_parse_dotstrings_line_with_double_quotes
     input = String.new(<<-EOS)
     "MY_CONSTANT" = "This "is" ok";
     EOS
-    expected_output = {"MY_CONSTANT"=>"This \"is\" ok"}
+    expected_output = ["MY_CONSTANT","This \"is\" ok"]
 
     output = Babelish::Strings2CSV.new.parse_dotstrings_line input
-    assert_equal output, expected_output
+    assert_equal expected_output, output
   end
 
   def test_parse_dotstrings_line_with_wrong_string
@@ -49,6 +49,12 @@ class TestStrings2CSV < Test::Unit::TestCase
     assert_nil output, "output should be nil with comment"
   end
 
+  def test_parse_comment
+    comment= "/* this is a comment */"
+    output = Babelish::Strings2CSV.new.parse_comment_line comment
+    assert_equal "this is a comment", output
+  end
+
   def test_load_strings_with_wrong_file
     assert_raise(Errno::ENOENT) do
       output = Babelish::Strings2CSV.new.load_strings "file that does not exist.strings"
@@ -56,20 +62,27 @@ class TestStrings2CSV < Test::Unit::TestCase
   end
 
   def test_load_strings
-    expected_output = {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}
+    expected_output = [{"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}, {}]
     output = Babelish::Strings2CSV.new.load_strings "test/data/test_data.strings"
     assert_equal expected_output, output
   end
 
   def test_load_strings_with_spaces
-    expected_output = {"name"=>"definition", 
+    expected_output = [{"name"=>"definition", 
                        "name1"=>"definition1",
                        "name2"=>"definition2",
                        "name3"=>"definition3",
                        "name4"=>"definition4",
                        "this is a name"=>"a definition"
-                      }
+                      },{}]
     output = Babelish::Strings2CSV.new.load_strings "test/data/test_space.strings"
+    assert_equal expected_output, output
+  end
+
+  def test_load_strings_with_comments
+    expected_output = [{"MY_CONSTANT"=>"This 'is' ok"}, {"MY_CONSTANT"=> "this is a comment"}]
+
+    output = Babelish::Strings2CSV.new.load_strings "test/data/test_comments.strings"
     assert_equal expected_output, output
   end
 
@@ -132,4 +145,4 @@ class TestStrings2CSV < Test::Unit::TestCase
     assert_not_nil converter.csv_filename
   end
 
-  end
+end

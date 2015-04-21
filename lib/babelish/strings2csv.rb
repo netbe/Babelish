@@ -12,14 +12,22 @@ module Babelish
       line.strip!
       if line[0] != ?# && line[0] != ?= && line[0] != ?/
         m = line.match(/^[\s*]*\"(.+)\"[\s]*=\s*\"(.*)\"\s*;/)
-        return {m[1] => m[2]} unless m.nil?
+        return m[1], m[2] unless m.nil?
+      end
+    end
+
+    def parse_comment_line(line)
+      line.strip!
+      if line[0] != ?# && line[0] != ?=
+        m = line.match(/^\/\*(.*)\*\/\s*$/)
+        return m[1].strip! unless m.nil?
       end
     end
 
     # Load all strings of a given file
     def load_strings(strings_filename)
       strings = {}
-
+      comments = {}
       # genstrings uses utf16, so that's what we expect. utf8 should not be impact
       file = File.open(strings_filename, "r:utf-16:utf-8")
       begin
@@ -35,12 +43,18 @@ module Babelish
         # faults back to utf8
         contents = File.open(strings_filename, "r:utf-8")
       end
+      previous_comment = nil
       contents.each_line do |line|
-        hash = self.parse_dotstrings_line(line)
-        strings.merge!(hash) if hash
+        key, value = self.parse_dotstrings_line(line)
+        if key
+          strings.merge!({key => value}) 
+          comments[key] = previous_comment if previous_comment
+        else
+          previous_comment = self.parse_comment_line(line)
+        end
       end
 
-      strings
+      [strings, comments]
     end
 
   end

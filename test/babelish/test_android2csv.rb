@@ -8,7 +8,7 @@ class TestAndroid2CSV < Test::Unit::TestCase
   end
 
   def test_load_strings
-    expected_output = {"app_name" => "android2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}
+    expected_output = [{"app_name" => "android2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}, {}]
     output = Babelish::Android2CSV.new.load_strings "test/data/android.xml"
     assert_equal expected_output, output
   end

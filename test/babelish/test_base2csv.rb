@@ -2,7 +2,7 @@ require 'test_helper'
 class TestBase2Csv < Test::Unit::TestCase
 
   def test_load_strings
-    expected_output = {}
+    expected_output = [{}, {}]
     output = Babelish::Base2Csv.new.send :load_strings, nil
     assert_equal expected_output, output
   end

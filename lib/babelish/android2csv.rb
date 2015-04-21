@@ -18,7 +18,7 @@ module Babelish
         end
       end
 
-      strings
+      [strings, {}]
     end
 
   end

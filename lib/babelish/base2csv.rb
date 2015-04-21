@@ -24,17 +24,19 @@ module Babelish
     def convert(write_to_file = true)
       strings = {}
       keys = nil
+      comments = {}
 
       @filenames.each do |fname|
         header = fname
-        strings[header] = load_strings(fname)
+        strings[header], file_comments = load_strings(fname)
         keys ||= strings[header].keys
+        comments.merge!(file_comments)
       end
 
       if write_to_file
         # Create csv file
         puts "Creating #{@csv_filename}"
-        create_csv_file(keys, strings)
+        create_csv_file(keys, strings, comments)
       else
         return keys, strings
       end
@@ -48,7 +50,7 @@ module Babelish
     # for a given language
     # @return [Hash] the translations for a given language
     def load_strings(strings_filename)
-      return {}
+      return [{}, {}]
     end
 
     # Give the default headers of csv file
@@ -77,7 +79,8 @@ module Babelish
     #
     # @param [Array] keys references of all translations
     # @param [Array] strings translations of all languages
-    def create_csv_file(keys, strings)
+    # @param [Hash] comments hash containing keys, comments related to each keys, describe the translation
+    def create_csv_file(keys, strings, comments = nil)
       raise "csv_filename must not be nil" unless @csv_filename
       CSV.open(@csv_filename, "wb") do |csv|
         csv << @headers
@@ -89,6 +92,7 @@ module Babelish
             current_val = (lang != default_lang && strings[lang][key] == default_val) ? '' : strings[lang][key]
             line << current_val
           end
+          line << comments[key] if comments && comments[key]
           csv << line
         end
         puts "Done"
