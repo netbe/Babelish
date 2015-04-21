@@ -61,6 +61,14 @@ class TestStrings2CSV < Test::Unit::TestCase
     assert_equal expected_output, output
   end
 
+  def test_load_strings_with_spaces
+    expected_output = {"name"=>"definition"}
+    assert_nothing_raised do
+      output = Babelish::Strings2CSV.new.load_strings "test/data/test_space.strings"
+      assert_equal expected_output, output
+    end
+  end
+
   def test_load_strings_with_empty_lines
     assert_nothing_raised do
       output = Babelish::Strings2CSV.new.load_strings "test/data/test_with_nil.strings"
