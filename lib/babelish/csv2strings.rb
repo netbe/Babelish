@@ -16,7 +16,7 @@ module Babelish
     end
 
     def get_row_format(row_key, row_value, indentation = 0)
-      return "\"#{row_key}\"" + " " * indentation + " = \"#{row_value}\";\n"
+      "\"#{row_key}\"" + " " * indentation + " = \"#{row_value}\";\n"
     end
 
     def extension
