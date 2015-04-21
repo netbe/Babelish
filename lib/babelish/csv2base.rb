@@ -6,6 +6,7 @@ module Babelish
     attr_accessor :langs
     attr_accessor :csv_filename
     attr_accessor :default_lang
+    attr_accessor :csv_separator
     attr_accessor :excluded_states, :state_column, :keys_column
     attr_accessor :languages
 
@@ -13,7 +14,8 @@ module Babelish
       default_args = {
         :excluded_states => [],
         :state_column => nil,
-        :keys_column => 0
+        :keys_column => 0,
+        :csv_separator => ","
       }
 
       args = default_args.merge!(args)
@@ -33,6 +35,7 @@ module Babelish
       @state_column = args[:state_column]
       @keys_column = args[:keys_column]
       @default_lang = args[:default_lang]
+      @csv_separator = args[:csv_separator]
       @ignore_lang_path = args[:ignore_lang_path]
       @stripping = args[:stripping]
       @languages = []
@@ -89,7 +92,7 @@ module Babelish
       excludedCols = []
       defaultCol   = 0
 
-      CSV.foreach(name, :quote_char => '"', :col_sep => ',', :row_sep => :auto) do |row|
+      CSV.foreach(name, :quote_char => '"', :col_sep => @csv_separator, :row_sep => :auto) do |row|
 
         if rowIndex == 0
           #check there's at least two columns

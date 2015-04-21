@@ -6,7 +6,7 @@ require 'babelish/version'
 Gem::Specification.new do |s|
   s.name        = 'babelish'
   s.version     = Babelish::VERSION
-  s.date        = '2014-10-29'
+  s.date        = '2015-03-16'
   s.summary     = "CSV converter for localization files"
   s.description = "This set of commands converts a CSV file to the following formats:
                   - .strings (iOS)
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "thor"
 
-  s.add_dependency "google_drive", "~> 0.3.10"
+  s.add_dependency "google_drive", "~> 1.0.1"
   # google_drive dependency to ask for mail and password
   s.add_dependency "highline"
 

@@ -22,6 +22,13 @@ class TestCsv2Base < Test::Unit::TestCase
       converter = Babelish::Csv2Base.new("file.csv", {"English" => ["en"]})
       assert_not_nil converter.csv_filename
     end
+    
+    def test_initialize_with_custom_separator
+      converter = Babelish::Csv2Base.new("file.csv", {"English" => ["en"]}, {
+        :csv_separator => ";"
+        })
+      assert_not_nil converter.csv_filename
+    end
 
     def test_create_file_from_path
       test_file = "test_file.txt"
