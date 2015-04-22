@@ -24,9 +24,10 @@ module Babelish
 
     def download_spreadsheet(requested_filename, output_filename, worksheet_index = 0)
       output_filename ||= "translations.csv"
-      file = file_with_name(requested_filename)
-      return nil unless file
-      file.export_as_file(output_filename, "csv", worksheet_index)
+      spreadsheet = file_with_name(requested_filename)
+      return nil unless spreadsheet
+      worksheet = spreadsheet.worksheets[worksheet_index]
+      worksheet.export_as_file(output_filename)
       return output_filename
     end
 
@@ -48,12 +49,7 @@ module Babelish
       unless @session
         authenticate
       end
-      result = @session.file_by_title(name)
-      if result.is_a? Array
-        file = result.first
-      else
-        file = result
-      end
+      @session.spreadsheet_by_title(name)
     end
   end
 end
