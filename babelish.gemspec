@@ -6,7 +6,7 @@ require 'babelish/version'
 Gem::Specification.new do |s|
   s.name        = 'babelish'
   s.version     = Babelish::VERSION
-  s.date        = '2015-03-16'
+  s.date        = '2015-05-22'
   s.summary     = "CSV converter for localization files"
   s.description = "This set of commands converts a CSV file to the following formats:
                   - .strings (iOS)
