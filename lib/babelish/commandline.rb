@@ -86,6 +86,22 @@ class Commandline < Thor
     end
   end
 
+  desc "init", "Create a configuration file from template"
+  def init
+    if File.exists?(".babelish")
+      say "Config file '.babelish' already exists."
+    else
+      say "Creating new config file '.babelish'."
+      config_file = File.expand_path("../../../.babelish.sample", __FILE__)
+      if File.exists?(config_file)
+        system "cp #{config_file} .babelish"
+      else
+        say "Template '#{config_file}' not found."
+      end
+    end
+  end
+
+
   desc "version", "Display current version"
   def version
     require "babelish/version"

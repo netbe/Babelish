@@ -1,6 +1,14 @@
 require 'test_helper'
 class TestCommandLine < Test::Unit::TestCase
 
+  def test_init
+    assert_nothing_raised do
+      Commandline.new.init
+    end
+    #clean up
+    system("rm -f .babelish")
+  end
+
   def test_csv2base_with_config_file_all_required_options
     options = {
       :filename => "test/data/test_data_multiple_langs.csv",
