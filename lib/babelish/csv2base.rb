@@ -7,7 +7,7 @@ module Babelish
     attr_accessor :csv_filename
     attr_accessor :default_lang
     attr_accessor :csv_separator
-    attr_accessor :excluded_states, :state_column, :keys_column
+    attr_accessor :excluded_states, :state_column, :keys_column, :comments_column
     attr_accessor :languages
 
     def initialize(filename, langs, args = {})
@@ -34,11 +34,13 @@ module Babelish
       @excluded_states = args[:excluded_states]
       @state_column = args[:state_column]
       @keys_column = args[:keys_column]
+      @comments_column = args[:comments_column]
       @default_lang = args[:default_lang]
       @csv_separator = args[:csv_separator]
       @ignore_lang_path = args[:ignore_lang_path]
       @stripping = args[:stripping]
       @languages = []
+      @comments = {}
     end
 
     def create_file_from_path(file_path)
@@ -57,6 +59,10 @@ module Babelish
 
     def table
       output_basename
+    end
+
+    def comments
+      @comments  
     end
 
     def language_filepaths(language)
@@ -82,7 +88,8 @@ module Babelish
       return value.to_utf8
     end
 
-    def get_row_format(row_key, row_value, indentation = 0)
+    def get_row_format(row_key, row_value, comment = nil, indentation = 0)
+      # ignoring comment by default
       "\"#{row_key}\"" + " " * indentation + " = \"#{row_value}\""
     end
 
@@ -124,10 +131,11 @@ module Babelish
             @languages[i] = language
           elsif !@state_column || (row[@state_column].nil? || row[@state_column] == '' || !@excluded_states.include?(row[@state_column]))
             key = row[@keys_column]
+            comment = @comments_column ? row[@comments_column] : nil
             key.strip! if @stripping
             default_value =  self.default_lang ? row[defaultCol] : nil
             value = self.process_value(row[i], default_value)
-
+            @comments[key] = comment
             @languages[i].add_content_pair(key, value)
           end
         end
@@ -170,7 +178,8 @@ module Babelish
       indentation = content.map(&:first).max { |a, b| a.length <=> b.length }.length
       if content && content.size > 0
         content.each do |key, value|
-          output += get_row_format(key, value, indentation - key.length)
+          comment = @comments[key]
+          output += get_row_format(key, value, comment, indentation - key.length)
         end
       end
       return output

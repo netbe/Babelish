@@ -137,4 +137,18 @@ class TestCSV2Strings < Test::Unit::TestCase
     assert_equal expected_output, result
     system("rm -rf *.lproj")
   end
+
+  def test_converting_with_comments
+    csv_file = "test/data/test_data_with_comments.csv"
+    spanish_file = "fr.lproj/Localizable.strings"
+    expected_output = File.read("test/data/test_data_fr_with_comments.strings")
+    converter = Babelish::CSV2Strings.new(csv_file,
+    {"French" => "fr"},
+    :default_lang => "English", :comments_column => 5)
+    converter.convert
+    assert File.exists?(spanish_file), "the ouptut file does not exist"
+    result = File.read(spanish_file)
+    assert_equal expected_output, result
+    system("rm -rf *.lproj")
+  end
 end

@@ -7,13 +7,13 @@ module Babelish
       @keys = keys
     end
 
-    def self.write_macros(file_path, table, keys)
+    def self.write_macros(file_path, table, keys, comments = {})
       instance = XcodeMacros.new
-      instance.process(table, keys)
+      instance.process(table, keys, comments)
       instance.write_content(file_path)
     end
 
-    def process(table, keys)
+    def process(table, keys, comments = {})
       keys.each do |key|
         clean_key = key.gsub(' ', '')
         clean_key.gsub!(/[[:punct:]]/, '_')       
@@ -22,8 +22,9 @@ module Babelish
         clean_key = clean_key[0..clean_key.size-2] if clean_key.size > 1 and clean_key[clean_key.size-1] == '_'
         macro_name = "LS_#{clean_key.upcase}" 
         macro_name += "_#{table.upcase}" if table != "Localizable" 
+        comment = comments[key]
         @content << String.new(<<-EOS)
-#define #{macro_name} NSLocalizedStringFromTable(@"#{key}",@"#{table}",@"")
+#define #{macro_name} NSLocalizedStringFromTable(@"#{key}",@"#{table}",@"#{comment.to_s}")
         EOS
       end
       @content

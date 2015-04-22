@@ -19,7 +19,8 @@ class Commandline < Thor
     # optional options
     method_option :excluded_states, :type => :array, :aliases => "-x", :desc => "Exclude rows with given state"
     method_option :state_column, :type => :numeric, :aliases => "-s", :desc => "Position of column for state if any"
-    method_option :keys_column,  :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
+    method_option :keys_column, :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
+    method_option :comments_column, :type => :numeric, :aliases => "-c", :desc => "Position of column for comments if any"
     method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
     method_option :csv_separator, :type => :string, :aliases => "-cs", :desc => "CSV column separator character, uses ',' by default"
     method_option :output_dir, :type => :string, :aliases => "-d", :desc => "Path of output files"
@@ -133,7 +134,7 @@ class Commandline < Thor
         args = Thor::CoreExt::HashWithIndifferentAccess.new(args)
         converter = class_object.new(filename, options[:langs], args)
         say converter.convert
-        xcode_macros.process(converter.table, converter.keys) if options[:macros_filename]
+        xcode_macros.process(converter.table, converter.keys, converter.comments) if options[:macros_filename]
       end
       if options[:macros_filename]
         say "generating macros"

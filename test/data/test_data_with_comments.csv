@@ -1,0 +1,3 @@
+variables,English,German,French,Spanish,Comments
+GREETINGS,Hello,Hallo,Salut,Buenos dias,this is a greeting string
+ANOTHER_STRING,testEN,,,,this is another example
