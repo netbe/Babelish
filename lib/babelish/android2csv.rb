@@ -1,5 +1,5 @@
 module Babelish
-  require 'xmlsimple'
+  require 'nokogiri'
   class Android2CSV < Base2Csv
 
     def initialize(args = {:filenames => []})
@@ -8,15 +8,19 @@ module Babelish
 
     def load_strings(strings_filename)
       strings = {}
-      raise Errno::ENOENT unless File.exist?(strings_filename)
+      # raise Errno::ENOENT unless File.exist?(strings_filename)
+      xml_file = File.open(strings_filename)
 
-      xmlfile = XmlSimple.xml_in(strings_filename)
-      xmlfile['string'].each do |element|
-        if !element.nil? && !element['name'].nil?
-          content = element['content'].nil? ? '' : element['content']
-          strings.merge!({element['name'] => content})
+      parser = Nokogiri::XML(xml_file) do |config|
+        config.strict.noent
+      end
+      parser.xpath('//string').each do |node|
+        if !node.nil? && !node['name'].nil?
+          strings.merge!({node['name'] => node.inner_html})
         end
       end
+
+      xml_file.close
 
       [strings, {}]
     end

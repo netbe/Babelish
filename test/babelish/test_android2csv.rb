@@ -28,6 +28,26 @@ class TestAndroid2CSV < Test::Unit::TestCase
       assert_equal filenames, converter.filenames
     end
 
+  def test_special_chars
+    csv_filename = "./android_special_chars_output.csv"
+    filenames = "test/data/android_special_chars.xml"
+    headers = %w{"constants german"}
+
+    converter = Babelish::Android2CSV.new({
+      :csv_filename => csv_filename,
+      :headers => %w{variables german},
+      :filenames => [filenames]
+    })
+
+    converter.convert
+
+    assert File.exist?(converter.csv_filename)
+    assert FileUtils.compare_file(csv_filename, 'test/data/android_special_chars.csv')
+
+    #clean up
+    system("rm -rf ./" + csv_filename)
+  end
+
     def test_initialize_with_default_values
       converter = Babelish::Android2CSV.new
       assert_not_nil converter.csv_filename
