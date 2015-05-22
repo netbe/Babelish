@@ -21,15 +21,15 @@ class TestAndroid2CSV < Test::Unit::TestCase
       :csv_filename => csv_filename,
       :headers => headers,
       :filenames => filenames
-      })
+    })
 
-      assert_equal csv_filename, converter.csv_filename
-      assert_equal headers, converter.headers
-      assert_equal filenames, converter.filenames
-    end
-
-    def test_initialize_with_default_values
-      converter = Babelish::Android2CSV.new
-      assert_not_nil converter.csv_filename
-    end
+    assert_equal csv_filename, converter.csv_filename
+    assert_equal headers, converter.headers
+    assert_equal filenames, converter.filenames
   end
+
+  def test_initialize_with_default_values
+    converter = Babelish::Android2CSV.new
+    assert_not_nil converter.csv_filename
+  end
+end
