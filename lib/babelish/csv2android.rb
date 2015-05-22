@@ -16,6 +16,16 @@ module Babelish
       return filepath ? [filepath] : []
     end
 
+    def process_value(row_value, default_value)
+      value = super(row_value, default_value)
+      # if the value beginns and ends with a quote we must leave them unescapted
+      if value.size > 4 && value[0,2] == "\\\"" && value[value.size - 2, value.size] == "\\\""
+        value[0,2] = "\""
+        value[value.size - 2, value.size] = "\""
+      end
+      return value.to_utf8
+    end
+
     def get_row_format(row_key, row_value, comment = nil, indentation = 0)
         return "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
     end
