@@ -1,7 +1,5 @@
 module Babelish
   class CSV2Android < Csv2Base
-    require 'xmlsimple'
-
     attr_accessor :file_path
 
     def initialize(filename, langs, args = {})
