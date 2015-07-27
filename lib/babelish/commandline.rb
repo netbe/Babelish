@@ -2,6 +2,7 @@ require 'thor'
 class Commandline < Thor
   include Thor::Actions
   class_option :verbose, :type => :boolean
+  class_option :config, :type => :string, :aliases => "-c", :desc => "Read configuration from given file", :default => ".babelish"
   map "-v" => :version
 
   CSVCLASSES = [
@@ -175,8 +176,8 @@ class Commandline < Thor
 
   def options
     original_options = super
-    return original_options unless File.exists?(".babelish")
-    defaults = ::YAML.load_file(".babelish") || {}
+    return original_options unless File.exists?(original_options["config"])
+    defaults = ::YAML.load_file(original_options["config"]) || {}
     Thor::CoreExt::HashWithIndifferentAccess.new(defaults.merge(original_options))
   end
 end
