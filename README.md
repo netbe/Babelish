@@ -19,7 +19,7 @@ It can also fetch the csv file from GoogleDrive.
 
 Requires Ruby 1.9.3 or above.
 
-Or Download [Latest Release](/releases/latest).
+Or download [Latest Release](https://github.com/netbe/Babelish/releases/latest).
 
 # Usage
 
