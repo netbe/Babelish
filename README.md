@@ -2,6 +2,7 @@
 [![Code Climate](https://codeclimate.com/github/netbe/Babelish.png)](https://codeclimate.com/github/netbe/Babelish)[![Coverage Status](https://coveralls.io/repos/netbe/Babelish/badge.png)](https://coveralls.io/r/netbe/Babelish)
 [![Gem Version](https://badge.fury.io/rb/babelish.svg)](http://badge.fury.io/rb/babelish)
 
+
 **Babelish : Chaotically confused, like Babel**
 
 Originally created to deal with localizedStrings files (aka *CSV-to-iOS-Localizable.strings-converter*), this command tool now converts a csv file of translations into the below file formats and vice-versa:
@@ -17,6 +18,8 @@ It can also fetch the csv file from GoogleDrive.
 `gem install babelish`
 
 Requires Ruby 1.9.3 or above.
+
+Or Download [Latest Release](/releases/latest).
 
 # Usage
 
