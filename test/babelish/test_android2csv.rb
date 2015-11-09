@@ -35,7 +35,7 @@ class TestAndroid2CSV < Test::Unit::TestCase
   def test_special_chars
     csv_filename = "./android_special_chars_output.csv"
     filenames = "test/data/android_special_chars.xml"
-    headers = %w{constants german}
+    headers = %w{variables german}
 
     converter = Babelish::Android2CSV.new(
       :csv_filename => csv_filename,
@@ -45,7 +45,7 @@ class TestAndroid2CSV < Test::Unit::TestCase
     converter.convert
 
     assert File.exist?(converter.csv_filename)
-    assert FileUtils.compare_file(csv_filename, "test/data/android_special_chars.csv")
+    assert_equal File.read("test/data/android_special_chars.csv").lines, File.read(csv_filename).lines
 
     # clean up
     system("rm -rf ./" + csv_filename)

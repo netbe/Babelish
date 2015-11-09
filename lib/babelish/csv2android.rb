@@ -36,7 +36,7 @@ module Babelish
         content.each do |key, value|
           output += get_row_format(key, value)
         end
-        output += "</resources>"
+        output += "</resources>\n"
       end
       return output
     end

@@ -6,7 +6,7 @@ class TestBins < Test::Unit::TestCase
     assert_nothing_raised do
       system("./bin/babelish csv2strings --fetch --filename my_strings --langs English:en")
     end
-    assert_equal $?.exitstatus, 0
+    assert_equal 0, $?.exitstatus
   end
 
   def test_csv2strings_with_google_doc_missing_langs
@@ -14,7 +14,7 @@ class TestBins < Test::Unit::TestCase
     assert_nothing_raised do
       system("./bin/babelish csv2strings --fetch --filename my_strings")
     end
-    assert_equal $?.exitstatus, 1
+    assert_equal 1, $?.exitstatus
   end
 
   def test_csv2strings_with_config_file
@@ -23,7 +23,7 @@ class TestBins < Test::Unit::TestCase
     assert_nothing_raised NameError do
       system("./bin/babelish csv2strings")
     end
-    assert_equal $?.exitstatus, 0
+    assert_equal 0, $?.exitstatus
   end
 
   def teardown

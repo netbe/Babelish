@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="good_example_1">This\'ll work</string>
 	<string name="good_example_2">This is a \"good string\".</string>
