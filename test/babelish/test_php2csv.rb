@@ -59,7 +59,7 @@ class TestPhp2CSV < Test::Unit::TestCase
     converter = Babelish::Php2CSV.new({
       :csv_filename => csv_filename,
       :headers => headers,
-      :filenames => filenames})
+      :filenames => filenames })
 
     assert_equal csv_filename, converter.csv_filename
     assert_equal headers, converter.headers

@@ -15,13 +15,12 @@ class TestAndroid2CSV < Test::Unit::TestCase
 
   def test_initialize
     csv_filename = "file.csv"
-    filenames = %w{"french.strings english.strings"}
-    headers = %w{"constants french english"}
-    converter = Babelish::Android2CSV.new({
+    filenames = %w{french.strings english.strings}
+    headers = %w{constants french english}
+    converter = Babelish::Android2CSV.new(
       :csv_filename => csv_filename,
       :headers => headers,
-      :filenames => filenames
-    })
+      :filenames => filenames)
 
     assert_equal csv_filename, converter.csv_filename
     assert_equal headers, converter.headers
@@ -36,12 +35,12 @@ class TestAndroid2CSV < Test::Unit::TestCase
   def test_special_chars
     csv_filename = "./android_special_chars_output.csv"
     filenames = "test/data/android_special_chars.xml"
-    headers = %w{"constants german"}
+    headers = %w{constants german}
 
-    converter = Babelish::Android2CSV.new({
+    converter = Babelish::Android2CSV.new(
       :csv_filename => csv_filename,
-      :headers => %w{variables german},
-      :filenames => [filenames]})
+      :headers => headers,
+      :filenames => [filenames])
 
     converter.convert
 
@@ -52,8 +51,4 @@ class TestAndroid2CSV < Test::Unit::TestCase
     system("rm -rf ./" + csv_filename)
   end
 
-  def test_initialize_with_default_values
-    converter = Babelish::Android2CSV.new
-    assert_not_nil converter.csv_filename
-  end
 end

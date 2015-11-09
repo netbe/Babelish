@@ -9,7 +9,7 @@ class TestCsv2Base < Test::Unit::TestCase
     converter = Babelish::Csv2Base.new(csv_filename, {"English" => ["en"]}, {
       :excluded_states => excluded_states,
       :state_column => state_column,
-      :keys_column => keys_column})
+      :keys_column => keys_column })
 
     assert_equal csv_filename, converter.csv_filename
     assert_equal excluded_states, converter.excluded_states
@@ -23,7 +23,7 @@ class TestCsv2Base < Test::Unit::TestCase
   end
 
   def test_initialize_with_custom_separator
-    converter = Babelish::Csv2Base.new("file.csv", {"English" => ["en"]}, {:csv_separator => ";"})
+    converter = Babelish::Csv2Base.new("file.csv", { "English" => ["en"] }, { :csv_separator => ";" })
     assert_not_nil converter.csv_filename
   end
 

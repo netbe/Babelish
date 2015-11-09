@@ -1,5 +1,5 @@
 module Babelish
-  require 'nokogiri'
+  require "nokogiri"
   class Android2CSV < Base2Csv
 
     def initialize(args = {:filenames => []})
@@ -14,9 +14,9 @@ module Babelish
       parser = Nokogiri::XML(xml_file) do |config|
         config.strict.noent
       end
-      parser.xpath('//string').each do |node|
-        if !node.nil? && !node['name'].nil?
-          strings.merge!({node['name'] => node.inner_html})
+      parser.xpath("//string").each do |node|
+        if !node.nil? && !node["name"].nil?
+          strings.merge!({node["name"] => node.inner_html})
         end
       end
 

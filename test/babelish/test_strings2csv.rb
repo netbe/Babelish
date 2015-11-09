@@ -8,7 +8,7 @@ class TestStrings2CSV < Test::Unit::TestCase
     expected_output = ["MY_CONSTANT","This is ok"]
 
     output = Babelish::Strings2CSV.new.parse_dotstrings_line input
-    assert_equal expected_output, output 
+    assert_equal expected_output, output
   end
 
   def test_parse_dotstrings_line_with_single_quote
@@ -68,7 +68,7 @@ class TestStrings2CSV < Test::Unit::TestCase
   end
 
   def test_load_strings_with_spaces
-    expected_output = [{"name"=>"definition", 
+    expected_output = [{"name"=>"definition",
                        "name1"=>"definition1",
                        "name2"=>"definition2",
                        "name3"=>"definition3",
@@ -127,13 +127,12 @@ class TestStrings2CSV < Test::Unit::TestCase
 
   def test_initialize
     csv_filename = "file.csv"
-    filenames = %w{"french.strings english.strings"}
-    headers = %w{"constants french english"}
+    filenames = %w{french.strings english.strings}
+    headers = %w{constants french english}
     converter = Babelish::Strings2CSV.new({
       :csv_filename => csv_filename,
       :headers => headers,
-      :filenames => filenames
-      })
+      :filenames => filenames })
 
       assert_equal csv_filename, converter.csv_filename
       assert_equal headers, converter.headers
