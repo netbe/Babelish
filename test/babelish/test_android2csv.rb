@@ -45,7 +45,7 @@ class TestAndroid2CSV < Test::Unit::TestCase
     converter.convert
 
     assert File.exist?(converter.csv_filename)
-    assert_equal File.read("test/data/android_special_chars.csv").lines, File.read(csv_filename).lines
+    assert_equal File.read("test/data/android_special_chars.csv"), File.read(csv_filename)
 
     # clean up
     system("rm -rf ./" + csv_filename)
