@@ -1,7 +1,5 @@
 module Babelish
   class CSV2Android < Csv2Base
-    require 'xmlsimple'
-
     attr_accessor :file_path
 
     def initialize(filename, langs, args = {})
@@ -33,7 +31,7 @@ module Babelish
     def hash_to_output(content = {})
       output = ''
       if content && content.size > 0
-        output += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+        output += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
         output += "<resources>\n"
         content.each do |key, value|
           output += get_row_format(key, value)
