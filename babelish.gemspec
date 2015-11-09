@@ -24,8 +24,6 @@ Gem::Specification.new do |s|
   # google_drive dependency to ask for mail and password
   s.add_dependency "highline"
 
-  # android support
-  s.add_dependency "xml-simple"
   # json support
   s.add_dependency "json"
 
