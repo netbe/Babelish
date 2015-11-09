@@ -21,11 +21,10 @@ Gem::Specification.new do |s|
   s.add_dependency "thor"
 
   s.add_dependency "google_drive", "~> 1.0.1"
+  s.add_dependency "nokogiri"
   # google_drive dependency to ask for mail and password
   s.add_dependency "highline"
 
-  # android support
-  s.add_dependency "xml-simple"
   # json support
   s.add_dependency "json"
 

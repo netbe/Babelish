@@ -1,7 +1,5 @@
 module Babelish
   class CSV2Android < Csv2Base
-    require 'xmlsimple'
-
     attr_accessor :file_path
 
     def initialize(filename, langs, args = {})
@@ -16,19 +14,29 @@ module Babelish
       return filepath ? [filepath] : []
     end
 
+    def process_value(row_value, default_value)
+      value = super(row_value, default_value)
+      # if the value begins and ends with a quote we must leave them unescapted
+      if value.size > 4 && value[0, 2] == "\\\"" && value[value.size - 2, value.size] == "\\\""
+        value[0, 2] = "\""
+        value[value.size - 2, value.size] = "\""
+      end
+      value.to_utf8
+    end
+
     def get_row_format(row_key, row_value, comment = nil, indentation = 0)
-        return "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
+      "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
     end
 
     def hash_to_output(content = {})
       output = ''
       if content && content.size > 0
-        output += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+        output += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
         output += "<resources>\n"
         content.each do |key, value|
           output += get_row_format(key, value)
         end
-        output += "</resources>"
+        output += "</resources>\n"
       end
       return output
     end

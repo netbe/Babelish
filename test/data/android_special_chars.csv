@@ -1,0 +1,8 @@
+variables,german
+good_example_1,This\'ll work
+good_example_2,"This is a \""good string\""."
+good_example_3,"""This'll also work"""
+welcome_messages_1,"Hello, %1$s! You have %2$d new messages."
+welcome_messages_2,"Hello, %1$s! You have &lt;b&gt;%2$d new messages&lt;/b&gt;."
+ANOTHER_STRING,"text <b>with</b> html and \' special # chars ` ´ !""§$%/()==?{[]}"
+title,"Title of &lt;a href=""asd""&gt;File&lt;/a&gt;"
