@@ -20,8 +20,7 @@ class JSON2CSVTest < Test::Unit::TestCase
     converter = Babelish::JSON2CSV.new({
       :csv_filename => csv_filename,
       :headers => headers,
-      :filenames => filenames
-    })
+      :filenames => filenames})
 
     assert_equal csv_filename, converter.csv_filename
     assert_equal headers, converter.headers
