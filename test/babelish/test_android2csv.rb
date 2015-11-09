@@ -50,5 +50,4 @@ class TestAndroid2CSV < Test::Unit::TestCase
     # clean up
     system("rm -rf ./" + csv_filename)
   end
-
 end
