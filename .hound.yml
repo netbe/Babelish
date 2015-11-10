@@ -2,3 +2,4 @@ HashSyntax:
   Enabled: false
 LineLength:
   Enabled: false
+fail_on_violations: true
