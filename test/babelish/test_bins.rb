@@ -4,7 +4,8 @@ class TestBins < Test::Unit::TestCase
   def test_csv2strings_with_google_doc
     VCR.use_cassette("my_strings_fetch_google_doc") do
       assert_nothing_raised do
-        system("./bin/babelish csv2strings --fetch --filename my_strings --langs English:en")
+        system("./bin/babelish csv2strings --fetch --filename my_strings \
+        --langs English:en")
       end
     end
     assert_equal 0, $?.exitstatus
