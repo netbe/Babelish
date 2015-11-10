@@ -63,7 +63,6 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
   end
 
   def test_csv2strings_with_output_basenames_option
-    omit if ENV['TRAVIS']
     options = {
       :filename => "my_strings",
       :langs => {"English" => "en", "French" => "fr"},
