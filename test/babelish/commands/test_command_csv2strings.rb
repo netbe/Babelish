@@ -33,14 +33,16 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
   end
 
   def test_csv2strings_with_fetch_google_doc
-    omit if ENV['TRAVIS']
     options = {
       :filename => "my_strings",
       :langs => {"English" => "en", "French" => "fr"},
       :fetch => true
     }
-    assert_nothing_raised do
-      Commandline.new([], options).csv2strings
+
+    VCR.use_cassette("my_strings_fetch_google_doc") do
+      assert_nothing_raised do
+        Commandline.new([], options).csv2strings
+      end
     end
 
     # clean up
@@ -68,8 +70,10 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       :fetch => true,
       :output_basenames => %w(sheet1 sheet2),
     }
+    VCR.use_cassette("my_strings_fetch_google_doc") do
+      Commandline.new([], options).csv2strings
+    end
 
-    Commandline.new([], options).csv2strings
     # testing
     assert File.exist?("./en.lproj/sheet1.strings"), "can't find output file for sheet1 English"
     assert File.exist?("./fr.lproj/sheet1.strings"), "can't find output file for sheet1 French"
@@ -82,7 +86,6 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
   end
 
   def test_csv2strings_with_ignore_lang_path_option
-    omit if ENV['TRAVIS']
     options = {
       :filename => "my_strings",
       :langs => {"English" => "en"},
@@ -91,7 +94,9 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       :output_basenames => %w(sheet1 sheet2),
     }
 
-    Commandline.new([], options).csv2strings
+    VCR.use_cassette("my_strings_fetch_google_doc") do
+      Commandline.new([], options).csv2strings
+    end
     # testing
     assert File.exist?("./sheet1.strings"), "can't find output file for sheet1 English with_ignore_lang_path_option"
     assert File.exist?("./sheet2.strings"), "can't find output file for sheet2 English with_ignore_lang_path_option"

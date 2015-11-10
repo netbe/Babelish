@@ -2,17 +2,19 @@ require 'test_helper'
 class TestBins < Test::Unit::TestCase
 
   def test_csv2strings_with_google_doc
-    omit if ENV['TRAVIS']
-    assert_nothing_raised do
-      system("./bin/babelish csv2strings --fetch --filename my_strings --langs English:en")
+    VCR.use_cassette("my_strings_fetch_google_doc") do
+      assert_nothing_raised do
+        system("./bin/babelish csv2strings --fetch --filename my_strings --langs English:en")
+      end
     end
     assert_equal 0, $?.exitstatus
   end
 
   def test_csv2strings_with_google_doc_missing_langs
-    omit if ENV['TRAVIS']
-    assert_nothing_raised do
-      system("./bin/babelish csv2strings --fetch --filename my_strings")
+    VCR.use_cassette("my_strings_fetch_google_doc") do
+      assert_nothing_raised do
+        system("./bin/babelish csv2strings --fetch --filename my_strings")
+      end
     end
     assert_equal 1, $?.exitstatus
   end

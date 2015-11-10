@@ -94,14 +94,15 @@ class TestCommandLine < Test::Unit::TestCase
 
 
   def test_csv_download_with_required_params
-    omit if ENV['TRAVIS']
     options = {:gd_filename => "my_strings"}
     config_file = File.new(".babelish", "w")
     config_file.write options.to_yaml
     config_file.close
 
-    assert_nothing_raised do
-      Commandline.new.csv_download
+    VCR.use_cassette("my_strings_fetch_google_doc") do
+      assert_nothing_raised do
+        Commandline.new.csv_download
+      end
     end
 
     #clean up

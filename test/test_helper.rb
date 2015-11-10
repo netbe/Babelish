@@ -15,3 +15,10 @@ require 'test/unit'
 require 'babelish'
 
 require "babelish/commandline"
+
+require 'webmock/test_unit'
+require 'vcr'
+VCR.configure do |config|
+  config.cassette_library_dir = "test/fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+end
