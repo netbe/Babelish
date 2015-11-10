@@ -2,7 +2,7 @@ require 'test_helper'
 class TestBins < Test::Unit::TestCase
 
   def test_csv2strings_with_google_doc
-    VCR.use_cassette("my_strings_fetch_google_doc") do
+    mock_google_doc_strings_file do
       assert_nothing_raised do
         system("./bin/babelish csv2strings --fetch --filename my_strings \
         --langs English:en")
@@ -12,7 +12,7 @@ class TestBins < Test::Unit::TestCase
   end
 
   def test_csv2strings_with_google_doc_missing_langs
-    VCR.use_cassette("my_strings_fetch_google_doc") do
+    mock_google_doc_strings_file do
       assert_nothing_raised do
         system("./bin/babelish csv2strings --fetch --filename my_strings")
       end

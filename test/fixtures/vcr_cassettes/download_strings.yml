@@ -1,0 +1,703 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.googleapis.com/drive/v2/files?maxResults=1&pageToken=&q=(mimeType%20=%20'application/vnd.google-apps.spreadsheet')%20and%20(title%20=%20'my_strings')
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        google_drive Ruby library/0.4.0 google-api-ruby-client/0.8.6 Mac OS X/10.10.5
+         (gzip)
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.KAIPcjcmLpXbU0UAULrgxAJKcfXORuf4fs3xe1oVA_mBTR0QbzPT0OmvCnPbdYN8dNyJ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Tue, 10 Nov 2015 12:52:18 GMT
+      Date:
+      - Tue, 10 Nov 2015 12:52:18 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Etag:
+      - '"QEqb14agVr9EIVEHCQ-sEEtYDkU/J5FIjI1JDCR8TXc9HbvLWdc_iVE"'
+      Vary:
+      - Origin
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Encoding:
+      - gzip
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; p="1"; ma=604800
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 12:52:18 GMT
+- request:
+    method: get
+    uri: https://spreadsheets.google.com/feeds/worksheets/14CQPMP0aIP0XTS2aFlW22Vyub4Cpb8HF40SBbBfc7EE/private/full
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        google_drive Ruby library/0.4.0 google-api-ruby-client/0.8.6 Mac OS X/10.10.5
+         (gzip)
+      Gdata-Version:
+      - '3.0'
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.KAIPcjcmLpXbU0UAULrgxAJKcfXORuf4fs3xe1oVA_mBTR0QbzPT0OmvCnPbdYN8dNyJ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/atom+xml; charset=UTF-8; type=feed
+      X-Robots-Tag:
+      - noindex, nofollow, nosnippet
+      Expires:
+      - Tue, 10 Nov 2015 12:52:19 GMT
+      Date:
+      - Tue, 10 Nov 2015 12:52:19 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Vary:
+      - Accept, X-GData-Authorization, GData-Version
+      Gdata-Version:
+      - '3.0'
+      Etag:
+      - W/"D04GRnw-fCt7ImA9Wh9bEk0."
+      Last-Modified:
+      - Tue, 22 Apr 2014 22:32:07 GMT
+      Content-Encoding:
+      - gzip
+      P3p:
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Set-Cookie:
+      - NID=73=JXu5q74kZgJb03B0npxEo5InrT9s9Z2eWtZKMmdc0MvOIBwIzC1kBzTFGNyJz7bNbKp7QwaAESHd_qdweYOVP5RqWu4UqZDB2wyLyfDzCHJih8eKj5Alr4p2d5e0KM-M;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:19 GMT;HttpOnly
+      - NID=73=l7r4Ws44kVINgha77qXZOv3H83V-xJPfsZYMaqr-lSzW-KurYsH0Xpj4AY5KgYAkPzglMWty3nbFxPH2C3ybe8UiF7BiugSy7ZHNWfq3VFYpU3nb0bBY0CXwJ7pty-o8;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:19 GMT;HttpOnly
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; p="1"; ma=604800
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAOxWW0/bMBj9K5WQyMPUOAmFlOCGQVdYJ00CysbYy+TGTmrh
+        xMF2euHXz07oTVPZioC1054i+7udz/5yjuHxOGW1IRGS8qxlubZj1UgWcUyz
+        pGV9uT6rN63jEMaE4Jr2zGTLGiiVBwCMRiN7tGdzkQDPcfbBieKpVfkEPCdZ
+        jyARDWbu6NCOeArqQOYkAsZBlg7AtV0wjUvm6WU0ICmSdsJ5wkgZK3NBEJYD
+        QpQ0NQ9mYfipsAqfVUtwQBTSXd2A3fuCq6MPTuP8KhvV47byu+nJ4c3gsN+5
+        c+zKaoWQ4tCklSbvQu3F5OZgJBhxcfeIy220Ly8+Xzioe+F8u+556IzdeN7X
+        SdFvtPN+8+NZw+md9k/jyO90QC7oECkC4oIxCHQ5WORYb+DQc9xG3WnUPe/a
+        84I9L3B829tvfIdg6gEj/Um4mNTKnsmaJ6eISNcK2Zk1aYEQKqoYCdPJD6mE
+        HhUJQbUDGc3uaoKwloWYrpFpkLrYJNf4UJ4zqlHrSQNIT8s7fXtWbSBIXAEx
+        54x5tBoGXu90CaYl1jmk3w3JjrnOdeC+/lis2UDOpdrkBiRh8ebhQ4UacBHC
+        DKUk7JMIxZxmEJRLqE+astnu+8QsDQYIKgsE0/A57QWKK8SuiCyYkqEHwSrT
+        YoxUSKhuhsk4dJciFgyQZEr/8jMuq7jKsFfHYZc9qvy3Yy+OD9YmLX3ngfkv
+        p3IS6I0VkuIDbbOeSDrPtRlkiMzMPNJgxDOlr+qJST8qTRXhSBH96cgzKtXa
+        1/QsRvm16YgwJl+WIsuUb9PPkMoCMfpQwdUNNXeWtk5y+reUKhnSB6DujxOK
+        W87z74eMcy5UJIfTPhQZK1CuX1Fly6IV9F2U5kcxFylSLVN2w6nfjNIyxvLJ
+        sJEYExlEnLV5kSlNiRAsro1R8FG1cJ3KOtvQOmU0Y4V03J53bzsu/tTu6Udw
+        Yr/h45dj/798zOVDEqWWXtIbJSH+PyYhz+tnSyTE3V4JcbdPQvwtkBD/hSSk
+        RBX+BAAA//8DAM5a1gQ1EgAA
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 12:52:19 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/drive/v2/files?maxResults=1&pageToken=&q=(mimeType%20=%20'application/vnd.google-apps.spreadsheet')%20and%20(title%20=%20'my_strings')
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        google_drive Ruby library/0.4.0 google-api-ruby-client/0.8.6 Mac OS X/10.10.5
+         (gzip)
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.KAIPcjcmLpXbU0UAULrgxAJKcfXORuf4fs3xe1oVA_mBTR0QbzPT0OmvCnPbdYN8dNyJ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Tue, 10 Nov 2015 12:52:19 GMT
+      Date:
+      - Tue, 10 Nov 2015 12:52:19 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Etag:
+      - '"QEqb14agVr9EIVEHCQ-sEEtYDkU/INxDGkO60C0VHeRE21Zzzqqnkg0"'
+      Vary:
+      - Origin
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Encoding:
+      - gzip
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; p="1"; ma=604800
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAL1W604iSRT+71OQ3izORKEvdIuQEBcRF7KCqIgzszMxRdfp
+        pravdBU3Jz7PPsi+2Fb1BXvAGXGS0cQmOdevTp3znfq6V5Ac4mOpXpBwRObw
+        m0VcuCCUSYdcBQzZQvVZumpPx6qO7FFUa3dH7U7rqkTbbfbxzLmVu/3l2Z/O
+        5ZHSUkYduG5r6qeHh+nUd2zlsxTHoeBaF8R3RKwJYyGty/JisSjbQWC7gEJC
+        y2bgyTECea7JAgQ98dDyGujMZbShFkNkwzBwwC9OG+884sFwFcLB75Wzg30U
+        hi4xESOBL899nEYtcTEt0zAChOkEgO2/P0A+PnjHCHNTT291T1lEfJvuv4+B
+        EgYe5Sj/3isUvvL/56ojDLmCxGJVb10NegMFdQfKh+GNhs7dO00brWZjvRWO
+        jzvnunJzOj61zGq7nTruVtTesGdcnnUX/aGz6j901X4zqWXhJ6sp/wRS5DKI
+        fMRgMxsOTJqmi1Plqkxl/KpUMmDCTmY0bMR4KXayMnljwL8y8YR5bpwku1Az
+        8DfzUeqWbcp4b5lJTXl+8XH5hMjE4z1JZeF3r6r3OSz3Ql8OfTsNzSYzb+wj
+        4r50HgsAU3nOTmzcYNEMigQ3XnOo4ryhFGmj2QPc94Om+Bs53XagjNlFNOwM
+        Ptq9Ybs3P/4rdEaG0bm7Kf1TpA8NqmlKBlVMh4D4NBupJhs6odxx5FJPF43B
+        FWMVjxRvYIaiCMT8WMilcJhIJwRj8DeELEI80qZpBAKaybYUcwKLWCiKJ0SP
+        CQKTQ+LWZ/wj4GuKqpcUvaRpQ02tq1q9Ui0fGcan7KQBJhZ53pzbanWlWtYM
+        fdP8dNWDHV1cRNkoxrrtVC1p+lCp1vUa9ysfVWvrPChyAH/fTa2K0xjcs1I2
+        jOPMbQ4R5fckLPVqRT1KxSGKwGcZ2aV0t0V4idU1WMB/zZT71uynNDtq02W1
+        Szy5VG6d2mDUXFv8epaS0yPIP4KR2LweyI9iEnodBCzXZYVH8f2SEtcyDKI4
+        Y67l8wMTYmtnTkuCnbyWBhK38yDyEGuIfNk4wZLJJp2/aX6R73C7DII3ghD8
+        pedasSEtBZZFTOCAZh6/tDyTeG45YZS3BL506VLKsciMQjSAyCM0Haj0cjdG
+        5skiPfVuG5/dXLHb6RBqH6zuw/Fdy6eWMbi+urij3Wz1Z3PnZYP4JlO2Pg+V
+        nxJHQbImgoUP0bq90vUgCpUv3HQWMHS6YkBvKSTMkbJQ7N5HHjwRkXQeIf+/
+        fwNCC6fAlyYDNJNy8xW7vMRbMYJsXjGhoYtWIo2weC7+02g3Z2zCm090KeBb
+        ESaZ8zWhrMvRTU5SMTRdqx3XKkqtqmtVtapV1uHA40u/iTFfWAKxNAYTWQHx
+        /7CFQlyNtMUfYjf0xEpZ8eUrALyIe9vle72ZK8vuVXmxKK+pya4lSTtHvA7R
+        OG61dT7JDMLVlnARccwRbSH/ZsI5/xsdFZJv3wqCpjkV8dfOavjMG0MwFd+v
+        qBX4LF2TOSUNkZnv2Li4SY/uxZf5Ze9x73/VmQzIXA0AAA==
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 12:52:20 GMT
+- request:
+    method: get
+    uri: https://spreadsheets.google.com/feeds/worksheets/14CQPMP0aIP0XTS2aFlW22Vyub4Cpb8HF40SBbBfc7EE/private/full
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        google_drive Ruby library/0.4.0 google-api-ruby-client/0.8.6 Mac OS X/10.10.5
+         (gzip)
+      Gdata-Version:
+      - '3.0'
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.KAIPcjcmLpXbU0UAULrgxAJKcfXORuf4fs3xe1oVA_mBTR0QbzPT0OmvCnPbdYN8dNyJ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/atom+xml; charset=UTF-8; type=feed
+      X-Robots-Tag:
+      - noindex, nofollow, nosnippet
+      Expires:
+      - Tue, 10 Nov 2015 12:52:20 GMT
+      Date:
+      - Tue, 10 Nov 2015 12:52:20 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Vary:
+      - Accept, X-GData-Authorization, GData-Version
+      Gdata-Version:
+      - '3.0'
+      Etag:
+      - W/"D04GRnw-fCt7ImA9Wh9bEk0."
+      Last-Modified:
+      - Tue, 22 Apr 2014 22:32:07 GMT
+      Content-Encoding:
+      - gzip
+      P3p:
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Set-Cookie:
+      - NID=73=A-GxzfOMnbofTAoUs-dQRTm51vn3DGiBfugdWfoQ80C_5OFQ4U9N3vHX3QpHYOpObUqbqxHM_O8lvV6hZ5ZrpHyngLMX1aYUChR8OJSYjar4i9sDhfWsFRKQhKXpwpFv;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:20 GMT;HttpOnly
+      - NID=73=tX5BLZA2Fdghti__ylR3WJpaXA3eg6qkRMi0QkJnOluFgfqibIt8sj9mvjAYZaaJFaXtPw1vXKZlSMmud06yRSW_2bHoGXM3ebNXCuswXDwv2Ii0G9rIdD4QWrRqJON-;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:20 GMT;HttpOnly
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; p="1"; ma=604800
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAOxWW0/bMBj9K5WQyMPUOAmFlOCGQVdYJ00CysbYy+TGTmrh
+        xMF2euHXz07oTVPZioC1054i+7udz/5yjuHxOGW1IRGS8qxlubZj1UgWcUyz
+        pGV9uT6rN63jEMaE4Jr2zGTLGiiVBwCMRiN7tGdzkQDPcfbBieKpVfkEPCdZ
+        jyARDWbu6NCOeArqQOYkAsZBlg7AtV0wjUvm6WU0ICmSdsJ5wkgZK3NBEJYD
+        QpQ0NQ9mYfipsAqfVUtwQBTSXd2A3fuCq6MPTuP8KhvV47byu+nJ4c3gsN+5
+        c+zKaoWQ4tCklSbvQu3F5OZgJBhxcfeIy220Ly8+Xzioe+F8u+556IzdeN7X
+        SdFvtPN+8+NZw+md9k/jyO90QC7oECkC4oIxCHQ5WORYb+DQc9xG3WnUPe/a
+        84I9L3B829tvfIdg6gEj/Um4mNTKnsmaJ6eISNcK2Zk1aYEQKqoYCdPJD6mE
+        HhUJQbUDGc3uaoKwloWYrpFpkLrYJNf4UJ4zqlHrSQNIT8s7fXtWbSBIXAEx
+        54x5tBoGXu90CaYl1jmk3w3JjrnOdeC+/lis2UDOpdrkBiRh8ebhQ4UacBHC
+        DKUk7JMIxZxmEJRLqE+astnu+8QsDQYIKgsE0/A57QWKK8SuiCyYkqEHwSrT
+        YoxUSKhuhsk4dJciFgyQZEr/8jMuq7jKsFfHYZc9qvy3Yy+OD9YmLX3ngfkv
+        p3IS6I0VkuIDbbOeSDrPtRlkiMzMPNJgxDOlr+qJST8qTRXhSBH96cgzKtXa
+        1/QsRvm16YgwJl+WIsuUb9PPkMoCMfpQwdUNNXeWtk5y+reUKhnSB6DujxOK
+        W87z74eMcy5UJIfTPhQZK1CuX1Fly6IV9F2U5kcxFylSLVN2w6nfjNIyxvLJ
+        sJEYExlEnLV5kSlNiRAsro1R8FG1cJ3KOtvQOmU0Y4V03J53bzsu/tTu6Udw
+        Yr/h45dj/798zOVDEqWWXtIbJSH+PyYhz+tnSyTE3V4JcbdPQvwtkBD/hSSk
+        RBX+BAAA//8DAM5a1gQ1EgAA
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 12:52:20 GMT
+- request:
+    method: get
+    uri: https://docs.google.com/spreadsheets/d/14CQPMP0aIP0XTS2aFlW22Vyub4Cpb8HF40SBbBfc7EE/export?format=csv&gid=0
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        google_drive Ruby library/0.4.0 google-api-ruby-client/0.8.6 Mac OS X/10.10.5
+         (gzip)
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.KAIPcjcmLpXbU0UAULrgxAJKcfXORuf4fs3xe1oVA_mBTR0QbzPT0OmvCnPbdYN8dNyJ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/csv
+      X-Robots-Tag:
+      - noindex, nofollow, nosnippet
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Date:
+      - Tue, 10 Nov 2015 12:52:21 GMT
+      Content-Disposition:
+      - attachment; filename="my_strings-main.csv"; filename*=UTF-8''my_strings%20-%20main.csv
+      Content-Encoding:
+      - gzip
+      P3p:
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Set-Cookie:
+      - NID=73=mtNOl_pfB9TAH4rPNLpcQGMKqjbzHJjt2N28K4WVax_wBK0ei4cv7ddxV8rkPLWSsCnFOPFriTC_64V92expT0s2DtHSpQn3gbN68JKw6JpKfKnMvDoyGMRsnxZTrWEI;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:21 GMT;HttpOnly
+      - NID=73=tMtzwjSBKu2WuuOSzA0_d-ntUYBvgIXKIg0n74LmCHGr0u5B8_tFUuK75MATcJBY23DptqcmkcQR8zno_l-Zk-Rg5nfQSPfzClO5peBBDVKRmIXUj4zufn3bdY7tGHfc;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:21 GMT;HttpOnly
+      - S=apps-spreadsheets=8F6CRqbaV608IVAdbTRRbA; Domain=.docs.google.com; Expires=Tue,
+        10-Nov-2015 13:52:21 GMT; Path=/spreadsheets/d/14CQPMP0aIP0XTS2aFlW22Vyub4Cpb8HF40SBbBfc7EE;
+        Secure; HttpOnly
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; p="1"; ma=604800
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAMpOrSzWcc1Lz8ksztBxK0rNS87g5cpIzcnJ1/EAk075eVn5
+        pUUAAAAA//8DAFF9RCcoAAAA
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 12:52:21 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/drive/v2/files?maxResults=1&pageToken=&q=(mimeType%20=%20'application/vnd.google-apps.spreadsheet')%20and%20(title%20=%20'my_strings')
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        google_drive Ruby library/0.4.0 google-api-ruby-client/0.8.6 Mac OS X/10.10.5
+         (gzip)
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.KAIPcjcmLpXbU0UAULrgxAJKcfXORuf4fs3xe1oVA_mBTR0QbzPT0OmvCnPbdYN8dNyJ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Tue, 10 Nov 2015 12:52:21 GMT
+      Date:
+      - Tue, 10 Nov 2015 12:52:21 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Etag:
+      - '"QEqb14agVr9EIVEHCQ-sEEtYDkU/USA79UBlIzESEUBhkPYQgnL2YeE"'
+      Vary:
+      - Origin
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Encoding:
+      - gzip
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; p="1"; ma=604800
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAL1W6U7jSBD+z1NEXm1mRpD4iINJpIhNwIhIBBJyALszQh13
+        2emJL9ydixHPsw+yL7bdPoInYYYw0oCEI9X5dXXVV/1tryBNiY+lekHCEZnD
+        HzZx4YJQJh1wFTDkCNVnqWc+jFUdOaOoZrZH5vlJr0RNk92dTofysN80asOW
+        2340++awNZl273qOf6HdgflZiuNQcO0L4k9FrAljIa3L8mKxKDtB4LiAQkLL
+        VuDJMQJ5rskCBD320PIa6MxltKEWQ+TAIJiCX3xofPSIB4NVCPt/Vk73P6Aw
+        dImFGAl8ee7jNGqJi2mZhhEgTCcA7MOnfeTj/Y+MMDf19Fb3lEXEd+iHTzFQ
+        wsCjHOU/e4XCN/7/UnWEIVeQWKzqJ71up6ugdle5HfQ1dObeaNpoNRvrJ+H4
+        6PxMV/qtccu2DNNMHXcramfQqV6dtheXg+nq8rGtXjaTWhZ+sZryLyBFLoPI
+        Rww2s+HAomm6OFWuylTGb0olAybseEbDRoyX4mlWJm8M+HcmnjDPjZNkF2oF
+        /mY+St2yQxnvLSupKc8vPi6fEJl4vCepLPzuVfU+h+Ve6Muh76Sh2WTmjX1E
+        3NfOYwNgKs/ZsYMbLJpBkeDGWw5VnDeUIm00O4Av/aAp/kbTthneGrWrvobp
+        XSkc9SeDyoVpWFVnRbzS1yJ9bFBNUzKoYjoExOfZSDXZ0AnljiOXerpoDK4Y
+        q3ikeAMzFEUg5sdGLoWDRDohGIO/IWQR4pE2TSMQ0Cy2pZgTWMRCUTwhekoQ
+        WBwStz7lHwFfU1S9pOglTRtoal3V6hWjfFit/p2dNMDEJi+bc1utrhhlrapv
+        mrdWHdjRxUWUjWKs205GSdMHilHXa9yvfGjU1nlQNAX8YzfVEKepcs9KuVo9
+        ytzmEFF+T8JSNyrqYSoOUQQ+y8gupbstwkusrsEG/mul3LdmP6V5rjZdVrvC
+        kytlOK11R821xe9nKTk9gvwzGInN24H8LCah10HAcl1WeBLfLylxLcMgijPm
+        Wj4/MCG2d+a0JNjxW2kgcTsLIg+xhsiXjRMsmWzR+bvmF/kOtssgeCMIwV96
+        rh0b0lJg28QCDmjm8UvLM4nnlhNGeU/gS5cupRyLzChEXYg8QtOBSi93Y2Se
+        LdJT77bxWb/Hhg8DqN3a7cejmxOf2tXude/ihraz1Z/NnZcN4rtM2fo8VH5O
+        HAXJmggWPkTr9krXgyhUvnAPs4Ch1ooBHVJImCNlodj9EnnwTETSWYT8//4N
+        CC20gC9NBmgm5eYrdnmNt2IE2bxiQkMXrUQaYfFS/OfRbs7YhDef6FLAQxEm
+        mfM1oazL0U5OUqlqulY7qlWUmqFrhmpolXU48PjSb2LMF5ZALI3BQnZA/L8c
+        oRBXI23xh9gNHbFSVnz5CgCv4t52+VFv5sqye1VeLcpbarJrSdLOEa9DNI5b
+        bZ1PsoJwtSVcRBxzRE+Q359wzv9OR4Xk+7eCoGlORfy1sxq88MYQTMX3KzoJ
+        fJauyZyShsjKd2xc3KRH9+LL/LL3tPc/5jGQZVwNAAA=
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 12:52:21 GMT
+- request:
+    method: get
+    uri: https://spreadsheets.google.com/feeds/worksheets/14CQPMP0aIP0XTS2aFlW22Vyub4Cpb8HF40SBbBfc7EE/private/full
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        google_drive Ruby library/0.4.0 google-api-ruby-client/0.8.6 Mac OS X/10.10.5
+         (gzip)
+      Gdata-Version:
+      - '3.0'
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.KAIPcjcmLpXbU0UAULrgxAJKcfXORuf4fs3xe1oVA_mBTR0QbzPT0OmvCnPbdYN8dNyJ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/atom+xml; charset=UTF-8; type=feed
+      X-Robots-Tag:
+      - noindex, nofollow, nosnippet
+      Expires:
+      - Tue, 10 Nov 2015 12:52:22 GMT
+      Date:
+      - Tue, 10 Nov 2015 12:52:22 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Vary:
+      - Accept, X-GData-Authorization, GData-Version
+      Gdata-Version:
+      - '3.0'
+      Etag:
+      - W/"D04GRnw-fCt7ImA9Wh9bEk0."
+      Last-Modified:
+      - Tue, 22 Apr 2014 22:32:07 GMT
+      Content-Encoding:
+      - gzip
+      P3p:
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Set-Cookie:
+      - NID=73=qYZdNL0xAS9uPtBhFDnX_B_YO6pSpJBtDJ-NpudmegNQOtuZ7HCe-z0yt3XdIK3GzmLAufS6EyQXX9tLQVv2lY8eAEls2-WsH6PV7T14gzNq4aST-SSRsKrkPe9tRram;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:22 GMT;HttpOnly
+      - NID=73=qu0yA7iGUsje_BTIva0GU1oBCda-wrXKL5lgMv8s3ednUANQ8k27I-gXdFSa_5uf7lxgN2CGCDQlSXBsd9SzeIHz6UjTYHaqGAiCIGptQJbwyNTrSxp8qKjzyICDsTu9;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:22 GMT;HttpOnly
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; p="1"; ma=604800
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAOxWW0/bMBj9K5WQyMPUOAmFlOCGQVdYJ00CysbYy+TGTmrh
+        xMF2euHXz07oTVPZioC1054i+7udz/5yjuHxOGW1IRGS8qxlubZj1UgWcUyz
+        pGV9uT6rN63jEMaE4Jr2zGTLGiiVBwCMRiN7tGdzkQDPcfbBieKpVfkEPCdZ
+        jyARDWbu6NCOeArqQOYkAsZBlg7AtV0wjUvm6WU0ICmSdsJ5wkgZK3NBEJYD
+        QpQ0NQ9mYfipsAqfVUtwQBTSXd2A3fuCq6MPTuP8KhvV47byu+nJ4c3gsN+5
+        c+zKaoWQ4tCklSbvQu3F5OZgJBhxcfeIy220Ly8+Xzioe+F8u+556IzdeN7X
+        SdFvtPN+8+NZw+md9k/jyO90QC7oECkC4oIxCHQ5WORYb+DQc9xG3WnUPe/a
+        84I9L3B829tvfIdg6gEj/Um4mNTKnsmaJ6eISNcK2Zk1aYEQKqoYCdPJD6mE
+        HhUJQbUDGc3uaoKwloWYrpFpkLrYJNf4UJ4zqlHrSQNIT8s7fXtWbSBIXAEx
+        54x5tBoGXu90CaYl1jmk3w3JjrnOdeC+/lis2UDOpdrkBiRh8ebhQ4UacBHC
+        DKUk7JMIxZxmEJRLqE+astnu+8QsDQYIKgsE0/A57QWKK8SuiCyYkqEHwSrT
+        YoxUSKhuhsk4dJciFgyQZEr/8jMuq7jKsFfHYZc9qvy3Yy+OD9YmLX3ngfkv
+        p3IS6I0VkuIDbbOeSDrPtRlkiMzMPNJgxDOlr+qJST8qTRXhSBH96cgzKtXa
+        1/QsRvm16YgwJl+WIsuUb9PPkMoCMfpQwdUNNXeWtk5y+reUKhnSB6DujxOK
+        W87z74eMcy5UJIfTPhQZK1CuX1Fly6IV9F2U5kcxFylSLVN2w6nfjNIyxvLJ
+        sJEYExlEnLV5kSlNiRAsro1R8FG1cJ3KOtvQOmU0Y4V03J53bzsu/tTu6Udw
+        Yr/h45dj/798zOVDEqWWXtIbJSH+PyYhz+tnSyTE3V4JcbdPQvwtkBD/hSSk
+        RBX+BAAA//8DAM5a1gQ1EgAA
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 12:52:22 GMT
+- request:
+    method: get
+    uri: https://docs.google.com/spreadsheets/d/14CQPMP0aIP0XTS2aFlW22Vyub4Cpb8HF40SBbBfc7EE/export?format=csv&gid=1
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - |-
+        google_drive Ruby library/0.4.0 google-api-ruby-client/0.8.6 Mac OS X/10.10.5
+         (gzip)
+      Accept-Encoding:
+      - gzip
+      Content-Type:
+      - ''
+      Authorization:
+      - Bearer ya29.KAIPcjcmLpXbU0UAULrgxAJKcfXORuf4fs3xe1oVA_mBTR0QbzPT0OmvCnPbdYN8dNyJ
+      Cache-Control:
+      - no-store
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/csv
+      X-Robots-Tag:
+      - noindex, nofollow, nosnippet
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Date:
+      - Tue, 10 Nov 2015 12:52:22 GMT
+      Content-Disposition:
+      - attachment; filename="my_strings-settings.csv"; filename*=UTF-8''my_strings%20-%20settings.csv
+      Content-Encoding:
+      - gzip
+      P3p:
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      - CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+        for more info."
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - GSE
+      Set-Cookie:
+      - NID=73=OqjKH5DVA5a34CL6BVlOqQjMAqZ2Q5uvpHPQq9vgNNHrYE50EtJncj2VC1Bicf9kcSLXvpmr8jib7nl42Ox-JVKc0qoQoDMPzMiwYulxbvzB3IPTvpvfoMJUgx4vksJW;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:22 GMT;HttpOnly
+      - NID=73=lM1Dj0lTlOzfFL5YwYY84Sz1mfgjW69py54lI4333ZR3tBYsA1liWF4UrMd8rIM22RKeoflbuvnslCuyr_E97-GyQb7mbbmi0cLDrcbsm_mI7P9G244KnvfzMxTz9lwd;Domain=.google.com;Path=/;Expires=Wed,
+        11-May-2016 12:52:22 GMT;HttpOnly
+      - S=apps-spreadsheets=8F6CRqbaV608IVAdbTRRbA; Domain=.docs.google.com; Expires=Tue,
+        10-Nov-2015 13:52:22 GMT; Path=/spreadsheets/d/14CQPMP0aIP0XTS2aFlW22Vyub4Cpb8HF40SBbBfc7EE;
+        Secure; HttpOnly
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; p="1"; ma=604800
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAMpOrSzWcc1Lz8ksztBxK0rNS87g5UpMzs7LL89JTUlPzU3N
+        KynWcUQXCALSRcmZEB4AAAD//wMAvDxoXUQAAAA=
+    http_version: 
+  recorded_at: Tue, 10 Nov 2015 12:52:22 GMT
+recorded_with: VCR 3.0.0

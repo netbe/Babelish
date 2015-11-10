@@ -99,7 +99,7 @@ class TestCommandLine < Test::Unit::TestCase
     config_file.write options.to_yaml
     config_file.close
 
-    VCR.use_cassette("my_strings_fetch_google_doc") do
+    mock_google_doc_strings_file do
       assert_nothing_raised do
         Commandline.new.csv_download
       end

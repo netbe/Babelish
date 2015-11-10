@@ -39,7 +39,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       :fetch => true
     }
 
-    VCR.use_cassette("my_strings_fetch_google_doc") do
+    mock_google_doc_strings_file do
       assert_nothing_raised do
         Commandline.new([], options).csv2strings
       end
@@ -69,7 +69,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       :fetch => true,
       :output_basenames => %w(sheet1 sheet2),
     }
-    VCR.use_cassette("my_strings_fetch_google_doc") do
+    mock_google_doc_strings_file do
       Commandline.new([], options).csv2strings
     end
 
@@ -93,7 +93,7 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
       :output_basenames => %w(sheet1 sheet2),
     }
 
-    VCR.use_cassette("my_strings_fetch_google_doc") do
+    mock_google_doc_strings_file do
       Commandline.new([], options).csv2strings
     end
     # testing
