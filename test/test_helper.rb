@@ -4,7 +4,7 @@ begin
 
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
   SimpleCov.start do
-     add_filter "/test/"
+    add_filter "/test/"
   end
 rescue LoadError
   puts "Coverage disabled, enable by installing simplecov"
