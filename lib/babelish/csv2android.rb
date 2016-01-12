@@ -25,8 +25,8 @@ module Babelish
     end
 
     def get_row_format(row_key, row_value, comment = nil, indentation = 0)
-        entry = comment.to_s.empty? ? "" : "\n<!-- #{comment} -->\n"
-        entry + "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
+      entry = comment.to_s.empty? ? "" : "\n<!-- #{comment} -->\n"
+      entry + "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
     end
 
     def hash_to_output(content = {})
