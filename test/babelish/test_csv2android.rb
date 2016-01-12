@@ -35,4 +35,18 @@ class TestCSV2Android < Test::Unit::TestCase
     # clean up
     system("rm -rf ./" + single_file)
   end
+  
+  def test_converting_with_comments
+    csv_file = "test/data/test_data_with_comments.csv"
+    french_file = "values-fr/strings.xml"
+    expected_output = File.read("test/data/test_data_fr_with_comments.xml")
+    converter = Babelish::CSV2Android.new(csv_file,
+    {"French" => "fr"},
+    :default_lang => "English", :comments_column => 5)
+    converter.convert
+    assert File.exists?(french_file), "the ouptut file does not exist"
+    result = File.read(french_file)
+    assert_equal expected_output, result
+    system("rm -rf values-fr")
+  end
 end
