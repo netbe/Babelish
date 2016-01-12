@@ -35,8 +35,8 @@ module Babelish
         output += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
         output += "<resources>\n"
         content.each do |key, value|
-          output += get_row_format(key, value)
           comment = @comments[key]
+          output += get_row_format(key, value, comment)
         end
         output += "</resources>\n"
       end
