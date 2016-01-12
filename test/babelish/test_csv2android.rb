@@ -41,8 +41,9 @@ class TestCSV2Android < Test::Unit::TestCase
     french_file = "values-fr/strings.xml"
     expected_output = File.read("test/data/test_data_fr_with_comments.xml")
     converter = Babelish::CSV2Android.new(csv_file,
-    {'French' => "fr"},
-    :default_lang => "English", :comments_column => 5)
+    {"French" => "fr"},
+    :default_lang => "English",
+    :comments_column => 5)
     converter.convert
     assert File.exist?(french_file), "the ouptut file does not exist"
     result = File.read(french_file)
