@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <!-- this is a greeting string -->
-    <string name="GREETINGS">Salut</string>
-    
-    <!-- this is another example -->
-    <string name="ANOTHER_STRING">testEN</string>
+
+	<!-- this is a greeting string -->
+	<string name="GREETINGS">Salut</string>
+	
+	<!-- this is another example -->
+	<string name="ANOTHER_STRING">testEN</string>
 </resources>
