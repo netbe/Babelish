@@ -28,9 +28,12 @@ class TestCSV2Android < Test::Unit::TestCase
   def test_converting_csv_to_dotstrings_one_output_option
     csv_file = "test/data/test_data.csv"
     single_file = "myApp.xml"
-    converter = Babelish::CSV2Android.new(csv_file, { "English" => "en" },
+    converter = Babelish::CSV2Android.new(
+      csv_file,
+      { "English" => "en" },
       :output_basename => "myApp",
-      :ignore_lang_path => true)
+      :ignore_lang_path => true
+    )
     converter.convert
     assert File.exist?(single_file), "the ouptut file does not exist"
 
@@ -42,9 +45,12 @@ class TestCSV2Android < Test::Unit::TestCase
     csv_file = "test/data/test_data_with_comments.csv"
     french_file = "values-fr/strings.xml"
     expected_output = File.read("test/data/test_data_fr_with_comments.xml")
-    converter = Babelish::CSV2Android.new(csv_file, { "French" => "fr" },
+    converter = Babelish::CSV2Android.new(
+      csv_file,
+	  { "French" => "fr" },
       :default_lang => "English",
-      :comments_column => 5)
+      :comments_column => 5
+    )
     converter.convert
     assert File.exist?(french_file), "the ouptut file does not exist"
     result = File.read(french_file)
