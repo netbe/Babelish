@@ -18,8 +18,9 @@ class TestCSV2Android < Test::Unit::TestCase
     converter.convert
     assert File.exist?("values-de/strings.xml"),
     "the ouptut file does not exist"
-    assert_equal File.read("test/data/android_special_chars_test_result.xml"),
-    File.read("values-de/strings.xml")
+    assert_equal
+      File.read("test/data/android_special_chars_test_result.xml"),
+      File.read("values-de/strings.xml")
 
     # clean up
     system("rm -rf ./values-de")
@@ -52,7 +53,7 @@ class TestCSV2Android < Test::Unit::TestCase
       :comments_column => 5
     )
     converter.convert
-    assert File.exist?(french_file), "the ouptut file does not exist"
+      assert File.exist?(french_file), "the ouptut file does not exist"
     result = File.read(french_file)
     assert_equal expected_output, result
 	
