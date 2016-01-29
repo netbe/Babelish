@@ -5,9 +5,7 @@ class TestCSV2Android < Test::Unit::TestCase
     csv_file = "test/data/test_data.csv"
     converter = Babelish::CSV2Android.new(csv_file, "English" => "en")
     converter.convert
-    assert
-      File.exist?("values-en/strings.xml"),
-      "the ouptut file does not exist"
+    assert File.exist?("values-en/strings.xml"), "the ouptut file does not exist"
 
     # clean up
     system("rm -rf ./values-en")
