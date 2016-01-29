@@ -26,7 +26,7 @@ class TestCSV2Android < Test::Unit::TestCase
     csv_file = "test/data/test_data.csv"
     single_file = "myApp.xml"
     converter = Babelish::CSV2Android.new(csv_file,
-    {"English" => "en"},
+    { "English" => "en" },
     :output_basename => "myApp",
     :ignore_lang_path => true)
     converter.convert
