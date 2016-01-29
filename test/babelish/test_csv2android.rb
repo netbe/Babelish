@@ -47,7 +47,7 @@ class TestCSV2Android < Test::Unit::TestCase
     expected_output = File.read("test/data/test_data_fr_with_comments.xml")
     converter = Babelish::CSV2Android.new(
       csv_file,
-	  { "French" => "fr" },
+      { "French" => "fr" },
       :default_lang => "English",
       :comments_column => 5
     )
