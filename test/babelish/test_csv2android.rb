@@ -52,7 +52,7 @@ class TestCSV2Android < Test::Unit::TestCase
     assert File.exist?(french_file), "the ouptut file does not exist"
     result = File.read(french_file)
     assert_equal expected_output, result
-	
+
     # clean up
     system("rm -rf values-fr")
   end
