@@ -3,7 +3,8 @@ class TestCSV2Android < Test::Unit::TestCase
 
   def test_converting_csv_to_xml
     csv_file = "test/data/test_data.csv"
-    converter = Babelish::CSV2Android.new(csv_file, "English" => "en")
+    converter = Babelish::CSV2Android.new(csv_file,
+    "English" => "en")
     converter.convert
     assert File.exist?("values-en/strings.xml"), "the ouptut file does not exist"
 
@@ -13,7 +14,8 @@ class TestCSV2Android < Test::Unit::TestCase
 
   def test_converting_csv_with_special_chars
     csv_file = "test/data/android_special_chars.csv"
-    converter = Babelish::CSV2Android.new(csv_file, "german" => "de")
+    converter = Babelish::CSV2Android.new(csv_file,
+    "german" => "de")
     converter.convert
     assert File.exist?("values-de/strings.xml"), "the ouptut file does not exist"
     assert_equal File.read("test/data/android_special_chars_test_result.xml"), File.read("values-de/strings.xml")
@@ -48,6 +50,8 @@ class TestCSV2Android < Test::Unit::TestCase
     assert File.exist?(french_file), "the ouptut file does not exist"
     result = File.read(french_file)
     assert_equal expected_output, result
+	
+	# clean up
     system("rm -rf values-fr")
   end
 end
