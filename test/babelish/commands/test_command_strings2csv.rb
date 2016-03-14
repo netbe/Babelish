@@ -92,4 +92,20 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
   end
 
+
+  def test_strings2csv_with_comments_outputs_right_headers
+    expected_content = <<-EOF
+Variables,test/data/test_comments.strings,Comments
+MY_CONSTANT,This 'is' ok,this is a comment
+    EOF
+
+    options = {:filenames => ["test/data/test_comments.strings"]}
+    Commandline.new([], options).strings2csv
+
+    csv_content = %x(cat translations.csv)
+
+    assert_equal expected_content, csv_content, "Content of generated file differs from expected one"
+    #clean up
+    system("rm -f translations.csv")
+  end
 end
