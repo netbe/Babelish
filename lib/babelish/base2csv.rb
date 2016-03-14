@@ -83,6 +83,7 @@ module Babelish
     def create_csv_file(keys, strings, comments = nil)
       raise "csv_filename must not be nil" unless @csv_filename
       CSV.open(@csv_filename, "wb") do |csv|
+        @headers << "Comments" if comments
         csv << @headers
         keys.each do |key|
           line = [key]
