@@ -6,7 +6,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
 
     assert File.exist?("translations.csv")
 
-    #clean up
+    # clean up
     system("rm -f translations.csv")
   end
 
@@ -16,7 +16,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
 
     assert !File.exist?("translations.csv")
 
-    #clean up
+    # clean up
     system("rm -f translations.csv")
   end
 
@@ -27,7 +27,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
 
     assert File.exist?("myfile.csv")
 
-    #clean up
+    # clean up
     system("rm -f myfile.csv")
   end
 
@@ -38,7 +38,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
 
     #TODO assertion or move test on at lib level
 
-    #clean up
+    # clean up
     system("rm -f translations.csv")
   end
 
@@ -53,7 +53,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
 
     #TODO assertion
 
-    #clean up
+    # clean up
     system("rm -f enfr.csv")
   end
 

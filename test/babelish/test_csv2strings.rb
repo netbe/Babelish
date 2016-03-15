@@ -5,7 +5,7 @@ class TestCSV2Strings < Test::Unit::TestCase
     csv_file = "test/data/test_data.csv"
     converter = Babelish::CSV2Strings.new(csv_file, 'English' => [:en])
     converter.convert
-    assert File.exists?("en.lproj/Localizable.strings"), "the ouptut file does not exist"
+    assert File.exist?("en.lproj/Localizable.strings"), "the ouptut file does not exist"
     system("rm -rf en.lproj/")
   end
 
@@ -17,7 +17,7 @@ class TestCSV2Strings < Test::Unit::TestCase
     :output_basename => 'myApp',
     :ignore_lang_path => true)
     converter.convert
-    assert File.exists?(single_file), "the ouptut file does not exist"
+    assert File.exist?(single_file), "the ouptut file does not exist"
     system("rm -f #{single_file}")
   end
 
@@ -32,7 +32,7 @@ class TestCSV2Strings < Test::Unit::TestCase
     {'English' => [:en], "French" => "fr", "German" => "de", "Spanish" => "es"},
     :default_lang => "English")
     converter.convert
-    assert File.exists?(spanish_file), "the ouptut file does not exist"
+    assert File.exist?(spanish_file), "the ouptut file does not exist"
     result = File.read(spanish_file)
     assert_equal expected_output, result
     system("rm -rf *.lproj")
@@ -48,7 +48,7 @@ class TestCSV2Strings < Test::Unit::TestCase
     converter = Babelish::CSV2Strings.new(csv_file,
     {'English' => [:en], "French" => "fr", "German" => "de", "Spanish" => "es"})
     converter.convert
-    assert File.exists?(spanish_file), "the ouptut file does not exist"
+    assert File.exist?(spanish_file), "the ouptut file does not exist"
     result = File.read(spanish_file)
     assert_equal expected_output, result
     system("rm -rf *.lproj")
@@ -65,7 +65,7 @@ class TestCSV2Strings < Test::Unit::TestCase
     {'English' => [:en], "French" => "fr", "German" => "de", "Spanish" => "es"},
     :default_lang => "variables")
     converter.convert
-    assert File.exists?(spanish_file), "the ouptut file does not exist"
+    assert File.exist?(spanish_file), "the ouptut file does not exist"
     result = File.read(spanish_file)
     assert_equal expected_output, result
     system("rm -rf *.lproj")
@@ -146,7 +146,7 @@ class TestCSV2Strings < Test::Unit::TestCase
     {"French" => "fr"},
     :default_lang => "English", :comments_column => 5)
     converter.convert
-    assert File.exists?(spanish_file), "the ouptut file does not exist"
+    assert File.exist?(spanish_file), "the ouptut file does not exist"
     result = File.read(spanish_file)
     assert_equal expected_output, result
     system("rm -rf *.lproj")

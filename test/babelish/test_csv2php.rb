@@ -5,9 +5,9 @@ class TestCSV2Php < Test::Unit::TestCase
     csv_file = "test/data/test_data.csv"
     converter = Babelish::CSV2Php.new(csv_file, 'English' => "en")
     converter.convert
-    assert File.exists?("en/lang.php"), "the ouptut file does not exist"
+    assert File.exist?("en/lang.php"), "the ouptut file does not exist"
 
-    #clean up
+    # clean up
     system("rm -rf ./en")
   end
 
@@ -19,9 +19,9 @@ class TestCSV2Php < Test::Unit::TestCase
     :output_basename => 'myApp',
     :ignore_lang_path => true)
     converter.convert
-    assert File.exists?(single_file), "the ouptut file does not exist"
+    assert File.exist?(single_file), "the ouptut file does not exist"
 
-    #clean up
+    # clean up
     system("rm -rf ./" + single_file)
   end
 end

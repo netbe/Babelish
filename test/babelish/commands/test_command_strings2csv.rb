@@ -7,7 +7,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
     assert File.exist?("translations.csv")
 
-    #clean up
+    # clean up
     system("rm -f translations.csv")
   end
 
@@ -17,7 +17,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
     assert !File.exist?("translations.csv")
 
-    #clean up
+    # clean up
     system("rm -f translations.csv")
   end
 
@@ -28,7 +28,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
     assert File.exist?("myfile.csv")
 
-    #clean up
+    # clean up
     system("rm -f myfile.csv")
   end
 
@@ -39,7 +39,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
     #TODO assertion or move test on at lib level
 
-    #clean up
+    # clean up
     system("rm -f translations.csv")
   end
 
@@ -54,7 +54,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
 
     #TODO assertion
 
-    #clean up
+    # clean up
     system("rm -f enfr.csv")
   end
 
@@ -71,7 +71,7 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
     end
     assert system("diff test_with_nil.csv test/data/test_with_nil.csv"), "no difference on output"
 
-    #clean up
+    # clean up
     system("rm -f test_with_nil.csv")
   end
 
@@ -87,9 +87,24 @@ class TestStrings2CSVCommand < Test::Unit::TestCase
       Commandline.new([], options).strings2csv
     end
 
-    #clean up
+    # clean up
     system("rm -f test_utf16.csv")
 
   end
 
+  def test_strings2csv_with_comments_outputs_right_headers
+    expected_content = <<-EOF
+Variables,test/data/test_comments.strings,Comments
+MY_CONSTANT,This 'is' ok,this is a comment
+    EOF
+
+    options = { :filenames => ["test/data/test_comments.strings"] }
+    Commandline.new([], options).strings2csv
+
+    csv_content = `cat translations.csv`
+
+    assert_equal expected_content, csv_content, "Content of generated file differs from expected one"
+    # clean up
+    system("rm -f translations.csv")
+  end
 end

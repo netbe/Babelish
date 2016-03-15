@@ -11,7 +11,7 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
     assert File.exist?("./values-en/strings.xml")
     assert File.exist?("./values-fr/strings.xml")
 
-    #clean up
+    # clean up
     system("rm -rf ./values-en/")
     system("rm -rf ./values-fr/")
   end
@@ -28,7 +28,7 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
     assert File.exist?("./mynewlocation/values-en/strings.xml"), "can't find output file for English"
     assert File.exist?("./mynewlocation/values-fr/strings.xml"), "can't find output file for French"
 
-    #clean up
+    # clean up
     system("rm -rf ./mynewlocation")
   end
 
