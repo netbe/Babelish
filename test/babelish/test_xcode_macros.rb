@@ -27,7 +27,7 @@ class TestXcodeMacros < Test::Unit::TestCase
 #define LS_LOGIN_TITLE NSLocalizedStringFromTable(@"login.title",@"Localizable",@"")
 #define LS_LOGIN_BUTTON NSLocalizedStringFromTable(@"login.button",@"Localizable",@"")
     EOS
-    assert File.exists?("Babelish.h")
+    assert File.exist?("Babelish.h")
     result = File.read("Babelish.h")
     assert_equal expected_output, result
     #clean up
@@ -51,7 +51,7 @@ class TestXcodeMacros < Test::Unit::TestCase
 #define LS_LOGIN_TITLE NSLocalizedStringFromTable(@"login.title",@"Localizable",@"")
 #define LS_LOGIN_BUTTON NSLocalizedStringFromTable(@"login.button",@"Localizable",@"")
     EOS
-    assert File.exists?("Babelish.h")
+    assert File.exist?("Babelish.h")
     result = File.read("Babelish.h")
     assert_equal expected_output, result
     #clean up
@@ -76,7 +76,7 @@ class TestXcodeMacros < Test::Unit::TestCase
 #define LS_LOGIN NSLocalizedStringFromTable(@"login!",@"Localizable",@"")
 #define LS_HEY NSLocalizedStringFromTable(@"HEY!!",@"Localizable",@"")
     EOS
-    assert File.exists?("Babelish.h")
+    assert File.exist?("Babelish.h")
     result = File.read("Babelish.h")
     assert_equal expected_output, result
     #clean up
@@ -101,7 +101,7 @@ class TestXcodeMacros < Test::Unit::TestCase
 #define LS_LOGIN_TITLE NSLocalizedStringFromTable(@"login.title",@"Localizable",@"this is the login screen title")
 #define LS_LOGIN_BUTTON NSLocalizedStringFromTable(@"login.button",@"Localizable",@"")
     EOS
-    assert File.exists?("Babelish.h")
+    assert File.exist?("Babelish.h")
     result = File.read("Babelish.h")
     assert_equal expected_output, result
     #clean up

@@ -77,7 +77,7 @@ class Commandline < Thor
   desc "open FILE", "Open local csv file in default editor or Google Spreadsheet containing translations in default browser"
   def open(file = "translations.csv")
     filename = file || options["filename"]
-    if File.exists?(filename)
+    if File.exist?(filename)
       say "Opening local file '#{filename}'"
       system "open \"#{filename}\""
     else
@@ -89,12 +89,12 @@ class Commandline < Thor
 
   desc "init", "Create a configuration file from template"
   def init
-    if File.exists?(".babelish")
+    if File.exist?(".babelish")
       say "Config file '.babelish' already exists."
     else
       say "Creating new config file '.babelish'."
       config_file = File.expand_path("../../../.babelish.sample", __FILE__)
-      if File.exists?(config_file)
+      if File.exist?(config_file)
         system "cp #{config_file} .babelish"
       else
         say "Template '#{config_file}' not found."
@@ -177,7 +177,7 @@ class Commandline < Thor
 
   def options
     original_options = super
-    return original_options unless File.exists?(original_options["config"])
+    return original_options unless File.exist?(original_options["config"])
     defaults = ::YAML.load_file(original_options["config"]) || {}
     Thor::CoreExt::HashWithIndifferentAccess.new(defaults.merge(original_options))
   end
