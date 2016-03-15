@@ -5,10 +5,10 @@ class TestCSV2JSON < Test::Unit::TestCase
     csv_file = "test/data/test_data.csv"
     converter = Babelish::CSV2JSON.new(csv_file, 'English' => "en")
     converter.convert
-    assert File.exist?("en.js"), "the ouptut file does not exist"
+    assert File.exist?("en.json"), "the ouptut file does not exist"
 
     # clean up
-    system("rm -rf en.js")
+    system("rm -rf en.json")
   end
 
   def test_converting_csv_to_dotstrings_one_output_option
