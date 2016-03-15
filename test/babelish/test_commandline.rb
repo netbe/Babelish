@@ -5,7 +5,7 @@ class TestCommandLine < Test::Unit::TestCase
     assert_nothing_raised do
       Commandline.new.init
     end
-    #clean up
+    # clean up
     system("rm -f .babelish")
   end
 
@@ -22,7 +22,7 @@ class TestCommandLine < Test::Unit::TestCase
       Commandline.new.csv2strings
     end
 
-    #clean up
+    # clean up
     system("rm -rf ./en.lproj/")
     system("rm -rf ./fr.lproj/")
     system("rm -f .babelish")
@@ -41,7 +41,7 @@ class TestCommandLine < Test::Unit::TestCase
       Commandline.new.csv2strings
     end
 
-    #clean up
+    # clean up
     system("rm -rf ./en.lproj/")
     system("rm -rf ./fr.lproj/")
     system("rm -f .babelish")
@@ -59,7 +59,7 @@ class TestCommandLine < Test::Unit::TestCase
       Commandline.new.strings2csv
     end
 
-    #clean up
+    # clean up
     system("rm -f translations.csv")
     system("rm -f .babelish")
   end
@@ -74,7 +74,7 @@ class TestCommandLine < Test::Unit::TestCase
       Commandline.new.strings2csv
     end
 
-    #clean up
+    # clean up
     system("rm -f .babelish")
   end
 
@@ -88,7 +88,7 @@ class TestCommandLine < Test::Unit::TestCase
       Commandline.new.csv_download
     end
 
-    #clean up
+    # clean up
     system("rm -f .babelish")
   end
 
@@ -104,7 +104,7 @@ class TestCommandLine < Test::Unit::TestCase
       Commandline.new.csv_download
     end
 
-    #clean up
+    # clean up
     system("rm -f .babelish")
   end
 

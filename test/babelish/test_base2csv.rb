@@ -17,7 +17,7 @@ class TestBase2Csv < Test::Unit::TestCase
     converter.send :create_csv_file, keys, strings
     assert File.exist?(converter.csv_filename)
 
-    #clean up
+    # clean up
     system("rm -rf ./" + converter.csv_filename)
   end
 

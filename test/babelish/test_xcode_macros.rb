@@ -30,7 +30,7 @@ class TestXcodeMacros < Test::Unit::TestCase
     assert File.exist?("Babelish.h")
     result = File.read("Babelish.h")
     assert_equal expected_output, result
-    #clean up
+    # clean up
     system("rm -f ./Babelish.h")
   end
 
@@ -54,7 +54,7 @@ class TestXcodeMacros < Test::Unit::TestCase
     assert File.exist?("Babelish.h")
     result = File.read("Babelish.h")
     assert_equal expected_output, result
-    #clean up
+    # clean up
     system("rm -f ./Babelish.h")
   end
 
@@ -79,7 +79,7 @@ class TestXcodeMacros < Test::Unit::TestCase
     assert File.exist?("Babelish.h")
     result = File.read("Babelish.h")
     assert_equal expected_output, result
-    #clean up
+    # clean up
     system("rm -f ./Babelish.h")
   end
 
@@ -104,7 +104,7 @@ class TestXcodeMacros < Test::Unit::TestCase
     assert File.exist?("Babelish.h")
     result = File.read("Babelish.h")
     assert_equal expected_output, result
-    #clean up
+    # clean up
     system("rm -f ./Babelish.h")
   end
 

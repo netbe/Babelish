@@ -7,7 +7,7 @@ class TestCSV2JSON < Test::Unit::TestCase
     converter.convert
     assert File.exist?("en.js"), "the ouptut file does not exist"
 
-    #clean up
+    # clean up
     system("rm -rf en.js")
   end
 
@@ -21,7 +21,7 @@ class TestCSV2JSON < Test::Unit::TestCase
     converter.convert
     assert File.exist?(single_file), "the ouptut file does not exist"
 
-    #clean up
+    # clean up
     system("rm -rf ./" + single_file)
   end
 end

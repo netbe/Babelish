@@ -149,7 +149,6 @@ class Commandline < Thor
 
         class_object = eval "Babelish::#{classname}"
         args = Thor::CoreExt::HashWithIndifferentAccess.new(args)
-        puts ">>>>>>>>>>arge  " + args.inspect
         converter = class_object.new(filename, options[:langs], args)
         say converter.convert
         xcode_macros.process(converter.table, converter.keys, converter.comments) if options[:macros_filename]

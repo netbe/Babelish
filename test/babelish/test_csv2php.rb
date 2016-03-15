@@ -7,7 +7,7 @@ class TestCSV2Php < Test::Unit::TestCase
     converter.convert
     assert File.exist?("en/lang.php"), "the ouptut file does not exist"
 
-    #clean up
+    # clean up
     system("rm -rf ./en")
   end
 
@@ -21,7 +21,7 @@ class TestCSV2Php < Test::Unit::TestCase
     converter.convert
     assert File.exist?(single_file), "the ouptut file does not exist"
 
-    #clean up
+    # clean up
     system("rm -rf ./" + single_file)
   end
 end
