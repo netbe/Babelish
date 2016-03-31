@@ -16,7 +16,8 @@ module Babelish
 
     def process_value(row_value, default_value)
       value = super(row_value, default_value)
-      # if the value begins and ends with a quote we must leave them unescapted
+      value.gsub!(/'/, {"'" => "\\'"}) # escape single quote only for Android
+      # if the value begins and ends with a quote we must leave them unescaped
       if value.size > 4 && value[0, 2] == "\\\"" && value[value.size - 2, value.size] == "\\\""
         value[0, 2] = "\""
         value[value.size - 2, value.size] = "\""
