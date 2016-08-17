@@ -16,8 +16,12 @@ module Babelish
     end
 
     def get_row_format(row_key, row_value, comment = nil, indentation = 0)
-      entry = comment.to_s.empty? ? "" : "\n/* #{comment} */\n" 
-      entry + "\"#{row_key}\"" + " " * indentation + " = \"#{row_value}\";\n"
+      if row_value == ""
+        entry = ""
+      else
+        entry = comment.to_s.empty? ? "" : "\n/* #{comment} */\n" 
+        entry + "\"#{row_key}\"" + " " * indentation + " = \"#{row_value}\";\n"
+      end
     end
 
     def extension
