@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
   # google_drive dependency to ask for mail and password
   s.add_dependency "highline"
 
+  # specify version of rack so works on ruby <2.2.2
+  s.add_dependency "rack", "1.6.4"
   # json support
   s.add_dependency "json"
 
