@@ -51,12 +51,6 @@ See [.babelish.sample](.babelish.sample) file in the doc folder. as the possible
 **For more details, check the documentation:**
 https://github.com/netbe/Babelish/wiki/How-to-Use
 
-# Contributing
-
-Want to add another support for a new format or/and usage? Add a new feature? Fix a bug?
-
-Just create a pull request with a branch like `feature/<nameofbranch>` or `hotfix/<nameofbranch>`.
-
 
 ## Development
 
