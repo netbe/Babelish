@@ -21,6 +21,7 @@ require "babelish/strings2csv"
 require "babelish/android2csv"
 require "babelish/php2csv"
 require "babelish/json2csv"
+require "babelish/yaml2csv"
 
 # General
 require "babelish/language"

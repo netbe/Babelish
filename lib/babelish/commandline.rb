@@ -43,6 +43,7 @@ class Commandline < Thor
     {:name => "Android2CSV", :ext => ".xml"},
     {:name => "JSON2CSV", :ext => ".json"},
     {:name => "Php2CSV", :ext => ".php"},
+    {:name => "YAML2CSV", :ext => ".yaml"},
   ]
 
   BASECLASSES.each do |klass|
