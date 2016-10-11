@@ -78,6 +78,22 @@ class TestCommandLine < Test::Unit::TestCase
     system("rm -f .babelish")
   end
 
+  def test_base2csv_with_config_with_non_existent_filenames_fails
+    options = {:filenames => ['foo']}
+    config_file = File.new(".babelish", "w")
+    config_file.write options.to_yaml
+    config_file.close
+
+    _, stderr = capture_output do
+      Commandline.new.strings2csv
+    end
+    assert_match(/No such file or directory/, stderr)
+    assert_match(/foo/, stderr)
+
+    # clean up
+    system("rm -f .babelish")
+  end
+
   def test_csv_download_without_gd_filename_fails
     options = {}
     config_file = File.new(".babelish", "w")

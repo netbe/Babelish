@@ -54,7 +54,11 @@ class Commandline < Thor
     method_option :headers, :type => :array, :aliases => "-h", :desc => "override headers of columns, default is name of input files and 'Variables' for reference"
     method_option :dryrun, :type => :boolean, :aliases => "-n", :desc => "prints out content of hash without writing file"
     define_method("#{klass[:name].downcase}") do
-      base2csv(klass[:name])
+      begin
+        base2csv(klass[:name])
+      rescue Errno::ENOENT => e
+        warn e.message
+      end
     end
   end
 
