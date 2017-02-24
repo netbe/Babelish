@@ -2,6 +2,7 @@
 [![Code Climate](https://codeclimate.com/github/netbe/Babelish.png)](https://codeclimate.com/github/netbe/Babelish)[![Coverage Status](https://coveralls.io/repos/netbe/Babelish/badge.png)](https://coveralls.io/r/netbe/Babelish)
 [![Gem Version](https://badge.fury.io/rb/babelish.svg)](http://badge.fury.io/rb/babelish)
 
+![Docker](http://dockeri.co/image/netbe/babelish)
 
 **Babelish : Chaotically confused, like Babel**
 
@@ -20,6 +21,8 @@ It can also fetch the csv file from GoogleDrive.
 Requires Ruby 2.0.0 or above.
 
 Or download [Latest Release](https://github.com/netbe/Babelish/releases/latest).
+
+Or via docker: `docker run netbe/Babelish babelish help`
 
 # Usage
 
@@ -51,29 +54,9 @@ See [.babelish.sample](.babelish.sample) file in the doc folder. as the possible
 **For more details, check the documentation:**
 https://github.com/netbe/Babelish/wiki/How-to-Use
 
-## Usage with Docker
+**Note for docker:**
 
-You may also use Babelish with Docker. The usage is similar to your local version.
-```
-› docker run netbe/Babelish babelish help
-Commands:
-  babelish android2csv     # Convert .xml files to CSV file
-  babelish csv2android     # Convert CSV file to .xml
-  babelish csv2json        # Convert CSV file to .json
-  babelish csv2php         # Convert CSV file to .php
-  babelish csv2strings     # Convert CSV file to .strings
-  babelish csv_download    # Download Google Spreadsheet containing translations
-  babelish help [COMMAND]  # Describe available commands or one specific command
-  babelish json2csv        # Convert .json files to CSV file
-  babelish open FILE       # Open local csv file in default editor or Google Spreadsheet containing translations in default browser
-  babelish php2csv         # Convert .php files to CSV file
-  babelish strings2csv     # Convert .strings files to CSV file
-  babelish version         # Display current version
-Options:
-  [--verbose], [--no-verbose]
-```
-
-In order to export the output of a conversion, you will need to pipe the result out of the container. An exanple would be
+In order to export the output of a conversion, you will need to pipe the result out of the container. An example would be
 ```
 › docker run netbe/Babelish babelish csv2json >> some_file.json
 ```
