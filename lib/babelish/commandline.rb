@@ -1,4 +1,5 @@
 require 'thor'
+require 'yaml'
 class Commandline < Thor
   include Thor::Actions
   class_option :verbose, :type => :boolean
