@@ -7,9 +7,9 @@ global:
     - secure: "v1AG5W142/GarujvdF6DK3E/e8ARL8tEol55kFSQBx3vhyVKciBu40h06LOMeDjTUaXR+vhaojrX3W5sXabuBYkhv85ghXbxBSoopk6PZ63FplhgLpek5//Zqc9hg92KkgJ/Ud5RzU4I4mCZ7o11IvQYkDRbNpbBIWpCcCZZfmg=" # DOCKER_PASS
     - COMMIT=${TRAVIS_COMMIT::8}
 rvm:
-  - 2.0.0
   - 2.1.0
   - 2.2
+  - 2.3.1
 deploy:
   provider: rubygems
   api_key:
