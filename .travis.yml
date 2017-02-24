@@ -1,5 +1,11 @@
 language: ruby
 sudo: false
+env:
+global:
+    - secure: "sKnb18rbwBv3HKI8somtWc7ZF4fvmmBdmaVR8lbKKFrKf+JGPgtM8oCZRBtYqgQjaPUvyKTFsAvy6HnkqYVlJkX7/+rhzsPmMTcdicLAWgHt4uHEUgH0WUwKOtD3V0/SaBOIc/ZUHn37GeMwfwNrp1vKefISqPt1SGOHWh0eiTI=" # DOCKER_EMAIL
+    - secure: "VZOJ/F9o5a5P01o7lP9ax3tLDCh1XpSTdISzjii0/YecxGElDt5Ums++pDbDc4pz56zxAciFLHyJlerDi7EbbxP3dJIkphCLxA0dpzRT9e+KnuH6yZ55MhqHj1Ss9sxbx/5nO0ZGGOpaDBeIns6HI5VxhA1kfvI/BIl9FLz+HYM=" # DOCKER_USER
+    - secure: "v1AG5W142/GarujvdF6DK3E/e8ARL8tEol55kFSQBx3vhyVKciBu40h06LOMeDjTUaXR+vhaojrX3W5sXabuBYkhv85ghXbxBSoopk6PZ63FplhgLpek5//Zqc9hg92KkgJ/Ud5RzU4I4mCZ7o11IvQYkDRbNpbBIWpCcCZZfmg=" # DOCKER_PASS
+    - COMMIT=${TRAVIS_COMMIT::8}
 rvm:
   - 2.0.0
   - 2.1.0
@@ -13,3 +19,11 @@ deploy:
     tags: true
     repo: netbe/Babelish
     all_branches: true
+after_success:
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=netbe/babelish
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
