@@ -6,6 +6,7 @@ module Babelish
       super(filename, langs, args)
 
       @file_path = args[:output_dir].to_s
+      @output_basename = args[:output_basename].to_s
     end
 
     def language_filepaths(language)
