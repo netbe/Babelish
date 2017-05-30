@@ -10,7 +10,9 @@ module Babelish
 
     def language_filepaths(language)
       require 'pathname'
-      filepath = Pathname.new(@file_path) + "values-#{language.code}" + "strings.xml"
+      output_name = "strings.xml"
+      output_name = "#{@output_basename}.xml" if @output_basename
+      filepath = Pathname.new(@file_path) + "values-#{language.code}" + output_name
       return filepath ? [filepath] : []
     end
 
