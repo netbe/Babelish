@@ -59,9 +59,9 @@ class TestCSV2Android < Test::Unit::TestCase
 
   def test_converting_with_basename
     csv_file = "test/data/test_data.csv"
-    converter = Babelish::CSV2Android.new(csv_file, 
-                                          { 'English' => 'en' }, 
-                                          { output_basename: 'super_strings' } )
+    converter = Babelish::CSV2Android.new(csv_file,
+                                          { "English" => "en" },
+                                          { output_basename: "super_strings" })
     converter.convert
     exist = File.exist?("values-en/super_strings.xml")
     assert exist, "the ouptut file does not exist"
