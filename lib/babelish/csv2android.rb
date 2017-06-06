@@ -6,11 +6,14 @@ module Babelish
       super(filename, langs, args)
 
       @file_path = args[:output_dir].to_s
+      @output_basename = args[:output_basename].to_s
     end
 
     def language_filepaths(language)
       require 'pathname'
-      filepath = Pathname.new(@file_path) + "values-#{language.code}" + "strings.xml"
+      output_name = "strings.xml"
+      output_name = "#{@output_basename}.xml" unless @output_basename.empty?
+      filepath = Pathname.new(@file_path) + "values-#{language.code}" + output_name
       return filepath ? [filepath] : []
     end
 
