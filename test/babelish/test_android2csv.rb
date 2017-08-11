@@ -28,9 +28,20 @@ class TestAndroid2CSV < Test::Unit::TestCase
   end
 
   def test_load_strings_with_comments
-    expected_output = [{"app_name" => "android2csv", "action_greetings" => "Hello", "ANOTHER_STRING" => "testEN", "empty" => ""}, 
-      {"app_name" => "This is the app name", "action_greetings" => "This is a greeting", 
-        "ANOTHER_STRING" => "This is another string", "empty" => "This is an empty string"}]
+    expected_output = [
+      { 
+        "app_name" => "android2csv", 
+        "action_greetings" => "Hello", 
+        "ANOTHER_STRING" => "testEN", 
+        "empty" => "" 
+        }, 
+      { 
+        "app_name" => "This is the app name", 
+        "action_greetings" => "This is a greeting", 
+        "ANOTHER_STRING" => "This is another string", 
+        "empty" => "This is an empty string" 
+        }
+      ]
     output = Babelish::Android2CSV.new.load_strings "test/data/android-comments.xml"
     assert_equal expected_output, output
   end
