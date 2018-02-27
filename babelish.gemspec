@@ -12,9 +12,10 @@ Gem::Specification.new do |s|
                   - .strings (iOS)
                   - .xml (Android)
                   - .json
-                  - .php"
-  s.authors     = ["François Benaiteau", "Markus Paeschke"]
-  s.email       = ['francois.benaiteau@gmail.com', 'markus.paeschke@gmail.com']
+                  - .php
+                  - .yaml (Rails)"
+  s.authors     = ["François Benaiteau", "Markus Paeschke", "Nikolay Moskvin"]
+  s.email       = ['francois.benaiteau@gmail.com', 'markus.paeschke@gmail.com', 'nikolay.moskvin@gmail.com']
   s.homepage    = 'http://netbe.github.io/Babelish/'
   s.license = 'MIT'
 
