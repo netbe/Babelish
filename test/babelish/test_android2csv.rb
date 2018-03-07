@@ -64,7 +64,6 @@ class TestAndroid2CSV < Test::Unit::TestCase
 
     output = converter.convert(false)
 
-    assert File.exist?(converter.csv_filename)
     assert_equal expected_output, output
 
     # clean up

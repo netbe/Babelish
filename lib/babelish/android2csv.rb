@@ -15,7 +15,7 @@ module Babelish
       end
       parser.xpath("//string").each do |node|
         if !node.nil? && !node["name"].nil?
-          if node.cdata?
+          if "#{node.children.first.class}" == "Nokogiri::XML::CDATA"
             strings.merge!(node["name"] => "<![CDATA[" + node.inner_html + "]]>")
           else
             strings.merge!(node["name"] => node.inner_html)
