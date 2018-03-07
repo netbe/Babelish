@@ -19,6 +19,7 @@ module Babelish
             strings.merge!(node["name"] => '<![CDATA[' + node.inner_html + ']]>')
           else
             strings.merge!(node["name"] => node.inner_html)
+          end  
         end
       end
 
