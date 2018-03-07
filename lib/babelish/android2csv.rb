@@ -15,7 +15,10 @@ module Babelish
       end
       parser.xpath("//string").each do |node|
         if !node.nil? && !node["name"].nil?
-          strings.merge!(node["name"] => node.inner_html)
+          if node.cdata?
+            strings.merge!(node["name"] => '<![CDATA[' + node.inner_html + ']]>')
+          else
+            strings.merge!(node["name"] => node.inner_html)
         end
       end
 
