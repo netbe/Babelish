@@ -13,7 +13,7 @@ class TestCSV2JSON < Test::Unit::TestCase
 
   def test_converting_csv_to_dotstrings_one_output_option
     csv_file = "test/data/test_data.csv"
-    single_file = 'myfile.js'
+    single_file = 'myfile.json'
     converter = Babelish::CSV2JSON.new(csv_file,
     {'English' => "en"},
     :output_basename => 'myfile',

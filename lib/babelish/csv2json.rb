@@ -5,7 +5,7 @@ module Babelish
     def language_filepaths(language)
       require 'pathname'
       filename = @output_basename || language.code
-      filepath = Pathname.new("#{@output_dir}#{filename}.json")
+      filepath = Pathname.new("#{@output_dir}#{filename}.#{extension}")
 
       return filepath ? [filepath] : []
     end
@@ -15,7 +15,7 @@ module Babelish
     end
 
     def extension
-      "js"
+      "json"
     end
   end
 end
