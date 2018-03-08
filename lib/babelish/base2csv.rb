@@ -30,7 +30,7 @@ module Babelish
         header = fname
         strings[header], file_comments = load_strings(fname)
         keys ||= strings[header].keys
-        comments.merge!(file_comments)
+        comments.merge!(file_comments) unless file_comments.nil?
       end
 
       if write_to_file
