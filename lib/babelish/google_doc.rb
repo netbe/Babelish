@@ -5,6 +5,7 @@ module Babelish
   old_warn, $-w = $-w, nil
   begin
     require "google_drive"
+    Google::Apis::RequestOptions.default.retries = 5
   ensure
     $-w = old_warn
   end
