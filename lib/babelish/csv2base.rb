@@ -179,10 +179,15 @@ module Babelish
       if content && content.size > 0
         content.each do |key, value|
           comment = @comments[key]
-          output += get_row_format(key, value, comment, indentation - key.length)
+          key_out = key_to_output(key)
+          output += get_row_format(key_out, value, comment, indentation - key_out.length)
         end
       end
       return output
+    end
+
+    def key_to_output key
+      key
     end
   end
 end
