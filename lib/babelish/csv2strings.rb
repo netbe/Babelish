@@ -21,8 +21,12 @@ module Babelish
       entry + "\"#{row_key}\"" + " " * indentation + " = \"#{row_value}\";\n"
     end
 
-    def key_to_output key
+    def key_to_output(key)
       row_to_camel_case(key)
+    end
+
+    def value_to_output(value)
+      value.gsub "%s", "%@"
     end
 
     def extension
@@ -33,12 +37,12 @@ module Babelish
       @output_basename || 'Localizable'
     end
 
-    def row_to_camel_case underscope_text
+    def row_to_camel_case(underscope_text)
       enumerator = underscope_text.split('_').each_with_index
       enumerator.map{|word, index| index == 0 ? word : word.capitalize}.join
     end
 
-    def filename_to_camel_case underscope_text
+    def filename_to_camel_case(underscope_text)
       underscope_text.split('_').map{|word| word.capitalize}.join
     end
   end
