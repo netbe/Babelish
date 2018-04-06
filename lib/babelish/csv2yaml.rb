@@ -13,12 +13,13 @@ module Babelish
     def language_filepaths(language)
       require 'pathname'
       filename = @output_basename || language.code
-      filepath = Pathname.new("#{@output_dir}/#{filename}.#{language.code}.#{extension}")
+      path = "#{@output_dir}/#{filename}.#{language.code}.#{extension}"
+      filepath = Pathname.new(path)
       @language = language
       filepath ? [filepath] : []
     end
 
-    def get_row_format(row_key, row_value, comment = nil, indentation = 0)
+    def get_row_format(row_key, row_value, comment = nil, _indentation = 0)
       entry = ''
       indent = '  '
       if @is_first_row
@@ -30,13 +31,12 @@ module Babelish
         end
         @is_first_row = false
       end
-      entry << "#{indent*@deep}# #{comment}\n" unless comment.to_s.empty?
-      entry << "#{indent*@deep}#{row_key}: \"#{row_value}\"\n"
+      entry << "#{indent * @deep}# #{comment}\n" unless comment.to_s.empty?
+      entry << "#{indent * @deep}#{row_key}: \"#{row_value}\"\n"
     end
 
     def extension
       'yaml'
     end
-
   end
 end
