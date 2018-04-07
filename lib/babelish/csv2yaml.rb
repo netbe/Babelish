@@ -36,7 +36,7 @@ module Babelish
     end
 
     def extension
-      'yaml'
+      'yml'
     end
   end
 end
