@@ -14,6 +14,7 @@ require "babelish/csv2strings"
 require "babelish/csv2android"
 require "babelish/csv2php"
 require "babelish/csv2json"
+require "babelish/csv2yaml"
 
 # To CSV
 require "babelish/base2csv"

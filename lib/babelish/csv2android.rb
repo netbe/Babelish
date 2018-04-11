@@ -29,6 +29,7 @@ module Babelish
 
     def get_row_format(row_key, row_value, comment = nil, indentation = 0)
       entry = comment.to_s.empty? ? "" : "\n\t<!-- #{comment} -->\n"
+      row_key = "#{@output_basename}_#{row_key}" unless @output_basename.empty?
       entry + "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
     end
 
