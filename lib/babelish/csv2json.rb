@@ -5,7 +5,7 @@ module Babelish
     def language_filepaths(language)
       require 'pathname'
       filename = @output_basename || language.code
-      filepath = Pathname.new("#{@output_dir}#{filename}.#{extension}")
+      filepath = Pathname.new("#{@output_dir}/#{filename}.#{language.code}.#{extension}")
 
       return filepath ? [filepath] : []
     end
