@@ -13,7 +13,7 @@ module Babelish
       require 'pathname'
       output_name = "strings.xml"
       output_name = "#{@output_basename}.xml" unless @output_basename.empty?
-      region = language.region.to_s.empty? ? "" : "-r#{language.region}"
+      region = language.region.to_s.empty? ? "" : "-#{language.region}"
       filepath = Pathname.new(@file_path) + "values-#{language.code}#{region}" + output_name
       return filepath ? [filepath] : []
     end
