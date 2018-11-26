@@ -24,4 +24,34 @@ class TestCSV2JSON < Test::Unit::TestCase
     # clean up
     system("rm -rf ./" + single_file)
   end
+
+  def test_converting_csv_to_json_with_unpretty_json
+    csv_file = "test/data/test_data.csv"
+    expected_json_filename = 'test_unpretty_json.json'
+    given_json_filename = 'output.json'
+
+    expected_json = File.read('test/data/' + expected_json_filename)
+    converter = Babelish::CSV2JSON.new(csv_file, {'English' => "en"}, :output_basename => 'output', :pretty_json => false)
+    converter.convert
+    given_json = File.read(given_json_filename)
+    assert_equal(expected_json, given_json, "JSON file has incorrect format")
+
+    # clean up
+    system("rm -rf ./" + given_json_filename)
+  end
+
+  def test_converting_csv_to_json_with_pretty_json
+    csv_file = "test/data/test_data.csv"
+    expected_json_filename = 'test_pretty_json.json'
+    given_json_filename = 'output.json'
+
+    expected_json = File.read('test/data/' + expected_json_filename)
+    converter = Babelish::CSV2JSON.new(csv_file, {'English' => "en"}, :output_basename => 'output', :pretty_json => true)
+    converter.convert
+    given_json = File.read(given_json_filename)
+    assert_equal(expected_json, given_json, "JSON file has incorrect format")
+
+    # clean up
+    system("rm -rf ./" + given_json_filename)
+  end
 end

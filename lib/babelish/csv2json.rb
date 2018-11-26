@@ -11,7 +11,7 @@ module Babelish
     end
 
     def hash_to_output(content = {})
-      return content.to_json
+      return @pretty_json ? JSON.pretty_generate(content) : content.to_json
     end
 
     def extension

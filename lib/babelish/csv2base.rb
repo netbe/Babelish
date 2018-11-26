@@ -39,6 +39,7 @@ module Babelish
       @csv_separator = args[:csv_separator]
       @ignore_lang_path = args[:ignore_lang_path]
       @stripping = args[:stripping]
+      @pretty_json = args[:pretty_json]
       @languages = []
       @comments = {}
     end
