@@ -31,7 +31,10 @@ class TestCSV2JSON < Test::Unit::TestCase
     given_json_filename = "output.json"
 
     expected_json = File.read("test/data/" + expected_json_filename)
-    converter = Babelish::CSV2JSON.new(csv_file, { "English" => "en" }, output_basename: "output", pretty_json: false)
+    converter = Babelish::CSV2JSON.new(csv_file, 
+    { "English" => "en" }, 
+    output_basename: "output", 
+    pretty_json: false)
     converter.convert
     given_json = File.read(given_json_filename)
     assert_equal(expected_json, given_json, "JSON file has incorrect format")
@@ -46,7 +49,10 @@ class TestCSV2JSON < Test::Unit::TestCase
     given_json_filename = "output.json"
 
     expected_json = File.read("test/data/" + expected_json_filename)
-    converter = Babelish::CSV2JSON.new(csv_file, { "English" => "en" }, output_basename: "output", pretty_json: true)
+    converter = Babelish::CSV2JSON.new(csv_file, 
+    { "English" => "en" }, 
+    output_basename: "output", 
+    pretty_json: true)
     converter.convert
     given_json = File.read(given_json_filename)
     assert_equal(expected_json, given_json, "JSON file has incorrect format")
