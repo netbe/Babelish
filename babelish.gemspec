@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency "highline"
 
   # specify version of rack so works on ruby <2.2.2
-  s.add_dependency "rack", "1.6.4"
+  s.add_dependency "rack", ">= 1.6.11"
   # json support
   s.add_dependency "json"
 
