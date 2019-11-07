@@ -16,6 +16,21 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
     system("rm -rf ./values-fr/")
   end
 
+  def test_csv2android_with_multiple_2_languages_with_region
+    options = {
+        :filename => "test/data/test_data_multiple_langs.csv",
+        :langs => {"English" => "en-US", "French" => "fr"}
+    }
+    Commandline.new([], options).csv2android
+
+    assert File.exist?("./values-en-rUS/strings.xml")
+    assert File.exist?("./values-fr/strings.xml")
+
+    # clean up
+    system("rm -rf ./values-en-rUS/")
+    system("rm -rf ./values-fr/")
+  end
+
   def test_csv2android_with_output_dir
     options = {
     	:filename => "test/data/test_data_multiple_langs.csv",
