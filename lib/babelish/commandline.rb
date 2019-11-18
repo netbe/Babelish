@@ -31,6 +31,7 @@ class Commandline < Thor
     method_option :ignore_lang_path, :type => :boolean, :aliases => "-I", :lazy_default => false, :desc => "Ignore the path component of langs"
     method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
     method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0"
+    method_option :pretty_json, :type => :boolean, aliases: "-p", desc: "Prettify your json output files"
     if klass[:name] == "CSV2Strings"
       method_option :macros_filename, :type => :boolean, :aliases => "-m", :lazy_default => false, :desc => "Filename containing defines of localized keys"
     end

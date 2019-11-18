@@ -2,6 +2,11 @@ module Babelish
   require 'json'
   class CSV2JSON < Csv2Base
 
+    def initialize(filename, langs, args = {})
+      super
+      @pretty_json = args[:pretty_json]
+    end
+
     def language_filepaths(language)
       require 'pathname'
       filename = @output_basename || language.code
@@ -11,7 +16,7 @@ module Babelish
     end
 
     def hash_to_output(content = {})
-      return content.to_json
+      @pretty_json ? JSON.pretty_generate(content) : content.to_json
     end
 
     def extension
