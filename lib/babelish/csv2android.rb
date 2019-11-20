@@ -7,6 +7,7 @@ module Babelish
 
       @file_path = args[:output_dir].to_s
       @output_basename = args[:output_basename].to_s
+      @default_lang = args[:default_lang].to_s
     end
 
     def language_filepaths(language)
@@ -14,7 +15,7 @@ module Babelish
       output_name = "strings.xml"
       output_name = "#{@output_basename}.xml" unless @output_basename.empty?
       region = language.region.to_s.empty? ? "" : "-r#{language.region}"
-      filepath = Pathname.new(@file_path) + "values-#{language.code}#{region}" + output_name
+      filepath = Pathname.new(@file_path) + (default_lang != language.code ? "values-#{language.code}#{region}" : "values") + output_name
       return filepath ? [filepath] : []
     end
 
