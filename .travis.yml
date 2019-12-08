@@ -5,7 +5,10 @@ rvm:
 - 2.2
 - 2.3.1
 script:
-  - rake generate_keys
+  - bundle exec rake generate_keys
+  - bundle exec rake test
+before_deploy:
+  - bundle exec rake generate_keys
 deploy:
   provider: rubygems
   api_key:
