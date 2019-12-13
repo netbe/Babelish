@@ -44,9 +44,9 @@ module Babelish
     def authenticate
       # will try to get token and store in file below
       @session = GoogleDrive.saved_session(".babelish.token",
-        nil,
-        Babelish::Keys::GOOGLE_DRIVE_CLIENT_ID,
-        Babelish::Keys::GOOGLE_DRIVE_CLIENT_SECRET)
+                                           nil,
+                                           Babelish::Keys::GOOGLE_DRIVE_CLIENT_ID,
+                                           Babelish::Keys::GOOGLE_DRIVE_CLIENT_SECRET)
     end
 
     def file_with_name(name)

@@ -9,7 +9,6 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
-
 task :generate_keys do
   f = File.open("lib/babelish/keys.rb", "w")
   f.puts <<-FOO
