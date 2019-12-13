@@ -1,9 +1,14 @@
 language: ruby
 sudo: false
 rvm:
-  - 2.1.0
-  - 2.2
-  - 2.3.1
+- 2.1.0
+- 2.2
+- 2.3.1
+script:
+  - bundle exec rake generate_keys
+  - bundle exec rake test
+before_deploy:
+  - bundle exec rake generate_keys
 deploy:
   provider: rubygems
   api_key:
@@ -13,3 +18,7 @@ deploy:
     tags: true
     repo: netbe/Babelish
     all_branches: true
+env:
+  global:
+  - secure: btKN46sftTFZ9RmmCvVveHt6JGRBt+ausRoWoy/n5iwgdjrHGOPnyLwMkRoZkAvWt6F2AlhzoNiNfcLhrlhtySJgZS2fw/yvkCdCu92vBxuOhhzp0vq5LuNTWL9feTRjDx1kfVLPBDJUS2Ejn7zi8x7BUKnfSJN2lZ3FkkHkUxQ=
+  - secure: qBnld5DOrn+coyVc7ls271REiIN9KY4+dyrZh451mfVbcGX/n2yyu6HG0PaTU8XwS2S6jBDWzaX0Oq1V+1BsKdjZb8OTtbKG0bQ8/F+V8nNG6w1gbNIFRHxTgFK69ASEpwHPmqPt50h6duNeLcc1h+wu43lGaMn8CMN0HqaW5D4=

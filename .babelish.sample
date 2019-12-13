@@ -32,4 +32,8 @@ langs:                               # Languages to convert. i.e. English:en
 # sheet: 0                           # Index of worksheet to download. First index is 0.
 # macros_filename: Babelish.h        # File to output the defines of localized strings
 # stripping: false				     # Strips values inside the spreadsheet
+
+###################################### General ######################################
+
+
 # csv_separator: ','				 # CSV column separator character, uses ',' by default

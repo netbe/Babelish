@@ -29,3 +29,6 @@ Gemfile.lock
 
 doc
 .yardoc
+
+
+lib/babelish/keys.rb
