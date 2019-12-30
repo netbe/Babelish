@@ -71,3 +71,7 @@ Run `bundle install` to install all the dependencies. Tests are done with `Test:
 # Todo & Known issues
 
 See GitHub issues
+
+# Privacy Policy
+
+See [related infos](privacy-policy.md)
