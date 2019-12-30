@@ -6,9 +6,7 @@ on:
       - master
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - name: jekyll-deploy-gh-pages
-      - uses: BryanSchuetz/jekyll-deploy-gh-pages@v2.0
+        uses: BryanSchuetz/jekyll-deploy-gh-pages@v2.0
