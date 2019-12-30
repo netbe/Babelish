@@ -8,5 +8,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: jekyll-deploy-gh-pages
-        uses: BryanSchuetz/jekyll-deploy-gh-pages@v2.0
+      - name: GitHub Pages Deploy
+        uses: maxheld83/ghpages@v0.2.1
