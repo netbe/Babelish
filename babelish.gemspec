@@ -35,8 +35,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simplecov"
   s.add_development_dependency "yard"
 
-  s.files         = `git ls-files -- lib`.split("\n")
-  s.files         += ['lib/babelish/keys.rb'] # keys.rb is ignored by git
+  s.files         = Dir.glob("{bin,lib}/**/*") + %w(LICENSE.txt README.md)
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_path  = 'lib'
