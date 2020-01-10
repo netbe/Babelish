@@ -18,7 +18,7 @@ It can also fetch the csv file from GoogleDrive.
 
 `gem install babelish`
 
-Requires Ruby 2.0.0 or above.
+Requires Ruby 2.1.0 or above.
 
 Or download [Latest Release](https://github.com/netbe/Babelish/releases/latest).
 
