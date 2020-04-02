@@ -1,4 +1,4 @@
-FROM ruby:2.2-alpine
+FROM ruby:2.4-alpine
 RUN apk add --no-cache git build-base
 COPY . /code
 
