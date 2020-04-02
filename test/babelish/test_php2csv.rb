@@ -42,7 +42,7 @@ class TestPhp2CSV < Test::Unit::TestCase
 
   def test_load_strings_with_wrong_file
     assert_raise(Errno::ENOENT) do
-      output = Babelish::Php2CSV.new.load_strings "file that does not exist.strings"
+      Babelish::Php2CSV.new.load_strings "file that does not exist.strings"
     end
   end
 

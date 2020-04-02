@@ -72,10 +72,6 @@ class TestCSV2Strings < Test::Unit::TestCase
   end
 
   def test_converting_csv_to_dotstrings_keys
-    expected_output = String.new(<<-EOS)
-"GREETINGS"      = "Buenos dias";
-"ANOTHER_STRING" = "ANOTHER_STRING";
-    EOS
     csv_file = "test/data/test_data_multiple_langs.csv"
     converter = Babelish::CSV2Strings.new(csv_file,
     {'English' => [:en], "French" => "fr", "German" => "de", "Spanish" => "es"},

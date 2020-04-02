@@ -57,7 +57,7 @@ class TestStrings2CSV < Test::Unit::TestCase
 
   def test_load_strings_with_wrong_file
     assert_raise(Errno::ENOENT) do
-      output = Babelish::Strings2CSV.new.load_strings "file that does not exist.strings"
+      Babelish::Strings2CSV.new.load_strings "file that does not exist.strings"
     end
   end
 
@@ -88,25 +88,25 @@ class TestStrings2CSV < Test::Unit::TestCase
 
   def test_load_strings_with_empty_lines
     assert_nothing_raised do
-      output = Babelish::Strings2CSV.new.load_strings "test/data/test_with_nil.strings"
+      Babelish::Strings2CSV.new.load_strings "test/data/test_with_nil.strings"
     end
   end
 
   def test_load_strings_with_empty_lines_and_comments
     assert_nothing_raised do
-      output = Babelish::Strings2CSV.new.load_strings "test/data/xcode_empty.strings"
+      Babelish::Strings2CSV.new.load_strings "test/data/xcode_empty.strings"
     end
   end
 
   def test_load_strings_with_genstrings_file
     assert_nothing_raised do
-      output = Babelish::Strings2CSV.new.load_strings "test/data/genstrings.strings"
+      Babelish::Strings2CSV.new.load_strings "test/data/genstrings.strings"
     end
   end
 
   def test_dotstrings_to_csv
     converter = Babelish::Strings2CSV.new(:filenames => ["test/data/test_data.strings"])
-    keys, strings = converter.convert(false)
+    keys, _ = converter.convert(false)
     assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"], keys
 
   end
@@ -137,7 +137,7 @@ class TestStrings2CSV < Test::Unit::TestCase
       assert_equal csv_filename, converter.csv_filename
       assert_equal headers, converter.headers
       assert_equal filenames, converter.filenames
-    end
+  end
 
   def test_initialize_with_default_values
     converter = Babelish::Strings2CSV.new

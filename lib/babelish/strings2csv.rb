@@ -38,7 +38,7 @@ module Babelish
           ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
           contents = ic.iconv(contents + ' ')[0..-2]
         end
-      rescue Encoding::InvalidByteSequenceError => e
+      rescue Encoding::InvalidByteSequenceError
         # silent error
         # faults back to utf8
         contents = File.open(strings_filename, "r:utf-8")
