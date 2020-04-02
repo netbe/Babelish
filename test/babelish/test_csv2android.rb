@@ -69,4 +69,22 @@ class TestCSV2Android < Test::Unit::TestCase
     # clean up
     system("rm -rf ./values-en")
   end
+
+  def test_converting_csv_to_android_with_spaces
+    expected_output = String.new(<<-EOS)
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="GREETINGS ">hello </string>
+    <string name="ANOTHER_STRING"> my other string with space at begin</string>
+</resources>
+    EOS
+    csv_file = "test/data/test_data_with_spaces.csv"
+    converter = Babelish::CSV2Android.new(csv_file,
+                                          { "English" => "en" },
+                                          { output_basename: "spaces" })
+    converter.convert
+    result = File.read("./values-en/spaces.xml")
+    assert_equal expected_output, result
+    system("rm -rf ./values-en/")
+  end
 end

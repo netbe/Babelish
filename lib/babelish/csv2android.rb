@@ -28,9 +28,10 @@ module Babelish
       value.to_utf8
     end
 
-    def get_row_format(row_key, row_value, comment = nil, indentation = 0)
-      entry = comment.to_s.empty? ? "" : "\n\t<!-- #{comment} -->\n"
-      entry + "\t<string name=\"#{row_key}\">#{row_value}</string>\n"
+    def get_row_format(row_key, row_value, comment = nil, indentation = 4)
+      soft_tab = " " * indentation
+      entry = comment.to_s.empty? ? "" : "\n#{soft_tab}<!-- #{comment} -->\n"
+      entry + "#{soft_tab}<string name=\"#{row_key}\">#{row_value}</string>\n"
     end
 
     def hash_to_output(content = {})

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="good_example_1">This\'ll work</string>
-	<string name="good_example_2">This is a \"good string\".</string>
-	<string name="good_example_3">"This'll also work"</string>
-	<string name="welcome_messages_1">Hello, %1$s! You have %2$d new messages.</string>
-	<string name="welcome_messages_2">Hello, %1$s! You have &lt;b>%2$d new messages&lt;/b>.</string>
-	<string name="ANOTHER_STRING">text <b>with</b> html and \' special # chars ` ´ !"§$%/()==?{[]}</string>
-	<string name="title">Title of &lt;a href="asd">File&lt;/a></string>
+    <string name="good_example_1">This\'ll work</string>
+    <string name="good_example_2">This is a \"good string\".</string>
+    <string name="good_example_3">"This'll also work"</string>
+    <string name="welcome_messages_1">Hello, %1$s! You have %2$d new messages.</string>
+    <string name="welcome_messages_2">Hello, %1$s! You have &lt;b>%2$d new messages&lt;/b>.</string>
+    <string name="ANOTHER_STRING">text <b>with</b> html and \' special # chars ` ´ !"§$%/()==?{[]}</string>
+    <string name="title">Title of &lt;a href="asd">File&lt;/a></string>
 
 </resources>
