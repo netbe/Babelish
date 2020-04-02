@@ -1,0 +1,15 @@
+version: '2'
+services:
+  tests:
+    build: 
+      dockerfile: Dockerfile_test
+      context: .
+    container_name: babelish_tests
+    command: 
+      - bundle exec rake generate_keys
+      - bundle exec rake test
+    volumes:
+      - .:/code
+    environment:
+      - TRAVIS=1
+    

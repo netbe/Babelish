@@ -1,0 +1,9 @@
+FROM ruby:2.4-alpine
+RUN apk add --no-cache git build-base
+WORKDIR /code
+COPY ./lib/babelish/version.rb /code/lib/babelish/
+COPY ./Gemfile /code
+COPY ./babelish.gemspec /code
+
+
+RUN bundle install
