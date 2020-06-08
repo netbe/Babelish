@@ -11,8 +11,8 @@ class TestCommandLine < Test::Unit::TestCase
 
   def test_csv2base_with_config_file_all_required_options
     options = {
-      :filename => "test/data/test_data_multiple_langs.csv",
-      :langs => {"English" => "en", "French" => "fr"}
+      filename: "test/data/test_data_multiple_langs.csv",
+      langs: {"English" => "en", "French" => "fr"}
     }
     config_file = File.new(".babelish", "w")
     config_file.write options.to_yaml
@@ -31,7 +31,7 @@ class TestCommandLine < Test::Unit::TestCase
 
   def test_csv2base_without_filename_fails
     options = {
-      :langs => {"English" => "en", "French" => "fr"}
+      langs: {"English" => "en", "French" => "fr"}
     }
     config_file = File.new(".babelish", "w")
     config_file.write options.to_yaml
@@ -49,7 +49,7 @@ class TestCommandLine < Test::Unit::TestCase
 
   def test_base2csv_with_config_file_all_required_options
     options = {
-      :filenames => ["test/data/test_en.strings", "test/data/test_fr.strings"],
+      filenames: ["test/data/test_en.strings", "test/data/test_fr.strings"],
     }
     config_file = File.new(".babelish", "w")
     config_file.write options.to_yaml
@@ -79,7 +79,7 @@ class TestCommandLine < Test::Unit::TestCase
   end
 
   def test_base2csv_with_config_with_non_existent_filenames_fails
-    options = {:filenames => ['foo']}
+    options = {filenames: ['foo']}
     config_file = File.new(".babelish", "w")
     config_file.write options.to_yaml
     config_file.close
@@ -111,7 +111,7 @@ class TestCommandLine < Test::Unit::TestCase
 
   def test_csv_download_with_required_params
     omit if ENV['TRAVIS']
-    options = {:gd_filename => "my_strings"}
+    options = {gd_filename: "my_strings"}
     config_file = File.new(".babelish", "w")
     config_file.write options.to_yaml
     config_file.close

@@ -4,7 +4,7 @@ module Babelish
     # actually default_lang = default_filename
     attr_accessor :csv_filename, :headers, :filenames, :default_lang
 
-    def initialize(args = {:filenames => []})
+    def initialize(args = {filenames: []})
       super(args)
     end
 

@@ -1,7 +1,7 @@
 module Babelish
   class Php2CSV < Base2Csv
 
-    def initialize(args = {:filenames => []})
+    def initialize(args = {filenames: []})
       super(args)
     end
 

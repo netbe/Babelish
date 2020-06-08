@@ -18,9 +18,9 @@ class TestAndroid2CSV < Test::Unit::TestCase
     filenames = %w{french.strings english.strings}
     headers = %w{constants french english}
     converter = Babelish::Android2CSV.new(
-      :csv_filename => csv_filename,
-      :headers => headers,
-      :filenames => filenames)
+      csv_filename: csv_filename,
+      headers: headers,
+      filenames: filenames)
 
     assert_equal csv_filename, converter.csv_filename
     assert_equal headers, converter.headers
@@ -38,9 +38,9 @@ class TestAndroid2CSV < Test::Unit::TestCase
     headers = %w{variables german}
 
     converter = Babelish::Android2CSV.new(
-      :csv_filename => csv_filename,
-      :headers => headers,
-      :filenames => [filenames])
+      csv_filename: csv_filename,
+      headers: headers,
+      filenames: [filenames])
 
     converter.convert
 

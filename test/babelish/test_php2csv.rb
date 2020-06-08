@@ -57,9 +57,9 @@ class TestPhp2CSV < Test::Unit::TestCase
     filenames = %w{"french.php english.php"}
     headers = %w{"constants french english"}
     converter = Babelish::Php2CSV.new({
-      :csv_filename => csv_filename,
-      :headers => headers,
-      :filenames => filenames })
+      csv_filename: csv_filename,
+      headers: headers,
+      filenames: filenames })
 
     assert_equal csv_filename, converter.csv_filename
     assert_equal headers, converter.headers

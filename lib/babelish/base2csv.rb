@@ -2,7 +2,7 @@ module Babelish
   class Base2Csv
     attr_accessor :csv_filename, :headers, :filenames, :default_lang
 
-    def initialize(args = {:filenames => []})
+    def initialize(args = {filenames: []})
       raise ArgumentError.new("No filenames given") unless args[:filenames]
       if args[:headers]
         raise ArgumentError.new("number of headers and files don't match, don't forget the constant column") unless args[:headers].size == (args[:filenames].size + 1)

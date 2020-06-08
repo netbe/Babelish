@@ -105,7 +105,7 @@ class TestStrings2CSV < Test::Unit::TestCase
   end
 
   def test_dotstrings_to_csv
-    converter = Babelish::Strings2CSV.new(:filenames => ["test/data/test_data.strings"])
+    converter = Babelish::Strings2CSV.new(filenames: ["test/data/test_data.strings"])
     keys, strings = converter.convert(false)
     assert_equal ["ERROR_HANDLER_WARNING_DISMISS", "ANOTHER_STRING"], keys
 
@@ -116,7 +116,7 @@ class TestStrings2CSV < Test::Unit::TestCase
     filename = "test_data"
     strings = {filename => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
 
-    converter = Babelish::Strings2CSV.new(:headers => %w{variables english}, :filenames => [filename])
+    converter = Babelish::Strings2CSV.new(headers: %w{variables english}, filenames: [filename])
 
     converter.send :create_csv_file, keys, strings
     assert File.exist?(converter.csv_filename)
@@ -130,9 +130,9 @@ class TestStrings2CSV < Test::Unit::TestCase
     filenames = %w{french.strings english.strings}
     headers = %w{constants french english}
     converter = Babelish::Strings2CSV.new({
-      :csv_filename => csv_filename,
-      :headers => headers,
-      :filenames => filenames })
+      csv_filename: csv_filename,
+      headers: headers,
+      filenames: filenames })
 
       assert_equal csv_filename, converter.csv_filename
       assert_equal headers, converter.headers

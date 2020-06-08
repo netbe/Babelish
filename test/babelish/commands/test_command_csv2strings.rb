@@ -3,8 +3,8 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
 
   def test_csv2strings_with_multiple_2_languages
     options = {
-    	:filename => "test/data/test_data_multiple_langs.csv",
-    	:langs => {"English" => "en", "French" => "fr"}
+    	filename: "test/data/test_data_multiple_langs.csv",
+    	langs: {"English" => "en", "French" => "fr"}
     }
     Commandline.new([], options).csv2strings
 
@@ -18,9 +18,9 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
 
   def test_csv2strings_with_output_dir
     options = {
-    	:filename => "test/data/test_data_multiple_langs.csv",
-    	:langs => {"English" => "en", "French" => "fr"},
-    	:output_dir => "mynewlocation"
+    	filename: "test/data/test_data_multiple_langs.csv",
+    	langs: {"English" => "en", "French" => "fr"},
+    	output_dir: "mynewlocation"
     }
     Commandline.new([], options).csv2strings
 
@@ -35,9 +35,9 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
   def test_csv2strings_with_fetch_google_doc
     omit if ENV['TRAVIS']
     options = {
-      :filename => "my_strings",
-      :langs => {"English" => "en", "French" => "fr"},
-      :fetch => true
+      filename: "my_strings",
+      langs: {"English" => "en", "French" => "fr"},
+      fetch: true
     }
     assert_nothing_raised do
       Commandline.new([], options).csv2strings
@@ -63,10 +63,10 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
   def test_csv2strings_with_output_basenames_option
     omit if ENV['TRAVIS']
     options = {
-      :filename => "my_strings",
-      :langs => {"English" => "en", "French" => "fr"},
-      :fetch => true,
-      :output_basenames => %w(sheet1 sheet2),
+      filename: "my_strings",
+      langs: {"English" => "en", "French" => "fr"},
+      fetch: true,
+      output_basenames: %w(sheet1 sheet2),
     }
 
     Commandline.new([], options).csv2strings
@@ -84,11 +84,11 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
   def test_csv2strings_with_ignore_lang_path_option
     omit if ENV['TRAVIS']
     options = {
-      :filename => "my_strings",
-      :langs => {"English" => "en"},
-      :fetch => true,
-      :ignore_lang_path => true,
-      :output_basenames => %w(sheet1 sheet2),
+      filename: "my_strings",
+      langs: {"English" => "en"},
+      fetch: true,
+      ignore_lang_path: true,
+      output_basenames: %w(sheet1 sheet2),
     }
 
     Commandline.new([], options).csv2strings
@@ -103,9 +103,9 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
 
   def test_csv2strings_with_ignore_lang_path_option_local
     options = {
-      :filename => "test/data/test_data.csv",
-      :langs => {"English" => "en"},
-      :ignore_lang_path => true,
+      filename: "test/data/test_data.csv",
+      langs: {"English" => "en"},
+      ignore_lang_path: true,
     }
 
     Commandline.new([], options).csv2strings
@@ -118,9 +118,9 @@ class TestCSV2StringsCommand < Test::Unit::TestCase
 
   def test_csv2string_with_macros_filename
     options = {
-      :filename => "test/data/test_data.csv",
-      :macros_filename => "Babelish.h",
-      :langs => { "English" => "en" }
+      filename: "test/data/test_data.csv",
+      macros_filename: "Babelish.h",
+      langs: { "English" => "en" }
     }
 
     Commandline.new([], options).csv2strings
