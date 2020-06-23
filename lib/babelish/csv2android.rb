@@ -20,6 +20,14 @@ module Babelish
 
     def process_value(row_value, default_value)
       value = super(row_value, default_value)
+
+      #see https://developer.android.com/guide/topics/resources/string-resource#escaping_quotes
+      value.gsub!(/'/, "'" => "\\'") 
+      value.gsub!(/&/, "&" => '&amp;') 
+      value.gsub!(/</, "<" => '&lt;') 
+      value.gsub!(/\?/, "?" => '\?') 
+      value.gsub!(/@/, "@" => '\@') 
+
       # if the value begins and ends with a quote we must leave them unescapted
       if value.size > 4 && value[0, 2] == "\\\"" && value[value.size - 2, value.size] == "\\\""
         value[0, 2] = "\""
