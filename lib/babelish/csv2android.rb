@@ -30,9 +30,9 @@ module Babelish
       value.to_utf8
     end
 
-    #see https://developer.android.com/guide/topics/resources/string-resource#escaping_quotes
+    # see https://developer.android.com/guide/topics/resources/string-resource#escaping_quotes
     def escape_android_characters(value)
-      value.gsub!(/'/, "'" => "\\'")
+      value.gsub!(/'/, "'" => '\\\'')       # \' should be the result...
       value.gsub!(/&/, "&" => '&amp;')
       value.gsub!(/</, "<" => '&lt;')
       value.gsub!(/\?/, "?" => '\?')

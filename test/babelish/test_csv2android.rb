@@ -71,7 +71,6 @@ class TestCSV2Android < Test::Unit::TestCase
   end
 
   def test_android_character_escaping
-
     converter = Babelish::CSV2Android.new(csv_file,
                                           { "English" => "en" },
                                           { output_basename: "super_strings" })
