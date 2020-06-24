@@ -20,13 +20,7 @@ module Babelish
 
     def process_value(row_value, default_value)
       value = super(row_value, default_value)
-
-      #see https://developer.android.com/guide/topics/resources/string-resource#escaping_quotes
-      value.gsub!(/'/, "'" => "\\'") 
-      value.gsub!(/&/, "&" => '&amp;') 
-      value.gsub!(/</, "<" => '&lt;') 
-      value.gsub!(/\?/, "?" => '\?') 
-      value.gsub!(/@/, "@" => '\@') 
+      value = escape_android_characters(value)
 
       # if the value begins and ends with a quote we must leave them unescapted
       if value.size > 4 && value[0, 2] == "\\\"" && value[value.size - 2, value.size] == "\\\""
@@ -34,6 +28,16 @@ module Babelish
         value[value.size - 2, value.size] = "\""
       end
       value.to_utf8
+    end
+
+    #see https://developer.android.com/guide/topics/resources/string-resource#escaping_quotes
+    def escape_android_characters(value)
+      value.gsub!(/'/, "'" => "\\'")
+      value.gsub!(/&/, "&" => '&amp;')
+      value.gsub!(/</, "<" => '&lt;')
+      value.gsub!(/\?/, "?" => '\?')
+      value.gsub!(/@/, "@" => '\@')
+      value
     end
 
     def get_row_format(row_key, row_value, comment = nil, indentation = 0)

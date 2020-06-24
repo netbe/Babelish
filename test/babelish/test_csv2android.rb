@@ -69,4 +69,17 @@ class TestCSV2Android < Test::Unit::TestCase
     # clean up
     system("rm -rf ./values-en")
   end
+
+  def test_android_character_escaping
+
+    converter = Babelish::CSV2Android.new(csv_file,
+                                          { "English" => "en" },
+                                          { output_basename: "super_strings" })
+    input_string = "?  '  @  <  &"
+
+    converted_string = converter.escape_android_characters(input_string)
+
+    assert_equal '\?  \\\'  \@  &lt;  &amp;', converted_string
+
+  end
 end
