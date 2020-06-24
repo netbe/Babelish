@@ -32,7 +32,7 @@ module Babelish
 
     # see https://developer.android.com/guide/topics/resources/string-resource#escaping_quotes
     def escape_android_characters(value)
-      value.gsub!(/'/, "'" => '\\\'')       # \' should be the result...
+      value.gsub!(/'/, "'" => '\\\'') # \' should be the result...
       value.gsub!(/&/, "&" => '&amp;')
       value.gsub!(/</, "<" => '&lt;')
       value.gsub!(/\?/, "?" => '\?')
