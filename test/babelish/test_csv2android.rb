@@ -71,14 +71,23 @@ class TestCSV2Android < Test::Unit::TestCase
   end
 
   def test_android_character_escaping
-    converter = Babelish::CSV2Android.new("test/data/test_data.csv",
+    converter = Babelish::CSV2Android.new("test/data/test_data_with_characters_that_need_escaping.csv",
                                           { "English" => "en" },
-                                          { output_basename: "super_strings" })
-    input_string = "?  '  @  <  &"
+                                          { output_basename: "escaped_strings" })
+    converter.convert
+    exist = File.exist?("values-en/escaped_strings.xml")
+    assert exist, "the ouptut file does not exist"
 
-    converted_string = converter.escape_android_characters(input_string)
+    output = File.read("values-en/escaped_strings.xml")
+    expected_output = File.read("test/data/test_data_with_characters_that_need_escaping.xml")
 
-    assert_equal '\?  \\\'  \@  &lt;  &amp;', converted_string
+    assert_equal expected_output, output
+
+    assert_true FileUtils.identical?("values-en/escaped_strings.xml",
+                                     "test/data/test_data_with_characters_that_need_escaping.xml")
+
+    # clean up
+    system("rm -rf ./values-en")
 
   end
 end
