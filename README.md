@@ -57,7 +57,7 @@ See [.babelish.sample](.babelish.sample) file in the doc folder. as the possible
 
 **Note for docker:** In order to export the output of a conversion, you will need to pipe the result out of the container. An example would be
 ```
-› docker run netbe/Babelish babelish csv2json >> some_file.json
+› docker run netbe/babelish babelish csv2json >> some_file.json
 ```
 
 **For more details, check the documentation:**
