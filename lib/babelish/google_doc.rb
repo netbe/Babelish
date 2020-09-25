@@ -40,15 +40,16 @@ module Babelish
         puts "can't open requested file"
       end
     end
-
+    
     def authenticate
       # will try to get token and store in file below
-      @session = GoogleDrive.saved_session(".babelish.token",
-                                           nil,
-                                           Babelish::Keys::GOOGLE_DRIVE_CLIENT_ID,
-                                           Babelish::Keys::GOOGLE_DRIVE_CLIENT_SECRET)
+      config = GoogleDrive::Config.new(".babelish.token")
+      config.client_id = Babelish::Keys::GOOGLE_DRIVE_CLIENT_ID
+      config.client_secret = Babelish::Keys::GOOGLE_DRIVE_CLIENT_SECRET
+      config.scope = ["https://www.googleapis.com/auth/drive.readonly"]
+      @session = GoogleDrive::Session.from_config(config)
     end
-
+    
     def file_with_name(name)
       unless @session
         authenticate
