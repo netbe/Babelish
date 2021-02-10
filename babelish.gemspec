@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://netbe.github.io/Babelish/'
   s.license = 'MIT'
 
-  s.add_dependency "thor"
+  s.add_dependency "thor", "1.0.1"
 
   s.add_dependency "google_drive", "~> 3.0.5"
   s.add_dependency "nokogiri"
