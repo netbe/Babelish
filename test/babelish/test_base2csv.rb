@@ -12,7 +12,7 @@ class TestBase2Csv < Test::Unit::TestCase
     filename = "test_data"
     strings = {filename => {"ERROR_HANDLER_WARNING_DISMISS" => "OK", "ANOTHER_STRING" => "hello"}}
 
-    converter = Babelish::Base2Csv.new(:headers => %w{variables english}, :filenames => [filename])
+    converter = Babelish::Base2Csv.new(headers: %w{variables english}, filenames: [filename])
 
     converter.send :create_csv_file, keys, strings
     assert File.exist?(converter.csv_filename)
@@ -26,9 +26,9 @@ class TestBase2Csv < Test::Unit::TestCase
     filenames = %w{"french.strings english.strings"}
     headers = %w{"constants french english"}
     converter = Babelish::Base2Csv.new({
-        :csv_filename => csv_filename,
-        :headers => headers,
-        :filenames => filenames
+        csv_filename: csv_filename,
+        headers: headers,
+        filenames: filenames
     })
 
     assert_equal csv_filename, converter.csv_filename

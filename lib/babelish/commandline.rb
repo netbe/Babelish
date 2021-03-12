@@ -2,37 +2,38 @@ require 'thor'
 require 'yaml'
 class Commandline < Thor
   include Thor::Actions
-  class_option :verbose, :type => :boolean
-  class_option :config, :type => :string, :aliases => "-c", :desc => "Read configuration from given file", :default => ".babelish"
+  class_option :verbose, type: :boolean
+  class_option :config, type: :string, aliases: "-c", desc: "Read configuration from given file", default: ".babelish"
   map "-v" => :version
 
   CSVCLASSES = [
-    {:name => "CSV2Strings", :ext => ".strings"},
-    {:name => "CSV2Android", :ext => ".xml"},
-    {:name => "CSV2JSON", :ext => ".json"},
-    {:name => "CSV2Php", :ext => ".php"},
+    {name: "CSV2Strings", ext: ".strings"},
+    {name: "CSV2Android", ext: ".xml"},
+    {name: "CSV2JSON", ext: ".json"},
+    {name: "CSV2Php", ext: ".php"},
   ]
 
   CSVCLASSES.each do |klass|
     desc "#{klass[:name].downcase}", "Convert CSV file to #{klass[:ext]}"
-    method_option :filename, :type => :string, :aliases => "-i", :desc => "CSV file to convert from or name of file in Google Drive"
-    method_option :langs, :type => :hash, :aliases => "-L", :desc => "Languages to convert. i.e. English:en"
+    method_option :filename, type: :string, aliases: "-i", desc: "CSV file to convert from or name of file in Google Drive"
+    method_option :langs, type: :hash, aliases: "-L", desc: "Languages to convert. i.e. English:en"
 
     # optional options
-    method_option :excluded_states, :type => :array, :aliases => "-x", :desc => "Exclude rows with given state"
-    method_option :state_column, :type => :numeric, :aliases => "-s", :desc => "Position of column for state if any"
-    method_option :keys_column, :type => :numeric, :aliases => "-k", :desc => "Position of column for keys"
-    method_option :comments_column, :type => :numeric, :aliases => "-C", :desc => "Position of column for comments if any"
-    method_option :default_lang, :type => :string, :aliases => "-l", :desc => "Default language to use for empty values if any"
-    method_option :csv_separator, :type => :string, :aliases => "-S", :desc => "CSV column separator character, uses ',' by default"
-    method_option :output_dir, :type => :string, :aliases => "-d", :desc => "Path of output files"
-    method_option :output_basenames, :type => :array, :aliases => "-o", :desc => "Basename of output files"
-    method_option :stripping, :type => :boolean, :aliases => "-N", :default => false, :desc => "Strips values of spreadsheet"
-    method_option :ignore_lang_path, :type => :boolean, :aliases => "-I", :lazy_default => false, :desc => "Ignore the path component of langs"
-    method_option :fetch, :type => :boolean, :desc => "Download file from Google Drive"
-    method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0"
+    method_option :excluded_states, type: :array, aliases: "-x", desc: "Exclude rows with given state"
+    method_option :state_column, type: :numeric, aliases: "-s", desc: "Position of column for state if any"
+    method_option :keys_column, type: :numeric, aliases: "-k", desc: "Position of column for keys"
+    method_option :comments_column, type: :numeric, aliases: "-C", desc: "Position of column for comments if any"
+    method_option :default_lang, type: :string, aliases: "-l", desc: "Default language to use for empty values if any"
+    method_option :csv_separator, type: :string, aliases: "-S", desc: "CSV column separator character, uses ',' by default"
+    method_option :output_dir, type: :string, aliases: "-d", desc: "Path of output files"
+    method_option :output_basenames, type: :array, aliases: "-o", desc: "Basename of output files"
+    method_option :stripping, type: :boolean, aliases: "-N", default: false, desc: "Strips values of spreadsheet"
+    method_option :ignore_lang_path, type: :boolean, aliases: "-I", lazy_default: false, desc: "Ignore the path component of langs"
+    method_option :fetch, type: :boolean, desc: "Download file from Google Drive"
+    method_option :sheet, type: :numeric, desc: "Index of worksheet to download. First index is 0"
+    method_option :pretty_json, type: :boolean, aliases: "-p", desc: "Prettify your json output files"
     if klass[:name] == "CSV2Strings"
-      method_option :macros_filename, :type => :boolean, :aliases => "-m", :lazy_default => false, :desc => "Filename containing defines of localized keys"
+      method_option :macros_filename, type: :boolean, aliases: "-m", lazy_default: false, desc: "Filename containing defines of localized keys"
     end
     define_method("#{klass[:name].downcase}") do
       csv2base(klass[:name])
@@ -40,20 +41,20 @@ class Commandline < Thor
   end
 
   BASECLASSES = [
-    {:name => "Strings2CSV", :ext => ".strings"},
-    {:name => "Android2CSV", :ext => ".xml"},
-    {:name => "JSON2CSV", :ext => ".json"},
-    {:name => "Php2CSV", :ext => ".php"},
+    {name: "Strings2CSV", ext: ".strings"},
+    {name: "Android2CSV", ext: ".xml"},
+    {name: "JSON2CSV", ext: ".json"},
+    {name: "Php2CSV", ext: ".php"},
   ]
 
   BASECLASSES.each do |klass|
     desc "#{klass[:name].downcase}", "Convert #{klass[:ext]} files to CSV file"
-    method_option :filenames, :type => :array, :aliases => "-i", :desc => "location of strings files (FILENAMES)"
+    method_option :filenames, type: :array, aliases: "-i", desc: "location of strings files (FILENAMES)"
 
     # optional options
-    method_option :csv_filename, :type => :string, :aliases => "-o", :desc => "location of output file"
-    method_option :headers, :type => :array, :aliases => "-h", :desc => "override headers of columns, default is name of input files and 'Variables' for reference"
-    method_option :dryrun, :type => :boolean, :aliases => "-n", :desc => "prints out content of hash without writing file"
+    method_option :csv_filename, type: :string, aliases: "-o", desc: "location of output file"
+    method_option :headers, type: :array, aliases: "-h", desc: "override headers of columns, default is name of input files and 'Variables' for reference"
+    method_option :dryrun, type: :boolean, aliases: "-n", desc: "prints out content of hash without writing file"
     define_method("#{klass[:name].downcase}") do
       begin
         base2csv(klass[:name])
@@ -64,10 +65,10 @@ class Commandline < Thor
   end
 
   desc "csv_download", "Download Google Spreadsheet containing translations"
-  method_option :gd_filename, :type => :string, :desc => "File to download from Google Drive."
-  method_option :sheet, :type => :numeric, :desc => "Index of worksheet to download. First index is 0."
-  method_option :all, :type => :boolean, :lazy_default => true, :desc => "Download all worksheets to individual csv files."
-  method_option :output_filename, :type => :string, :desc => "Filepath of downloaded file."
+  method_option :gd_filename, type: :string, desc: "File to download from Google Drive."
+  method_option :sheet, type: :numeric, desc: "Index of worksheet to download. First index is 0."
+  method_option :all, type: :boolean, lazy_default: true, desc: "Download all worksheets to individual csv files."
+  method_option :output_filename, type: :string, desc: "Filepath of downloaded file."
   def csv_download
     all = options[:sheet] ? false : options[:all]
     filename = options['gd_filename']

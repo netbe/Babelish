@@ -2,7 +2,7 @@ module Babelish
   require "nokogiri"
   class Android2CSV < Base2Csv
 
-    def initialize(args = {:filenames => []})
+    def initialize(args = {filenames: []})
       super(args)
     end
 

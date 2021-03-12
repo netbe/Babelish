@@ -18,9 +18,9 @@ class JSON2CSVTest < Test::Unit::TestCase
     filenames = %w{"french.strings english.strings"}
     headers = %w{"constants french english"}
     converter = Babelish::JSON2CSV.new({
-      :csv_filename => csv_filename,
-      :headers => headers,
-      :filenames => filenames })
+      csv_filename: csv_filename,
+      headers: headers,
+      filenames: filenames })
 
     assert_equal csv_filename, converter.csv_filename
     assert_equal headers, converter.headers

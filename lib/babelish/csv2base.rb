@@ -12,10 +12,10 @@ module Babelish
 
     def initialize(filename, langs, args = {})
       default_args = {
-        :excluded_states => [],
-        :state_column => nil,
-        :keys_column => 0,
-        :csv_separator => ","
+        excluded_states: [],
+        state_column: nil,
+        keys_column: 0,
+        csv_separator: ","
       }
 
       args = default_args.merge!(args)
@@ -99,7 +99,7 @@ module Babelish
       excludedCols = []
       defaultCol   = 0
 
-      CSV.foreach(name, :quote_char => '"', :col_sep => @csv_separator, :row_sep => :auto) do |row|
+      CSV.foreach(name, quote_char: '"', col_sep: @csv_separator, row_sep: :auto) do |row|
 
         if rowIndex == 0
           #check there's at least two columns

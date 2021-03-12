@@ -28,8 +28,8 @@ class TestCSV2Android < Test::Unit::TestCase
     converter = Babelish::CSV2Android.new(
       csv_file,
       { "English" => "en" },
-      :output_basename => "myApp",
-      :ignore_lang_path => true
+      output_basename: "myApp",
+      ignore_lang_path: true
     )
     converter.convert
     assert File.exist?(single_file), "the ouptut file does not exist"
@@ -45,8 +45,8 @@ class TestCSV2Android < Test::Unit::TestCase
     converter = Babelish::CSV2Android.new(
       csv_file,
       { "French" => "fr" },
-      :default_lang => "English",
-      :comments_column => 5
+      default_lang: "English",
+      comments_column: 5
     )
     converter.convert
     assert File.exist?(french_file), "the ouptut file does not exist"

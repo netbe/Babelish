@@ -3,8 +3,8 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
 
   def test_csv2android_with_multiple_2_languages
     options = {
-    	:filename => "test/data/test_data_multiple_langs.csv",
-    	:langs => {"English" => "en", "French" => "fr"}
+    	filename: "test/data/test_data_multiple_langs.csv",
+    	langs: {"English" => "en", "French" => "fr"}
     }
     Commandline.new([], options).csv2android
 
@@ -18,8 +18,8 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
 
   def test_csv2android_with_multiple_2_languages_with_region
     options = {
-        :filename => "test/data/test_data_multiple_langs.csv",
-        :langs => {"English" => "en-US", "French" => "fr"}
+        filename: "test/data/test_data_multiple_langs.csv",
+        langs: {"English" => "en-US", "French" => "fr"}
     }
     Commandline.new([], options).csv2android
 
@@ -33,9 +33,9 @@ class TestCSV2AndroidCommand < Test::Unit::TestCase
 
   def test_csv2android_with_output_dir
     options = {
-    	:filename => "test/data/test_data_multiple_langs.csv",
-    	:langs => {"English" => "en", "French" => "fr"},
-    	:output_dir => "mynewlocation"
+    	filename: "test/data/test_data_multiple_langs.csv",
+    	langs: {"English" => "en", "French" => "fr"},
+    	output_dir: "mynewlocation"
     }
 
     Commandline.new([], options).csv2android

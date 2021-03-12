@@ -1,7 +1,7 @@
 require 'test_helper'
 class TestAndroid2CSVCommand < Test::Unit::TestCase
   def test_android2csv
-    options = {:filenames => ["test/data/android.xml"]}
+    options = {filenames: ["test/data/android.xml"]}
     Commandline.new([], options).android2csv
 
     assert File.exist?("translations.csv")
@@ -11,7 +11,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
   end
 
   def test_android2csv_with_dryrun_option
-    options = {:filenames => ["test/data/android.xml"], :dryrun => true}
+    options = {filenames: ["test/data/android.xml"], dryrun: true}
     Commandline.new([], options).android2csv
 
     assert !File.exist?("translations.csv")
@@ -21,7 +21,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
   end
 
   def test_android2csv_with_output_file
-    options = {:filenames => ["test/data/android.xml"], :csv_filename => "myfile.csv"}
+    options = {filenames: ["test/data/android.xml"], csv_filename: "myfile.csv"}
     # -i, -o
     Commandline.new([], options).android2csv
 
@@ -32,7 +32,7 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
   end
 
   def test_android2csv_with_headers
-    options = {:filenames => ["test/data/android.xml"], :headers => ["constants", "english"]}
+    options = {filenames: ["test/data/android.xml"], headers: ["constants", "english"]}
     # -i, -h
     Commandline.new([], options).android2csv
 
@@ -44,9 +44,9 @@ class TestAndroid2CSVCommand < Test::Unit::TestCase
 
   def test_android2csv_with_two_files
     options = {
-      :filenames => ["test/data/android-en.xml", "test/data/android-fr.xml"],
-      :headers => %w{Constants English French},
-      :csv_filename => "enfr.csv"
+      filenames: ["test/data/android-en.xml", "test/data/android-fr.xml"],
+      headers: %w{Constants English French},
+      csv_filename: "enfr.csv"
     }
     # --filenames, --headers, -o
     Commandline.new([], options).android2csv
