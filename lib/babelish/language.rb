@@ -1,6 +1,6 @@
 module Babelish
   class Language
-    attr_accessor :name, :content, :code, :regions
+    attr_accessor :name, :content, :code, :regions, :language_id
 
     def initialize(name, content = {})
       @name = name
@@ -16,6 +16,7 @@ module Babelish
       @code ||= code
       @regions ||= []
       @regions << region if region
+      @language_id = language_id
     end
 
     def region
