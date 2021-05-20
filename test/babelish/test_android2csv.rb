@@ -50,4 +50,23 @@ class TestAndroid2CSV < Test::Unit::TestCase
     # clean up
     system("rm -rf ./" + csv_filename)
   end
+
+  def test_cdata_are_not_removed
+    csv_filename = "./test.csv"
+    filename = "test/data/android_cdata.xml"
+    headers = %w{variables german}
+
+    expected_output = [["html"], {filename => {"html" => "<![CDATA[<p>Text<p>]]>"}}]
+    converter = Babelish::Android2CSV.new(
+      :csv_filename => csv_filename,
+      :headers => headers,
+      :filenames => [filename])
+
+    output = converter.convert(false)
+
+    assert_equal expected_output, output
+
+    # clean up
+    system("rm -rf ./" + csv_filename)
+  end
 end
