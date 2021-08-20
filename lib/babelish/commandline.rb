@@ -177,8 +177,6 @@ class Commandline < Thor
     true
   end
 
-  private
-
   def options
     original_options = super
     return original_options unless File.exist?(original_options["config"])
