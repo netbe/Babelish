@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="NEEDS_ESCAPING">\?  \'  \@  &lt;  &amp;</string>
+	<string name="ANOTHER_STRING">hello</string>
+</resources>

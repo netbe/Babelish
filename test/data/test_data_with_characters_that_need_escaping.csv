@@ -1,0 +1,3 @@
+variables,English
+NEEDS_ESCAPING,?  '  @  <  &
+ANOTHER_STRING,hello
